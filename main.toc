@@ -1,1 +1,24 @@
 \contentsline {section}{\numberline {1}Sistemi non decimali}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Conversione della parte intera}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Conversione della parte frazionaria}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Numeri macchina}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Interi macchina}{4}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Overflow}{5}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Floating point e standard IEEE 754}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Tabella riassuntiva IEEE 754}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Arrotondamento e troncamento}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Errore e norme}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Errore assoluto e relativo}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Norma euclidea}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Norma $p$}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Norma infinito}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Equivalenza delle norme}{8}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Errore relativo}{8}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Floating point: successivo e precedente}{8}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Errore di rappresentazione}{9}{subsection.3.8}%
+\contentsline {subsubsection}{\numberline {3.8.1}Errore dovuto al troncamento}{9}{subsubsection.3.8.1}%
+\contentsline {subsubsection}{\numberline {3.8.2}Errore dovuto all'arrotondamento}{9}{subsubsection.3.8.2}%
+\contentsline {section}{\numberline {4}Precisione di macchina}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Operazioni macchina}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Errore relativo della moltiplicazione}{10}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Errore relativo della somma}{10}{subsection.4.3}%

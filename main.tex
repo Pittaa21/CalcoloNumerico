@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[most]{tcolorbox}
-\usepackage{xcolor, array}
-\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage[table,dvipsnames]{xcolor}
 \usepackage{graphicx, float}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -9,8 +9,7 @@
 \graphicspath{{images/}}
 \usepackage{amsthm, amssymb, amsmath}
 \usepackage[a4paper]{geometry}
-\usepackage[dvipsnames]{xcolor}
-\usepackage[skip=8pt, indent= 0pt]{parskip}
+\usepackage[skip=8pt, indent=0pt]{parskip}
 \usepackage{pgfplots}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cancel}
@@ -21,6 +20,7 @@ total={170mm,257mm},
 left=20mm,
 top=20mm,
 }
+
 \title{Calcolo Numerico}
 \author{Marco Pittarello}
 \date{}
@@ -39,13 +39,17 @@ top=20mm,
     colframe=blue!100!white,
     colback=blue!10!white
 }{def}
+
 \renewcommand{\arraystretch}{2}
 \setlength{\tabcolsep}{20pt}
+
 \begin{document}
 \maketitle
 \tableofcontents
 \newpage
+
 \section{Sistemi non decimali}
+
 \begin{defi}{Conversione da base $N$ a base $M$}{}
 Dato $x>0$ e nota la rappresentazione $(x)_N$, vogliamo trovare la rappresentazione $(x)_M$.
 
@@ -53,7 +57,7 @@ Scriviamo:
 \begin{align*}
 x
 &=x_nN^n+x_{n-1}N^{n-1}+\dots+x_0
-+x_{-1}N^{-1}+\dots+x_{-r}N^{-r}\
++x_{-1}N^{-1}+\dots+x_{-r}N^{-r}\\
 &=y_mM^m+y_{m-1}M^{m-1}+\dots+y_0
 +y_{-1}M^{-1}+\dots+y_{-q}M^{-q}.
 \end{align*}
@@ -67,11 +71,11 @@ Per convertire la parte intera si itera lo schema della divisione intera per $M$
 \begin{align*}
 y_0&:=x\bmod M,
 &
-x&=q_0M+y_0,\
+x&=q_0M+y_0,\\
 y_1&:=q_0\bmod M,
 &
-q_0&=q_1M+y_1,\
-&\vdots\
+q_0&=q_1M+y_1,\\
+&\vdots\\
 y_m&:=q_{m-1}\bmod M,
 &
 q_{m-1}&=y_m<M.
@@ -105,18 +109,18 @@ Si ha:
 +0\cdot2^9
 +0\cdot2^8
 +1\cdot2^7
-+1\cdot2^6\
++1\cdot2^6\\
 &\qquad
 +0\cdot2^5
 +1\cdot2^4
 +0\cdot2^3
 +0\cdot2^2
 +1\cdot2^1
-+0\cdot2^0\
++0\cdot2^0\\
 &=
-2^{10}+2^7+2^6+2^4+2^1\
+2^{10}+2^7+2^6+2^4+2^1\\
 &=
-1024+128+64+16+2\
+1024+128+64+16+2\\
 &=
 1234.
 \end{align*}
@@ -138,16 +142,16 @@ $$
 
 in base $2$ utilizzando divisioni successive per $2$:
 \begin{align*}
-1234&=617\cdot2+0,\
-617&=308\cdot2+1,\
-308&=154\cdot2+0,\
-154&=77\cdot2+0,\
-77&=38\cdot2+1,\
-38&=19\cdot2+0,\
-19&=9\cdot2+1,\
-9&=4\cdot2+1,\
-4&=2\cdot2+0,\
-2&=1\cdot2+0,\
+1234&=617\cdot2+0,\\
+617&=308\cdot2+1,\\
+308&=154\cdot2+0,\\
+154&=77\cdot2+0,\\
+77&=38\cdot2+1,\\
+38&=19\cdot2+0,\\
+19&=9\cdot2+1,\\
+9&=4\cdot2+1,\\
+4&=2\cdot2+0,\\
+2&=1\cdot2+0,\\
 1&=0\cdot2+1.
 \end{align*}
 
@@ -233,11 +237,11 @@ in base $2$.
 Moltiplichiamo successivamente per $2$:
 \begin{align*}
 0.0625\cdot2&=0.125
-&&\longrightarrow 0,\
+&&\longrightarrow 0,\\
 0.1250\cdot2&=0.250
-&&\longrightarrow 0,\
+&&\longrightarrow 0,\\
 0.2500\cdot2&=0.500
-&&\longrightarrow 0,\
+&&\longrightarrow 0,\\
 0.5000\cdot2&=1.000
 &&\longrightarrow 1.
 \end{align*}
@@ -261,11 +265,11 @@ $$
 
 Procedendo come sopra:
 \begin{align*}
-0.1\cdot2&=0.2 &&\longrightarrow 0,\
-0.2\cdot2&=0.4 &&\longrightarrow 0,\
-0.4\cdot2&=0.8 &&\longrightarrow 0,\
-0.8\cdot2&=1.6 &&\longrightarrow 1,\
-0.6\cdot2&=1.2 &&\longrightarrow 1,\
+0.1\cdot2&=0.2 &&\longrightarrow 0,\\
+0.2\cdot2&=0.4 &&\longrightarrow 0,\\
+0.4\cdot2&=0.8 &&\longrightarrow 0,\\
+0.8\cdot2&=1.6 &&\longrightarrow 1,\\
+0.6\cdot2&=1.2 &&\longrightarrow 1,\\
 0.2\cdot2&=0.4 &&\longrightarrow 0,
 \end{align*}
 e da questo punto la sequenza si ripete.
@@ -290,7 +294,7 @@ Un calcolatore binario non può rappresentare esattamente, in generale, un numer
 
 \subsection{Interi macchina}
 
-I tipi interi macchina più comuni utilizzano $32$ o $64$ bit, ad esempio `int32` e `int64`.
+I tipi interi macchina più comuni utilizzano $32$ o $64$ bit, ad esempio \texttt{int32} e \texttt{int64}.
 
 \colorbox{yellow}{\textbf{NOTA:}}
 Gli interi macchina a $32$ o $64$ bit non fanno parte dello standard IEEE 754, che riguarda invece la rappresentazione dei numeri in virgola mobile.
@@ -406,29 +410,29 @@ Il valore $0$ richiede invece una convenzione particolare.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
-\hline
-& \textbf{32 bit} & \textbf{64 bit}\
-\hline
-Bit totali & 32 & 64\
-\hline
-Bit segno & 1 & 1\
-\hline
-Bit esponente & 8 & 11\
-\hline
-Bit frazione & 23 & 52\
-\hline
-Bias $b$ & 127 & 1023\
-\hline
-Intervallo $e$ normalizzato & $0<e<255$ & $0<e<2047$\
-\hline
-$e=0,\ f=0$ & $\pm0$ & $\pm0$\
-\hline
-$e=0,\ f>0$ & denormalizzato & denormalizzato\
-\hline
-$e=255,\ f=0$ & $\pm\infty$ & $\pm\infty$\
-\hline
-$e=255,\ f>0$ & NaN & NaN\
-\hline
+    \hline
+    & \textbf{32 bit} & \textbf{64 bit}\\
+    \hline
+    Bit totali & 32 & 64\\
+    \hline
+    Bit segno & 1 & 1\\
+    \hline
+    Bit esponente & 8 & 11\\
+    \hline
+    Bit frazione & 23 & 52\\
+    \hline
+    Bias $b$ & 127 & 1023\\
+    \hline
+    Intervallo $e$ normalizzato & $0<e<255$ & $0<e<2047$\\
+    \hline
+    $e=0,\ f=0$ & $\pm0$ & $\pm0$\\
+    \hline
+    $e=0,\ f>0$ & denormalizzato & denormalizzato\\
+    \hline
+    $e=255,\ f=0$ & $\pm\infty$ & $\pm\infty$\\
+    \hline
+    $e=255,\ f>0$ & NaN & NaN\\
+    \hline
 \end{tabular}
 \end{center}
 
@@ -449,26 +453,13 @@ Nel caso binario:
 \item se la cifra successiva è $0$, l'ultima cifra non viene modificata.
 \end{itemize}
 \end{defi}
-
+\newpage
 \section{Errore e norme}
 
-Supponiamo di voler rappresentare o calcolare un valore esatto
-
-$$
-x\in\mathbb{R}
-$$
-
-oppure
-
-$$
-x\in\mathbb{R}^m,
-$$
-
-ma di ottenere invece un'approssimazione
-
-$$
-\widetilde{x}\approx x.
-$$
+\begin{defi}{Approssimazione}{}
+    Supponiamo di voler rappresentare o calcolare un valore $x\in\mathbb{R}$ $\left(\text{o }\in\mathbb{R}^m\right)$,
+ma invece calcolo o ottengo un'\underline{approssimazione}: $$\widetilde{x}\approx x.$$
+\end{defi}
 
 \subsection{Errore assoluto e relativo}
 
@@ -480,40 +471,30 @@ $$
 }.
 $$
 
-Se $x\in\mathbb{R}^n$, si utilizza una norma:
+Se, invece, $x\in\mathbb{R}^n$, per rappresentare l'errore assoluto, si utilizza:
 
 $$
 \boxed{
 \|\widetilde{x}-x\|
 }.
 $$
+Dove $||\cdot||$ è una norma su $\mathbb R^m$.\newline
 
 \begin{defi}{Norma}{}
-Sia $V$ uno spazio vettoriale e sia
+Sia $V$ uno spazio vettoriale e sia:
 
 $$
 \|\cdot\|:V\longrightarrow\mathbb{R}_{\ge0}.
 $$
 
-La funzione $|\cdot|$ è una norma se soddisfa, per ogni $u,v\in V$ e per ogni $\lambda\in\mathbb{R}$:
+La funzione $\|\cdot\|$ è una norma se soddisfa, per ogni $u,v\in V$ e per ogni $\lambda\in\mathbb{R}$:
 
 \begin{enumerate}
-\item \textbf{omogeneità}:
-\(    \|\lambda v\|=|\lambda|\,\|v\|;
-   \)
+\item \textbf{omogeneità}: $\|\lambda v\|=|\lambda|\,\|v\|$
 
-```
-\item \textbf{definitezza}:
-\[
-\|v\|=0\quad\Longrightarrow\quad v=0_V;
-\]
+\item \textbf{definitezza}: $\|v\|=0\quad\Longrightarrow\quad v=0_V$
 
-\item \textbf{disuguaglianza triangolare}:
-\[
-\|u+v\|\le\|u\|+\|v\|.
-\]
-```
-
+\item \textbf{disuguaglianza triangolare}: $\|u+v\|\le\|u\|+\|v\|$
 \end{enumerate}
 \end{defi}
 
@@ -528,13 +509,14 @@ $$
 la norma euclidea è definita da:
 
 $$
+\boxed{
 \|v\|
 =
 \sqrt{v_1^2+v_2^2+\dots+v_n^2}
 =
 \left(
 \sum_{d=1}^{n}v_d^2
-\right)^{1/2}.
+\right)^{1/2}}
 $$
 
 \subsection{Norma $p$}
@@ -550,58 +532,37 @@ $$
 \right)^{1/p}
 }.
 $$
-
 \subsection{Norma infinito}
-
+\begin{defi}{Norma infinito}{}
 La norma infinito è definita come:
-
 $$
-\boxed{
 \|v\|_\infty
 :=
 \max_i |v_i|
-}.
 $$
-
+\end{defi}
 \subsection{Equivalenza delle norme}
 
-Sia
-
-$$
-\{v_k\}
-$$
-
-una successione in $\mathbb{R}^n$ e siano
-
-$$
-\|\cdot\|_a,
-\qquad
-\|\cdot\|_b
-$$
-
-due norme.
+Sia $\{v_k\}$ una successione in $\mathbb{R}^n$ e siano $\|\cdot\|_a,\ \|\cdot\|_b$ due norme.
 
 In $\mathbb{R}^n$ tutte le norme sono equivalenti. In particolare:
 
-$$
-v_k\longrightarrow v
-\quad\text{rispetto a }\|\cdot\|_a
-$$
 
-se e solo se
+\begin{align*}
+&v_k\longrightarrow v
+\quad\text{rispetto a }\|\cdot\|_a\quad\left(\text{ossia } \lim_{k\to+\infty}||v_k-v||_a=0\right)\\
+& \Updownarrow\\
+&v_k\longrightarrow v
+\quad\text{rispetto a }\|\cdot\|_b\quad\left(\text{ossia } \lim_{k\to+\infty}||v_k-v||_b=0\right)
+\end{align*}
 
-$$
-v_k\longrightarrow v
-\quad\text{rispetto a }\|\cdot\|_b.
-$$
 
 \subsection{Errore relativo}
-
-Per $v\neq0$ definiamo l'\underline{errore relativo} rispetto alla norma $|\cdot|$ come:
+Per $v\in\mathbb R^m$ e $\tilde{v}$ appross. di $v$ definiamo l'\underline{errore relativo} rispetto alla norma $\|\cdot\|$ su $\mathbb R^m$ come:
 
 $$
 \boxed{
-\operatorname{Err}(\widetilde{v},\|\cdot\|)
+\operatorname{Err}_{\text{rel}}(\widetilde{v},\|\cdot\|)
 =
 \frac{\|\widetilde{v}-v\|}{\|v\|}
 }.
@@ -609,40 +570,39 @@ $$
 
 \subsection{Floating point: successivo e precedente}
 
-Poiché $\mathbb{F}*{32}$ e $\mathbb{F}*{64}$ sono insiemi finiti e ordinati, possiamo definire, per ogni $x$ non estremo:
+Poiché $\mathbb{F}_{32}$ e $\mathbb{F}_{64}$ sono insiemi finiti e ordinati, possiamo definire:
 
 \begin{defi}{Successivo e precedente}{}
-Il \underline{successivo} di $x$ è:
+Il \underline{successivo} di $x$:
 
 $$
 \operatorname{succ}(x)
-:=
-\min\{y\in\mathbb{F}:y>x\}.
+=
+\min\{y\in\mathbb{F}:y>x\}\quad \forall x\in\mathbb F \setminus\{\max\mathbb F\}
 $$
 
-Il \underline{precedente} di $x$ è:
+Il \underline{precedente} di $x$:
 
 $$
 \operatorname{prec}(x)
-:=
-\max\{y\in\mathbb{F}:y<x\}.
+=
+\max\{y\in\mathbb{F}:y<x\}\quad \forall x\in\mathbb F \setminus\{\min\mathbb F\}
 $$
-
 \end{defi}
 
-Quanto vale
+Quanto vale $\operatorname{succ}(x)-x$?
 
-$$
-\operatorname{succ}(x)-x?
-$$
+Pongo
+\begin{align*}
+x &= (-1)^s \cdot 2^{e-b} \cdot 1.f \\
+\operatorname{succ}(x) &= 
+\begin{cases}
+(-1)^s \cdot 2^{e-b} \cdot 1.f + (-1)^s \cdot 2^{e-b} \cdot 0.\overbrace{00\dots0}^{m-1}1 & , s=0 \\
+x - (-1)^s \cdot 2^{e-b} \cdot 0.\overbrace{00\dots0}^{m-1}1 & , s=1
+\end{cases}
+\end{align*}
 
-Se
-
-$$
-x=(-1)^s\cdot2^{e-b}\cdot(1.f)
-$$
-
-e $f$ contiene $n$ bit, allora la distanza tra due numeri floating point consecutivi, nello stesso intervallo di esponente, è:
+Dato che $f$ contiene $n$ bit, allora la distanza tra due numeri floating point consecutivi, nello stesso intervallo di esponente, è:
 
 $$
 \boxed{
@@ -653,95 +613,54 @@ $$
 $$
 
 \subsection{Errore di rappresentazione}
-
-\subsubsection{Errore dovuto al troncamento}
-
-Con il troncamento si ha:
-
 $$
 |x-\operatorname{fl}^{T}(x)|
 \le
+\begin{cases}
+& \operatorname{succ}(\widetilde{x})-\widetilde{x}\quad x>0\\
+& \widetilde{x} - \operatorname{succ}(\widetilde{x})\quad x<0
+\end{cases}
+\ =
 |\operatorname{succ}(\widetilde{x})-\widetilde{x}|
 =
-2^{e-b-n}.
+2^{e-b-n}
 $$
 
-Poiché per un numero normalizzato vale:
+\subsubsection{Errore dovuto al troncamento}
 
-$$
-|x|\ge2^{e-b},
-$$
-
-segue:
 \begin{align*}
-\left|
-\frac{x-\operatorname{fl}^{T}(x)}{x}
-\right|
-&\le
-\frac{2^{e-b-n}}{2^{e-b}}\
-&=
-2^{-n}.
+\frac{\left|x-\operatorname{fl}^T(x)\right|}{|x|}&\le\frac{\left|x-\operatorname{fl}^T(x)\right|}{\left|\operatorname{fl}^T(x)\right|}\le\frac{2^{e-b-n}}{2^{e-b}\cdot1.f}\\\\
+&\le\frac{2^{e-b-n}}{2^{e-b}\cdot1.0}=\boxed{2^{-n}}
 \end{align*}
 
 Pertanto:
-
 $$
 \boxed{
-\left|
-\frac{x-\operatorname{fl}^{T}(x)}{x}
-\right|
-\le2^{-n}
-}.
+\frac{\left|x-\operatorname{fl}^{T}(x)\right|}{\left|x\right|}\le2^{-n}}
 $$
-
 \subsubsection{Errore dovuto all'arrotondamento}
-
-Con l'arrotondamento al numero floating point più vicino si ha:
-
+L'arrotondamento fa meglio perchè:
 $$
-|x-\operatorname{fl}^{A}(x)|
+\left|x-\operatorname{fl}^{A}(x)\right|
 \le
 \frac12
-|\operatorname{succ}(\widetilde{x})-\widetilde{x}|.
-$$
-
-Quindi:
-
-$$
-|x-\operatorname{fl}^{A}(x)|
-\le
-2^{e-b-n-1}.
+\left|\operatorname{succ}(\widetilde{x})-\widetilde{x}\right|=\frac{1}{2}\cdot2^{e-b-n}=2^{e-b-n-1}
 $$
 
 Dividendo per $|x|\ge2^{e-b}$ otteniamo:
-\begin{align*}
-\left|
-\frac{x-\operatorname{fl}^{A}(x)}{x}
-\right|
-&\le
-\frac{2^{e-b-n-1}}{2^{e-b}}\
-&=
-2^{-n-1}.
-\end{align*}
+$$
+\left|\frac{x-\operatorname{fl}^{A}(x)}{x}\right|\le\frac{2^{e-b-n-1}}{2^{e-b}}=2^{-n-1}
+$$
 
 Pertanto:
-
 $$
-\boxed{
-\left|
-\frac{x-\operatorname{fl}^{A}(x)}{x}
-\right|
-\le
-2^{-n-1}
-}.
+\boxed{\frac{\left|x-\operatorname{fl}^{A}(x)\right|}{\left|x\right|}\le2^{-n-1}}
 $$
 
-\subsection{Precisione di macchina}
-
-Definiamo la \underline{precisione di macchina} come il più piccolo numero positivo distinguibile da $1$ tramite l'arrotondamento:
-
+\section{Precisione di macchina}
+\begin{defi}{Precisione macchina}{}
+Definiamo la \underline{precisione di macchina} come il più piccolo numero positivo $\epsilon$ tale che, se sommato a $1$ in virgola mobile, da un risultato diverso da $1$.
 $$
-\boxed{
 \epsilon_{\mathrm{mach}}
 :=
 \min
@@ -749,83 +668,35 @@ $$
 \epsilon>0:
 \operatorname{fl}(1+\epsilon)>1
 \right\}
-}.
-$$
+$$ 
+\end{defi}
 
-\section{Operazioni macchina}
+\subsection{Operazioni macchina}
 
 Siano definite le operazioni esatte:
 
-$$
-\Delta:
-\mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{R},
-\qquad
-(+,\cdot),
-$$
+\begin{align*}
+\Delta:\ &\mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{R},&(+,\cdot)\\
+&\mathbb{R}\times(\mathbb{R}\setminus\{0\})\longrightarrow\mathbb{R},&(:)
+\end{align*}
 
-e:
-
-$$
-\Delta:
-\mathbb{R}\times
-(\mathbb{R}\setminus\{0\})
-\longrightarrow\mathbb{R},
-\qquad
-(:).
-$$
-
-In una macchina, il risultato viene invece nuovamente rappresentato in virgola mobile.
-
-L'operazione macchina associata può quindi essere schematizzata come:
-
-$$
-\operatorname{fl}\circ\Delta:
-\mathbb{R}\times\mathbb{R}
-\longrightarrow
-\mathbb{F}.
-$$
-
-Per esempio, definiamo:
-
-$$
-x\oplus y
-:=
-\operatorname{fl}
-\left(
-\operatorname{fl}(x)+\operatorname{fl}(y)
-\right),
-$$
-
-e:
-
-$$
-x\odot y
-:=
-\operatorname{fl}
-\left(
-\operatorname{fl}(x)\operatorname{fl}(y)
-\right).
-$$
+Operazione macchina associata \textcircled{$\Delta$}:
+\begin{align*}
+\textcircled{$\Delta$}\quad&\mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{F}\\
+&\left(x,y\right)\longrightarrow\textcircled{$\Delta$}\left(x,y\right)=\operatorname{fl}\left(\operatorname{fl}(x)\Delta\cdot \operatorname{fl}(y)\right)
+\end{align*}
 
 \subsection{Errore relativo della moltiplicazione}
 
-L'errore relativo della moltiplicazione macchina è:
-
 $$
+\boxed{
 \operatorname{Err}_{\mathrm{rel}}(x\odot y)
 =
 \frac{
 |x\odot y-xy|
 }{
 |xy|
-}.
-$$
-
-Esplicitamente:
-
-$$
-\boxed{
-\operatorname{Err}_{\mathrm{rel}}(x\odot y)
+}
 =
 \frac{
 \left|
@@ -838,41 +709,38 @@ xy
 \right|
 }{
 |xy|
-}
-}.
+}}
 $$
 
-Nel modello standard dell'aritmetica floating point, in assenza di overflow e underflow, l'operazione può essere scritta come:
-
+\colorbox{yellow}{N.B.}: noi supponiamo che $$
+\frac{\left|x\cdot y-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}\le\epsilon_{\text{mach}}
+\begin{cases}
+    &2^{-n}\\
+    &2^{-n-1}
+\end{cases}
 $$
-\operatorname{fl}(xy)
-=
-xy(1+\delta),
-\qquad
-|\delta|\le u,
-$$
+$z=x\cdot y$
 
-dove $u$ è l'unità di arrotondamento.
+\begin{align*}
+     \operatorname{Err}_{\mathrm{rel}}(x\odot y)&=\frac{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x\cdot y)+\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}\\
+     &\le\frac{\left|\operatorname{fl}(\operatorname{fl}(x)\cdot\operatorname{fl}(y))-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}+\overbrace{\frac{\left|\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}}^{\epsilon_{\mathrm{mach}}}\\
+    &=\frac{\overbrace{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}^{\textcolor{red}{1}}+\overbrace{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-\operatorname{fl}(x\cdot y)\right|}^{\textcolor{blue}{2}}}{\left|x\cdot y\right|}+\epsilon_{\mathrm{mach}}\\
+    &\le^{\textcolor{red}{1}}\frac{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}\cdot\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\\
+    &\le \epsilon_{\mathrm{mach}}\cdot \frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\\
+    &\le^{\textcolor{blue}{2}}\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y+x\cdot y-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}\\
+    &\le\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}+\frac{\left|\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}\le \epsilon_{\mathrm{mach}}\\
+    &\le\epsilon_{\mathrm{mach}}+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}\\
+    \textcolor{red}{1}+\textcolor{blue}{2}&\le\epsilon_{\mathrm{mach}}\left(1+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\right)+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}\\
+    &\le\epsilon_{\mathrm{mach}}\left(1+\epsilon_{\mathrm{mach}}(\underbrace{\dots\dots\dots}_{\text{dipende da $x,y$}})\right)
+\end{align*}
 
-Al primo ordine, il comportamento dell'errore relativo non dipende dai valori specifici di $x$ e $y$.
-
-La moltiplicazione è quindi considerata \underline{stabile} nel modello di aritmetica floating point.
+Al primo ordine, il comportamento dell'errore relativo non dipende dai valori specifici di $x$ e $y$.\\
+L'\underline{errore relativo della moltiplicazione macchina} $u$: $\epsilon+M\epsilon$.\\
+La moltiplicazione è quindi considerata \underline{stabile}, ossia l'errore relativo in output è controllato da quello in input.
 
 \subsection{Errore relativo della somma}
 
 L'errore relativo della somma macchina è:
-
-$$
-\operatorname{Err}_{\mathrm{rel}}(x\oplus y)
-=
-\frac{
-|x\oplus y-(x+y)|
-}{
-|x+y|
-}.
-$$
-
-Esplicitamente:
 
 $$
 \boxed{
@@ -890,10 +758,15 @@ $$
 }{
 |x+y|
 }
-}.
+=
+\frac{
+|x\oplus y-(x+y)|
+}{
+|x+y|
+}}
 $$
 
-Anche per la somma l'operazione di arrotondamento introduce, localmente, un errore piccolo. Tuttavia, se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi una forte \underline{cancellazione numerica}.
+Se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi una forte \underline{cancellazione numerica}, ossia la perdita di cifre significative.
 
 In questo caso:
 
