@@ -69,16 +69,16 @@ Si procede separatamente per la \underline{parte intera} e per la \underline{par
 
 Per convertire la parte intera si itera lo schema della divisione intera per $M$:
 \begin{align*}
-y_0&:=x\bmod M,
+y_0&:=x\bmod M
 &
-x&=q_0M+y_0,\\
-y_1&:=q_0\bmod M,
+x&=q_0M+y_0\\
+y_1&:=q_0\bmod M
 &
-q_0&=q_1M+y_1,\\
+q_0&=q_1M+y_1\\
 &\vdots\\
-y_m&:=q_{m-1}\bmod M,
+y_m&:=q_{m-1}\bmod M
 &
-q_{m-1}&=y_m<M.
+q_{m-1}&=y_m<M
 \end{align*}
 
 \colorbox{yellow}{\textbf{OSSERVAZIONE:}}
@@ -89,7 +89,7 @@ I resti ottenuti sono le cifre della rappresentazione in base $M$, lette dal bas
 $$
 (x_{\mathrm{int}})_M
 =
-y_my_{m-1}\dots y_1y_0.
+y_my_{m-1}\dots y_1y_0
 $$
 
 \begin{ex}{Conversione da base $2$ a base $10$}{}
@@ -122,13 +122,13 @@ Si ha:
 &=
 1024+128+64+16+2\\
 &=
-1234.
+1234
 \end{align*}
 
 Quindi:
 
 $$
-\boxed{(10011010010)_2=(1234)_{10}}.
+\boxed{(10011010010)_2=(1234)_{10}}
 $$
 
 \end{ex}
@@ -142,29 +142,29 @@ $$
 
 in base $2$ utilizzando divisioni successive per $2$:
 \begin{align*}
-1234&=617\cdot2+0,\\
-617&=308\cdot2+1,\\
-308&=154\cdot2+0,\\
-154&=77\cdot2+0,\\
-77&=38\cdot2+1,\\
-38&=19\cdot2+0,\\
-19&=9\cdot2+1,\\
-9&=4\cdot2+1,\\
-4&=2\cdot2+0,\\
-2&=1\cdot2+0,\\
-1&=0\cdot2+1.
+1234&=617\cdot2+0\\
+617&=308\cdot2+1\\
+308&=154\cdot2+0\\
+154&=77\cdot2+0\\
+77&=38\cdot2+1\\
+38&=19\cdot2+0\\
+19&=9\cdot2+1\\
+9&=4\cdot2+1\\
+4&=2\cdot2+0\\
+2&=1\cdot2+0\\
+1&=0\cdot2+1
 \end{align*}
 
 Leggendo i resti dal basso verso l'alto otteniamo:
 
 $$
-10011010010.
+10011010010
 $$
 
 Pertanto:
 
 $$
-\boxed{(1234)_{10}=(10011010010)_2}.
+\boxed{(1234)_{10}=(10011010010)_2}
 $$
 
 \end{ex}
@@ -237,13 +237,13 @@ in base $2$.
 Moltiplichiamo successivamente per $2$:
 \begin{align*}
 0.0625\cdot2&=0.125
-&&\longrightarrow 0,\\
+&&\longrightarrow 0\\
 0.1250\cdot2&=0.250
-&&\longrightarrow 0,\\
+&&\longrightarrow 0\\
 0.2500\cdot2&=0.500
-&&\longrightarrow 0,\\
+&&\longrightarrow 0\\
 0.5000\cdot2&=1.000
-&&\longrightarrow 1.
+&&\longrightarrow 1
 \end{align*}
 
 La parte frazionaria successiva è $0$, quindi il procedimento termina.
@@ -251,7 +251,7 @@ La parte frazionaria successiva è $0$, quindi il procedimento termina.
 Pertanto:
 
 $$
-\boxed{(0.0625)_{10}=(0.0001)_2}.
+\boxed{(0.0625)_{10}=(0.0001)_2}
 $$
 
 \end{ex}
@@ -265,12 +265,12 @@ $$
 
 Procedendo come sopra:
 \begin{align*}
-0.1\cdot2&=0.2 &&\longrightarrow 0,\\
-0.2\cdot2&=0.4 &&\longrightarrow 0,\\
-0.4\cdot2&=0.8 &&\longrightarrow 0,\\
-0.8\cdot2&=1.6 &&\longrightarrow 1,\\
-0.6\cdot2&=1.2 &&\longrightarrow 1,\\
-0.2\cdot2&=0.4 &&\longrightarrow 0,
+0.1\cdot2&=0.2 &&\longrightarrow 0\\
+0.2\cdot2&=0.4 &&\longrightarrow 0\\
+0.4\cdot2&=0.8 &&\longrightarrow 0\\
+0.8\cdot2&=1.6 &&\longrightarrow 1\\
+0.6\cdot2&=1.2 &&\longrightarrow 1\\
+0.2\cdot2&=0.4 &&\longrightarrow 0
 \end{align*}
 e da questo punto la sequenza si ripete.
 
@@ -281,7 +281,7 @@ $$
 (0.1)_{10}
 =
 (0.0001100110011\ldots)_2
-}.
+}
 $$
 
 Il numero ha quindi una rappresentazione binaria infinita e periodica.
@@ -302,9 +302,9 @@ Gli interi macchina a $32$ o $64$ bit non fanno parte dello standard IEEE 754, c
 Se il primo bit è riservato al segno:
 
 $$
-0\longrightarrow +,
+0\longrightarrow +
 \qquad
-1\longrightarrow -.
+1\longrightarrow -
 $$
 
 Con $n$ bit e rappresentazione \underline{segno-modulo}, il massimo intero positivo rappresentabile è:
@@ -316,7 +316,7 @@ I_{\max,n}
 =
 \sum_{i=0}^{n-2}2^i
 =
-2^{n-1}-1.
+2^{n-1}-1
 $$
 
 Per una rappresentazione \underline{senza segno}, invece:
@@ -328,7 +328,7 @@ I_{\max,n}
 =
 \sum_{i=0}^{n-1}2^i
 =
-2^n-1.
+2^n-1
 $$
 
 \subsubsection{Overflow}
@@ -341,15 +341,15 @@ Consideriamo interi macchina a $4$ bit in rappresentazione segno-modulo.
 Calcoliamo:
 
 $$
-7+2.
+7+2
 $$
 
 Abbiamo:
 
 $$
-7=(0111)_2,
+7=(0111)_2
 \qquad
-2=(0010)_2.
+2=(0010)_2
 $$
 
 La somma produce:
@@ -389,7 +389,7 @@ Usando la notazione binaria, un numero reale $x\neq0$ può essere scritto, in fo
 $$
 (x)_2
 =
-(-1)^s\cdot 2^{e-b}\cdot(1.f),
+(-1)^s\cdot 2^{e-b}\cdot(1.f)
 $$
 
 dove:
@@ -458,7 +458,7 @@ Nel caso binario:
 
 \begin{defi}{Approssimazione}{}
     Supponiamo di voler rappresentare o calcolare un valore $x\in\mathbb{R}$ $\left(\text{o }\in\mathbb{R}^m\right)$,
-ma invece calcolo o ottengo un'\underline{approssimazione}: $$\widetilde{x}\approx x.$$
+ma invece calcolo o ottengo un'\underline{approssimazione}: $$\widetilde{x}\approx x$$
 \end{defi}
 
 \subsection{Errore assoluto e relativo}
@@ -468,7 +468,7 @@ Se $x\in\mathbb{R}$, definiamo l'\underline{errore assoluto} come:
 $$
 \boxed{
 |\widetilde{x}-x|
-}.
+}
 $$
 
 Se, invece, $x\in\mathbb{R}^n$, per rappresentare l'errore assoluto, si utilizza:
@@ -476,7 +476,7 @@ Se, invece, $x\in\mathbb{R}^n$, per rappresentare l'errore assoluto, si utilizza
 $$
 \boxed{
 \|\widetilde{x}-x\|
-}.
+}
 $$
 Dove $||\cdot||$ è una norma su $\mathbb R^m$.\newline
 
@@ -484,7 +484,7 @@ Dove $||\cdot||$ è una norma su $\mathbb R^m$.\newline
 Sia $V$ uno spazio vettoriale e sia:
 
 $$
-\|\cdot\|:V\longrightarrow\mathbb{R}_{\ge0}.
+\|\cdot\|:V\longrightarrow\mathbb{R}_{\ge0}
 $$
 
 La funzione $\|\cdot\|$ è una norma se soddisfa, per ogni $u,v\in V$ e per ogni $\lambda\in\mathbb{R}$:
@@ -530,7 +530,7 @@ $$
 \left(
 \sum_{d=1}^{n}|v_d|^p
 \right)^{1/p}
-}.
+}
 $$
 \subsection{Norma infinito}
 \begin{defi}{Norma infinito}{}
@@ -565,7 +565,7 @@ $$
 \operatorname{Err}_{\text{rel}}(\widetilde{v},\|\cdot\|)
 =
 \frac{\|\widetilde{v}-v\|}{\|v\|}
-}.
+}
 $$
 
 \subsection{Floating point: successivo e precedente}
@@ -609,7 +609,7 @@ $$
 \operatorname{succ}(x)-x
 =
 2^{e-b-n}
-}.
+}
 $$
 
 \subsection{Errore di rappresentazione}
@@ -736,7 +736,7 @@ $z=x\cdot y$
 
 Al primo ordine, il comportamento dell'errore relativo non dipende dai valori specifici di $x$ e $y$.\\
 L'\underline{errore relativo della moltiplicazione macchina} $u$: $\epsilon+M\epsilon$.\\
-La moltiplicazione è quindi considerata \underline{stabile}, ossia l'errore relativo in output è controllato da quello in input.
+La moltiplicazione è quindi considerata \colorbox{yellow}{stabile}, ossia l'errore relativo in output è controllato da quello in input.
 
 \subsection{Errore relativo della somma}
 
@@ -768,15 +768,30 @@ $$
 
 Se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi una forte \underline{cancellazione numerica}, ossia la perdita di cifre significative.
 
-In questo caso:
+\begin{ex}{Cancellazione Numerica}{}
+    Ipotesi in cui $x$ e $y$ si annullano fra loro lasciando solo un $\epsilon_{\mathrm{mach}}$:
+    $$
+    y=-x+\epsilon_{\mathrm{mach}}
+    $$
+\end{ex}
+\colorbox{yellow}{Svolgimento}:
+\begin{align*}
+    \operatorname{Err}_{\mathrm{rel}}(x\oplus y)&\le\epsilon_{\mathrm{mach}}\left(1+\frac{|x|+|y|}{|x+y|}+\epsilon_{\mathrm{mach}}\frac{|x|+|y|}{|x+y|}\right)\\
+    &=\epsilon_{\mathrm{mach}}\left(1+\frac{2|x|+\epsilon_{\mathrm{mach}}}{\epsilon_{\mathrm{mach}}}+2|x|+\epsilon_{\mathrm{mach}}\right)\\
+    &=\left(\epsilon_{\mathrm{mach}}+2|x|+\epsilon_{\mathrm{mach}}+2|x|\epsilon_{\mathrm{mach}}+\epsilon_{\mathrm{mach}}^2\right)\\
+    &=2\left(|x|+\epsilon_{\mathrm{mach}}\right)+\dots
+\end{align*}
+I $\dots$ assorbono $\epsilon_{\mathrm{mach}}^2$ e $2|x|\epsilon_{\mathrm{mach}}$ che sono numeri talmente piccoli rispetto agli altri da essere irrilevanti.\\
+Significa che se $x$ è grande, anche l'errore relativo è enorme.
 
-$$
-|x+y|\ll |x|+|y|,
-$$
-
-e quindi anche un errore assoluto piccolo può corrispondere a un errore relativo grande.
-
-\colorbox{yellow}{\textbf{OSSERVAZIONE:}}
-La cancellazione numerica è particolarmente pericolosa quando si misura l'errore relativo rispetto al risultato $x+y$, che può essere molto più piccolo dei termini che lo compongono.
+\begin{defi}{Algoritmo Stabile}{}
+    Un algoritmo si dice \textbf{stabile} se non amplifica in modo incontrollato gli errori presenti sui
+    parametri di input e i dati. In generale, si dice \textbf{stabile} un algoritmo per cui vale:
+    
+    $$
+    \operatorname{Err}^{\mathrm{rel}}(\text{output})\le C_{\mathrm{stab}}\operatorname{Err}^{\mathrm{rel}}(\text{input})
+    $$
+    Dove $C_{\mathrm{stab}}$ è la \underline{costante di stabilità}.
+\end{defi}
 
 \end{document}
