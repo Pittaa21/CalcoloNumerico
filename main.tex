@@ -25,17 +25,17 @@ top=20mm,
 \author{Marco Pittarello}
 \date{}
 
-\newtcbtheorem{theo}{Teorema}{%
+\newtcbtheorem{theo}{Teorema}{
     colframe=BrickRed!100!white,
     colback=red!5!white
 }{th}
 
-\newtcbtheorem{ex}{Esempio}{%
+\newtcbtheorem{ex}{Esempio}{
     colframe=OliveGreen!100!white,
     colback=OliveGreen!5!white
 }{ex}
 
-\newtcbtheorem{defi}{Definizione}{%
+\newtcbtheorem{defi}{Definizione}{
     colframe=blue!100!white,
     colback=blue!10!white
 }{def}
@@ -786,6 +786,8 @@ Se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi 
 I $\dots$ assorbono $\epsilon_{\mathrm{mach}}^2$ e $2|x|\epsilon_{\mathrm{mach}}$ che sono numeri talmente piccoli rispetto agli altri da essere irrilevanti.\\
 Significa che se $x$ è grande, anche l'errore relativo è enorme.\\
 
+\subsection{Stabilità degli algoritmi}
+
 \begin{ex}{Calcolo dell'integrale col metodo iterativo}{}
     $$I_n= \frac{1}{e}\int_{0}^{1}e^x\cdot x^n\cdot dx$$
 \end{ex}
@@ -844,5 +846,27 @@ Questo algoritmo si dice \textbf{instabile}.\\
     $$
     Dove $C_{\mathrm{stab}}$ è la \underline{costante di stabilità}.
 \end{defi}
+
+\subsection{Condizionamento dei problemi}
+
+\begin{defi}{Problema ben posto}{}
+    Un problema si dice \textbf{ben posto} se:
+    \begin{enumerate}
+        \item \(\forall d\in D\quad\exists\ x^x\in X:\ \operatorname{F}(x^x,d)=0\) esiste una \textbf{soluzione}
+        \item \(x^x\), la soluzione è \textbf{unica}
+        \item $x^x$ varia con \textbf{continuità} rispetto ai dati\\
+    \end{enumerate}
+    La soluzione è data da:\[d\mapsto x^x(d)\ :\ \operatorname{F}(x^x(d),d)=0\quad x^x\ :\ D\to X\]
+\end{defi}
+\vspace{10pt}
+
+\large{Condizionamento di un problema ben posto:}\normalsize
+\begin{align*}
+ \frac{\text{cond. locale}}{\text{assoluto}}\quad &\operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}\\
+ \limsup_{\widetilde{d}\to d}f(\widetilde{d})&=\limsup_{\to 0^+}
+\end{align*}
+
+
+\section{Algebra Lineare Numerica}
 
 \end{document}
