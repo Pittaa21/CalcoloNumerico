@@ -849,16 +849,19 @@ Questo algoritmo si dice \textbf{instabile}.\\
 
 \subsection{Condizionamento dei problemi}
 
+Per ogni problema abbiamo $x^*$ che è la soluzione, su $F:\ X\operatorname{x}D\to\mathbb{R}\ (\text{o }\mathbb{R}^m)$ dove, $X$ è il dominio della soluzione
+ e $D$ è l'insieme dei dati ammissibili.
 \begin{defi}{Problema ben posto}{}
     Un problema si dice \textbf{ben posto} se:
     \begin{enumerate}
-        \item \(\forall d\in D\quad\exists\ x^x\in X:\ \operatorname{F}(x^x,d)=0\) esiste una \textbf{soluzione}
-        \item \(x^x\), la soluzione è \textbf{unica}
-        \item $x^x$ varia con \textbf{continuità} rispetto ai dati\\
+        \item \(\forall d\in D\quad\exists\ x^*\in X:\ \operatorname{F}(x^*,d)=0\) esiste una \textbf{soluzione}
+        \item \(x^*\), la soluzione è \textbf{unica}
+        \item $x^*$ varia con \textbf{continuità} rispetto ai dati\\
     \end{enumerate}
-    La soluzione è data da:\[d\mapsto x^x(d)\ :\ \operatorname{F}(x^x(d),d)=0\quad x^x\ :\ D\to X\]
+    La soluzione è data dalla \textbf{mappa soluzione}:\[d\mapsto x^*(d)\ :\ \operatorname{F}(x^*(d),d)=0\quad x^*\ :\ D\to X\]
 \end{defi}
-\vspace{10pt}
+I \textbf{problemi inversi}, ossia quando dato l'output si vuole ricavare l'input, \textbf{non} sono ben posti; dato che più input possono avere lo stesso output. 
+Vengono quindi \textbf{regolarizzati}, ossia si modifica il problema in modo da penalizzare soluzioni "non fisiche" o "di bassa energia".
 
 \large{Condizionamento di un problema ben posto:}\normalsize
 \begin{align*}
