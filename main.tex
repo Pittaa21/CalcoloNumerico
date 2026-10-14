@@ -849,7 +849,7 @@ Questo algoritmo si dice \textbf{instabile}.\\
 
 \subsection{Condizionamento dei problemi}
 
-Per ogni problema abbiamo $x^*$ che è la soluzione, su $F:\ X\operatorname{x}D\to\mathbb{R}\ (\text{o }\mathbb{R}^m)$ dove, $X$ è il dominio della soluzione
+Per ogni problema abbiamo $x^*$ che è la soluzione, su $F:\ X\times D\to\mathbb{R}\ (\text{o }\mathbb{R}^m)$ dove, $X$ è il dominio della soluzione
  e $D$ è l'insieme dei dati ammissibili.
 \begin{defi}{Problema ben posto}{}
     Un problema si dice \textbf{ben posto} se:
@@ -863,13 +863,71 @@ Per ogni problema abbiamo $x^*$ che è la soluzione, su $F:\ X\operatorname{x}D\
 I \textbf{problemi inversi}, ossia quando dato l'output si vuole ricavare l'input, \textbf{non} sono ben posti; dato che più input possono avere lo stesso output. 
 Vengono quindi \textbf{regolarizzati}, ossia si modifica il problema in modo da penalizzare soluzioni "non fisiche" o "di bassa energia".
 
+\begin{defi}{Condizionamento Numerico}{}
+    È dato dal rapporto tra l'errore commesso sul risultato di un calcolo e l'incertezza sui dati in ingresso.\\
+    Un problema si dice \textbf{ben condizionato} se la soluzione del problema con delle piccole variazioni, non cambia
+    di molto la soluzione del problema originale. Un problema è \textbf{mal condizionato} se la soluzione è molto sensibile 
+    a piccole variazioni dei dati iniziali.
+\end{defi}
+
 \large{Condizionamento di un problema ben posto:}\normalsize
 \begin{align*}
  \frac{\text{cond. locale}}{\text{assoluto}}\quad &\operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}\\
  \limsup_{\widetilde{d}\to d}f(\widetilde{d})&=\limsup_{\to 0^+}
 \end{align*}
 
+\large Condizionamento locale relativo:\normalsize$$k^{\mathrm{rel}}(d):=\boxed{\limsup_{\widetilde{d}\to d}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|x(d)\right|}\cdot\frac{\left|d\right|}{\left|\widetilde{d}-d\right|}}$$
 
 \section{Algebra Lineare Numerica}
+\colorbox{yellow}{Problema}:\(\qquad A\in M_{m\times m}(\mathbb{R}),b\in\mathbb{R}^m \quad\) con $A$ invertibile, trovare $x\in\mathbb{R}^m$ tale che $\underbrace{Ax\cdot b=0}_{\operatorname{F}(x,d)=0}$
+\Huge ...\normalsize
+
+\subsection{Norma indotta}
+\begin{defi}{Norma Indotta}{}
+    Se $\|\cdot\|$ è una norma su $\mathbb{R}^m$ esiste una norma detta \textbf{naturale} su $M_{m\times m}(\mathbb{R})$ \textbf{indotta}
+     da $\|\cdot\|$: \[\|A\|_*=\sup_{x\in\mathbb R^m\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\]
+     Questa norma indicata con $\|\cdot\|_*$ ...
+\end{defi}
+
+\colorbox{yellow}{Proposizione}: $\|\cdot\|_*$ è una norma.
+
+\colorbox{yellow}{Dimostrazione}: prendiamo $\lambda\in\mathbb R\setminus\{0\}$ allora:
+\begin{align*}
+    \|\lambda A\|_*\quad&=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|\lambda (Ax)\|_*}{\|x\|}=\sup_{x\in\mathbb R\setminus\{0\}}|\lambda|\cdot\frac{\|Ax\|}{\|x\|}\\
+    &=|\lambda|\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}=|\lambda|\cdot\|A\|_*
+\end{align*}
+Ora supponiamo che la norma sai uguale a $0$:
+\begin{align*}
+    0=&\|A\|_*=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\Rightarrow\|Ax\|=0\quad\forall\ x\in\mathbb R^m\\
+    &Ax=\begin{pmatrix}
+        0\\
+        \vdots\\
+        0
+    \end{pmatrix}\quad \forall\ x\in\mathbb R^m\\
+    A(:,i)&=\quad A_{ei}=\begin{pmatrix}
+        0\\
+        \vdots\\
+        0
+    \end{pmatrix}\quad\forall\ i\quad\Rightarrow\quad A=\begin{pmatrix}
+        0 & \dots & 0 \\
+        \vdots & &\vdots\\
+        0 & \dots & 0
+    \end{pmatrix}
+\end{align*}
+Dove $A(:,i)$ rappresenta la $i$-esima colonna della matrice $A$.\\\\
+
+Che norma si usa su $V\times W$ con $V$ e $W$ che hanno le norme $\|\cdot\|_v,\|\cdot\|_w$?
+\begin{align*}
+    \|(v,w)\|_{v\times w}:=&\max\left(\|v\|_v,\ \|w\|_w\right)\\
+    &\sqrt{\|v\|^2_v+\|v\|^2_w}\\
+    &\|v\|_v+\|w\|_w\\
+    x(A,b)=&A^{-1}b \text{ è continua?}
+\end{align*}
+$\forall\epsilon>0\ \exists\delta>0$ tale che $$\left\|x\left(\widetilde{A},\widetilde{b}\right)-x\left(A,b\right)\right\|<\epsilon\quad\text{se}\quad\left\|\left(\widetilde{A},\widetilde{b}\right)-\left(A,b\right)\right\|<\delta_{\mathbb{M}_{m\times m}(\mathbb R)\times \mathbb R^m}$$
+\colorbox{yellow}{Osservazione}: È composizione di $A\mapsto A^{-1}$ continua sulle matrici inverse.
+
+...
+
+Come è condizionato il problema
 
 \end{document}
