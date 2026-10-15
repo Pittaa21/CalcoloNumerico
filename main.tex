@@ -872,9 +872,18 @@ Vengono quindi \textbf{regolarizzati}, ossia si modifica il problema in modo da 
 
 \large{Condizionamento di un problema ben posto:}\normalsize
 \begin{align*}
- \frac{\text{cond. locale}}{\text{assoluto}}\quad &\operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}\\
- \limsup_{\widetilde{d}\to d}f(\widetilde{d})&=\limsup_{\to 0^+}
-\end{align*}
+ \frac{\text{cond. locale}}{\text{assoluto}}\quad &\operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}
+ \end{align*}
+Quindi $\operatorname{k}(d)$ è rappresentato dal limite da i dati approssimati $\widetilde{d}$ verso il dato vero $d$ del condizionamento assoluto diviso l'errore sul dato.
+Questo limite rappresenta il rapporto incrementale, come nelle derivate.
+
+\begin{align*}
+ \limsup_{\widetilde{d}\to d}f(\widetilde{d})&=\lim_{r\to 0^+}\sup_{\widetilde{d}\in\ ]d-r,d+r[}f(\widetilde{d})
+\end{align*} 
+Ossia prendo l'intorno del dato $d$ e trovo il sup diminuendo $r$, in questo modo mi avvicino a $d$ tenendo $f$ più grande possibile.
+
+\colorbox{yellow}{Grafico} per $\limsup$:
+
 
 \large Condizionamento locale relativo:\normalsize$$k^{\mathrm{rel}}(d):=\boxed{\limsup_{\widetilde{d}\to d}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|x(d)\right|}\cdot\frac{\left|d\right|}{\left|\widetilde{d}-d\right|}}$$
 
