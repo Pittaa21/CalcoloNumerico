@@ -13,7 +13,7 @@
 \usepackage{pgfplots}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cancel}
-\pgfplotsset{compat=1.18, width=10cm}
+\pgfplotsset{width=8cm,compat=1.9}
 \geometry{
 a4paper,
 total={170mm,257mm},
@@ -870,22 +870,115 @@ Vengono quindi \textbf{regolarizzati}, ossia si modifica il problema in modo da 
     a piccole variazioni dei dati iniziali.
 \end{defi}
 
-\large{Condizionamento di un problema ben posto:}\normalsize
+\subsubsection{Condizionamento di un problema ben posto}
 \begin{align*}
  \frac{\text{cond. locale}}{\text{assoluto}}\quad &\operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}
  \end{align*}
 Quindi $\operatorname{k}(d)$ è rappresentato dal limite da i dati approssimati $\widetilde{d}$ verso il dato vero $d$ del condizionamento assoluto diviso l'errore sul dato.
 Questo limite rappresenta il rapporto incrementale, come nelle derivate.
-
 \begin{align*}
  \limsup_{\widetilde{d}\to d}f(\widetilde{d})&=\lim_{r\to 0^+}\sup_{\widetilde{d}\in\ ]d-r,d+r[}f(\widetilde{d})
 \end{align*} 
 Ossia prendo l'intorno del dato $d$ e trovo il sup diminuendo $r$, in questo modo mi avvicino a $d$ tenendo $f$ più grande possibile.
 
-\colorbox{yellow}{Grafico} per $\limsup$:
+$\operatorname{k}(d)$ è la pendenza del grafico di $x(d)$ \textbf{massima in modulo}. Se abbiamo una pendenza $\operatorname{k}(d)$, allora
+vuol dire che  $\forall\ \epsilon>0\ \exists r>0$ tale che:$$\frac{\left|x(\widetilde{d})-x(d)\right|}{|\widetilde{d}-d|}<\operatorname{k}(d)+\epsilon\quad \forall\widetilde{d}\in\ ]d-r,d+r[$$
+È quindi una stima dall'alto di $d$ che vale \underline{localmente}, ossia su un'intorno di $d$. Per questo si usa il $\limsup$.
 
+Si verifica un problema quando $\operatorname{k}(d)>>1$ (quindi grande rispetto al contesto). Un \textbf{errore assoluto} piccolo su $d$ può
+implicare un \textbf{errore assoluto} enorme su $x$. \textbf{Problema mal condizionato}.
 
-\large Condizionamento locale relativo:\normalsize$$k^{\mathrm{rel}}(d):=\boxed{\limsup_{\widetilde{d}\to d}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|x(d)\right|}\cdot\frac{\left|d\right|}{\left|\widetilde{d}-d\right|}}$$
+\colorbox{yellow}{Grafico}:
+
+\begin{tikzpicture}
+    \begin{axis}[axis lines=middle, ymax=8, ymin=-8, xlabel=$x$, ylabel=$y$]
+        \addplot[color=black, samples=100, domain=-2:1.5]{x^3+2};
+        \addplot[color=black, samples=100, domain=1.5:3.5]{-(2*x-6)^2+4};
+        \addplot[color=red, mark=o] coordinates {(1.5, 5.375)};
+        \addplot[color=black, mark=*] coordinates {(1.5, -5)};
+        \addplot[color=red, mark=*] coordinates {(3.5, 3)};
+    \end{axis}
+\end{tikzpicture}
+
+\subsubsection{Condizionamento locale relativo}
+$$\operatorname k^{\mathrm{rel}}(d):=\boxed{\limsup_{\widetilde{d}\to d}\underbrace{\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|x(d)\right|}}_{\text{pendenza mappa sol.}}\cdot\frac{\left|d\right|}{\left|\widetilde{d}-d\right|}}$$
+
+Ci sono problemi in cui il condizionamento non dipende dal dato $d$, ma è uguale dappertutto.
+
+Può succedere che $\exists K\ (K^{\mathrm{rel}})$ tale per cui $\operatorname{k}(d)\le K\ \left(\operatorname{k}^{\mathrm{rel}}(d)\le K^{\mathrm{rel}}\right)\ \forall d\in D$. Dove $D$ è l'insieme di dati ammissibili.
+In tal caso si parla di condizionamento assoluto/relativo \textbf{globale} e si ha:
+\[\operatorname{k}=\sup_{d,\widetilde{d}\in D}\frac{\left|x(\widetilde{d})-x(d)\right|}{|\widetilde{d}-d|}\quad \blacktriangle \]
+
+\begin{tikzpicture}
+    \begin{axis}[axis lines=center, ymax=100, ymin=0, title={No cond. globale}, xlabel=$x$, ylabel=$y$]
+        \addplot[color=black, samples=80, domain=0:6]{(1/(x-3))^2};
+        \draw [black, dashed] (axis cs:3,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:3,\pgfkeysvalueof{/pgfplots/ymax});
+    \end{axis}
+\end{tikzpicture}\hskip 10pt
+\begin{tikzpicture}
+    \begin{axis}[title={Si cond. globale}, axis lines=center, domain = 0.01:6, samples = 200, ylabel=$y$, xlabel=$x$]
+        \addplot[color=black, samples=80]{x^(3-x)};
+        \addplot[color=red, domain=0:2, dashed]{2*x-1};
+    \end{axis}
+\end{tikzpicture}
+
+$$\blacktriangle\quad \left|x(\widetilde{d})-x(d)\right|\le\operatorname{K}\left|\widetilde{d}-d\right|\quad \forall\ d,\widetilde{d}\in D$$
+Ho un fattore moltiplicativo nel caso dell'errore assoluto.\\
+Mentre per il relativo, l'errore varia per $\epsilon_{\mathrm{mach}}$ moltiplicato a $\operatorname{K}^{\mathrm{rel}}$:
+\[\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|x(d)\right|}\le\operatorname{K}^{\mathrm{rel}}\frac{\left|\widetilde{d}-d\right|}{|d|}\]
+
+Se $\operatorname{K}^{\mathrm{rel}} \approx \frac{1}{\epsilon_{\mathrm{mach}}}\Rightarrow\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|x(d)\right|}\approx 1=100\%\quad$
+Quindi un'errore relativo di circa $1$ vuol dire che la soluzione è completamente diversa da quella vera.
+
+\colorbox{yellow}{Esempio}:
+
+\begin{tikzpicture}
+    \begin{axis}[axis lines=center, domain=-2:12, xtick=\empty ,ytick=\empty]
+        \addplot[color=black, samples=100]{-(1/2*x)+4};
+        \addplot[color=green, samples=100]{-(1/2*x)+5};
+        \node[anchor=south west, color=green] at (axis cs:10,0) {$x(\widetilde{q})$};
+        \node[anchor=south west, color=black] at (axis cs:6.5,-1) {$x(q)$};
+        \node[anchor=south east, color=black] at (axis cs:0,3.5) {$q$};
+        \node[anchor=south west, color=green] at (axis cs:0,5) {$\widetilde q$};
+        \draw [red] (axis cs:0,4) -- (axis cs:0,5);
+        \draw [red] (axis cs:8,0) -- (axis cs:10,0);
+    \end{axis}
+\end{tikzpicture}
+
+Con il grafico si nota come un minore errore su $q$ crea un errore maggiore su $x(q)$.
+
+\subsubsection{Condizionamento globale di ordine $\alpha$}
+\begin{ex}{Cosa succede quando la pendenza "esplode"?}{}
+    Dato $d\in D$, la cui mappa soluzione è $d\mapsto x(d)$ con $D=[0,+\infty[$ e $x(d)=\sqrt{d}$.
+\end{ex}
+
+\begin{tikzpicture}
+    \begin{axis}[axis lines=center, xmin=-2, ymin=-2, xlabel=$x$, ylabel=$y$, xtick=\empty, ytick=\empty]
+        \addplot[samples=200]{x^(1/2)};
+    \end{axis}
+\end{tikzpicture}
+
+In questo la caso la pendenza vicino a $0$ tende a $\infty$.\\
+Quindi: \[\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\widetilde{d}-d\right|}=\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\left(\sqrt{\widetilde{d}}-\sqrt{d}\right)\left(\sqrt{\widetilde{d}}+\sqrt{d}\right)\right|}=\frac{1}{\left|\sqrt{\widetilde{d}}+\sqrt{d}\right|}\]
+Ossia abbiamo che:
+\[
+\limsup_{\widetilde{d}\to d}\frac{1}{2\sqrt{d}}
+\begin{cases}
+    &d\ne0\quad\checkmark\\
+    &d=0\quad+\infty
+\end{cases}
+\]
+Quindi avvicinandomi a $d=0$ non riesco a fare delle stime quantitative.\\
+Si introduce quindi il \textbf{condizionamento globale assoluto} di \textbf{ordine} $\alpha\in(0,1)$ 
+\[\operatorname{k}_{\alpha}=\boxed{\sup_{d,\widetilde{d}}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|\widetilde{d}-d\right|^\alpha}}\]
+Lo usiamo per studiare problemi \textbf{molto mal condizionati}.
+
+Nell'esempio $\alpha=\frac{1}{2}$:
+\begin{align*}
+    &=\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\widetilde{d}-d\right|^{\frac 12}}\\
+    &=\frac{\epsilon}{\left(\epsilon(2\sqrt{d}+\epsilon)\right)^{\frac 12}}=\frac{\epsilon}{\left(\epsilon^2+2\epsilon\sqrt d\right)^{\frac 12}}\quad \text{se }d=0\rightarrow\frac{\epsilon}{\epsilon}=1
+\end{align*}
+se $d>0$ si mostra che è limitata.
 
 \section{Algebra Lineare Numerica}
 \colorbox{yellow}{Problema}:\(\qquad A\in M_{m\times m}(\mathbb{R}),b\in\mathbb{R}^m \quad\) con $A$ invertibile, trovare $x\in\mathbb{R}^m$ tale che $\underbrace{Ax\cdot b=0}_{\operatorname{F}(x,d)=0}$
