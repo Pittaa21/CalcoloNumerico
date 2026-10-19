@@ -980,7 +980,13 @@ Nell'esempio $\alpha=\frac{1}{2}$:
 \end{align*}
 se $d>0$ si mostra che è limitata.
 
-Se vale: \[\]
+Se vale: 
+\begin{align*}
+&\sup_{d,\widetilde{d}}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|\widetilde{d}-d\right|^\alpha}\le \operatorname{k}_\alpha\\
+&\left|x(\widetilde{d})-x(d)\right|\le\operatorname{k}_\alpha\left|\widetilde{d}-d\right|^\alpha\quad\forall d,\widetilde{d}\in D
+\end{align*}
+\colorbox{yellow}{Nota}: $\alpha<1\quad\left|\widetilde{d}-d\right|<<1\Rightarrow\left|\widetilde{d}-d\right|^\alpha >>\left|\widetilde{d}-d\right|$.
+
 
 \section{Algebra Lineare Numerica}
 \colorbox{yellow}{Problema}:\(\qquad A\in M_{m\times m}(\mathbb{R}),b\in\mathbb{R}^m \quad\) con $A$ invertibile, trovare $x\in\mathbb{R}^m$ tale che $\underbrace{Ax\cdot b=0}_{\operatorname{F}(x,d)=0}$
