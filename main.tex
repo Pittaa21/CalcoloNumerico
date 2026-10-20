@@ -1005,7 +1005,7 @@ Su $\mathbb{R}^n$ prendiamo una norma qualsiasi.
 \begin{defi}{Norma Indotta}{}
     Se $\|\cdot\|$ è una norma su $\mathbb{R}^m$ esiste una norma detta \textbf{naturale} su $M_{m\times m}(\mathbb{R})$ \textbf{indotta}
      da $\|\cdot\|$: \[\|A\|_*=\sup_{x\in\mathbb R^m\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\]
-     Questa norma indicata con $\|\cdot\|_*$ ...
+     Questa norma indicata è $\|\cdot\|_*$
 \end{defi}
 
 \colorbox{yellow}{Proposizione}: $\|\cdot\|_*$ è una norma.
@@ -1060,8 +1060,14 @@ Come è condizionato il problema?
         &Ax=b\\
         &\text{Ci interessa quindi l'errore relativo: }\frac{\|\delta x\|}{\|x\|}\le \dots\cdot\frac{\|\delta b\|}{\|b\|}\\
         &\underset{=b}{Ax}+A\delta x=b+\delta b\\
-        &\delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|
+        &\delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\\
+        &\Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|
     \end{align*}
 \end{itemize}
+
+\colorbox{yellow}{Nota}: Dato che
+\[\frac{\left\|Ax\right\|}{\left\|x\right\|}\le\sup_{y}\frac{\left\|Ay\right\|}{\left\|y\right\|}=\left\|A\right\|_*\quad \forall x\in\mathbb{R}^n\]
+Allora:
+    \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\]
 
 \end{document}
