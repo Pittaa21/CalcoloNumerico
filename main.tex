@@ -989,8 +989,17 @@ Se vale:
 
 
 \section{Algebra Lineare Numerica}
-\colorbox{yellow}{Problema}:\(\qquad A\in M_{m\times m}(\mathbb{R}),b\in\mathbb{R}^m \quad\) con $A$ invertibile, trovare $x\in\mathbb{R}^m$ tale che $\underbrace{Ax\cdot b=0}_{\operatorname{F}(x,d)=0}$
-\Huge ...\normalsize
+
+\subsection{Soluzione di Sistemi Quadrati}
+\colorbox{yellow}{Problema}:\(\qquad A\in M_{n\times n}(\mathbb{R}),b\in\mathbb{R}^n \quad\) con $A$ invertibile.\\
+Trovare $x\in\mathbb{R}^m$ tale che $\underbrace{Ax - b=0}_{\operatorname{F}(x,d)=0}$ funzione che prende un vettore reale e ne ritorna un'altro.\\
+Dominio di $F\quad \underset{x}{\mathbb{R}^n}\times \underset{A}{M_{n\times n}(\mathbb{R})}\times \underset{b}{\mathbb{R}^n}\to \underset{Ax-b}{\mathbb{R}^n}$
+
+\colorbox{yellow}{Osservazione}: $A$ invertibile $\Rightarrow$ esiste ed è unica $x:\ Ax=b$, quindi la mappa soluzione è:
+\[x=A^{-1}b\]
+
+Manca sapere se la mappa soluzione è continua, serve quindi una \underline{norma} sul dominio e una sul codominio.
+Su $\mathbb{R}^n$ prendiamo una norma qualsiasi.
 
 \subsection{Norma indotta}
 \begin{defi}{Norma Indotta}{}
@@ -1001,20 +1010,23 @@ Se vale:
 
 \colorbox{yellow}{Proposizione}: $\|\cdot\|_*$ è una norma.
 
-\colorbox{yellow}{Dimostrazione}: prendiamo $\lambda\in\mathbb R\setminus\{0\}$ allora:
+\colorbox{yellow}{Dimostrazione}: Devo dimostrare che rispetta le proprietà di una norma. 
+\begin{enumerate}
+    \item Omogeneità di grado $1$. Prendiamo $\lambda\in\mathbb R\setminus\{0\}$ allora:
 \begin{align*}
     \|\lambda A\|_*\quad&=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|\lambda (Ax)\|_*}{\|x\|}=\sup_{x\in\mathbb R\setminus\{0\}}|\lambda|\cdot\frac{\|Ax\|}{\|x\|}\\
-    &=|\lambda|\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}=|\lambda|\cdot\|A\|_*
+    &=|\lambda|\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}=|\lambda|\cdot\|A\|_*\quad \checkmark
 \end{align*}
-Ora supponiamo che la norma sai uguale a $0$:
+
+\item Una norma è $=0$ se e solo se è$\|0\|$. Quindi supponiamo che la norma sai uguale a $0$:
 \begin{align*}
     0=&\|A\|_*=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\Rightarrow\|Ax\|=0\quad\forall\ x\in\mathbb R^m\\
     &Ax=\begin{pmatrix}
         0\\
         \vdots\\
         0
-    \end{pmatrix}\quad \forall\ x\in\mathbb R^m\\
-    A(:,i)&=\quad A_{ei}=\begin{pmatrix}
+    \end{pmatrix}\quad \forall\ x\in\mathbb R^m\qquad\text{Quindi è un vettore nullo}\\
+    \underset{i\text{-esima colonna}}{A(:,i)}&=\quad A_{ei}=\begin{pmatrix}
         0\\
         \vdots\\
         0
@@ -1022,22 +1034,34 @@ Ora supponiamo che la norma sai uguale a $0$:
         0 & \dots & 0 \\
         \vdots & &\vdots\\
         0 & \dots & 0
-    \end{pmatrix}
+    \end{pmatrix}\quad\checkmark
 \end{align*}
-Dove $A(:,i)$ rappresenta la $i$-esima colonna della matrice $A$.\\\\
+
+\item Disuguaglianza triangolare:
+\end{enumerate}
+Ho dimostrato che è una norma dato che rispetta tutte e tre le proprietà.
 
 Che norma si usa su $V\times W$ con $V$ e $W$ che hanno le norme $\|\cdot\|_v,\|\cdot\|_w$?
 \begin{align*}
-    \|(v,w)\|_{v\times w}:=&\max\left(\|v\|_v,\ \|w\|_w\right)\\
-    &\sqrt{\|v\|^2_v+\|v\|^2_w}\\
-    &\|v\|_v+\|w\|_w\\
-    x(A,b)=&A^{-1}b \text{ è continua?}
+    &\|(v,w)\|_{v\times w}:=\|v\|_v+\|w\|_w\quad\text{Per esempio}\\
+    &\text{La mappa soluzione: }x(A,b)=A^{-1}b \text{ è continua?}
 \end{align*}
-$\forall\epsilon>0\ \exists\delta>0$ tale che $$\left\|x\left(\widetilde{A},\widetilde{b}\right)-x\left(A,b\right)\right\|<\epsilon\quad\text{se}\quad\left\|\left(\widetilde{A},\widetilde{b}\right)-\left(A,b\right)\right\|<\delta_{\mathbb{M}_{m\times m}(\mathbb R)\times \mathbb R^m}$$
-\colorbox{yellow}{Osservazione}: È composizione di $A\mapsto A^{-1}$ continua sulle matrici inverse.
+$\forall\epsilon>0\ \exists\delta>0$ tale che $$\left\|x\left(\widetilde{A},\widetilde{b}\right)-x\left(A,b\right)\right\|<\epsilon\quad\text{se}\quad\left\|\left(\widetilde{A},\widetilde{b}\right)-\left(A,b\right)\right\|\underset{\mathbb{M}_{m\times m}(\mathbb R)\times \mathbb R^m}{<\delta}$$
+\colorbox{yellow}{Osservazione}: È composizione di $A\mapsto A^{-1}$ continua sulle matrici invertibili.\\
+E $\left(A^{-1},b\right)\mapsto A^{-1}b$ continua.\\
+Dunque la mappa soluzione è continua in $(A,b)$ se $A$ è invertibile.
 
-...
-
-Come è condizionato il problema
+Come è condizionato il problema?
+\begin{itemize}
+    \item Considero il caso in cui $A$ sia fissa ed "esatta".
+    \begin{align*}
+        &b\mapsto x(A,b)=A^{-1}b\\
+        &A(x+\delta x)=b+\delta b\quad x+\delta x\text{ soluzione del sistema, con termine noto perturbato}\\
+        &Ax=b\\
+        &\text{Ci interessa quindi l'errore relativo: }\frac{\|\delta x\|}{\|x\|}\le \dots\cdot\frac{\|\delta b\|}{\|b\|}\\
+        &\underset{=b}{Ax}+A\delta x=b+\delta b\\
+        &\delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|
+    \end{align*}
+\end{itemize}
 
 \end{document}
