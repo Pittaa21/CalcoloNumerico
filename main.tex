@@ -1061,13 +1061,22 @@ Come è condizionato il problema?
         &\text{Ci interessa quindi l'errore relativo: }\frac{\|\delta x\|}{\|x\|}\le \dots\cdot\frac{\|\delta b\|}{\|b\|}\\
         &\underset{=b}{Ax}+A\delta x=b+\delta b\\
         &\delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\\
-        &\Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|
+        &\Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|\quad\circledast
     \end{align*}
 \end{itemize}
 
 \colorbox{yellow}{Nota}: Dato che
 \[\frac{\left\|Ax\right\|}{\left\|x\right\|}\le\sup_{y}\frac{\left\|Ay\right\|}{\left\|y\right\|}=\left\|A\right\|_*\quad \forall x\in\mathbb{R}^n\]
 Allora:
-    \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\]
+    \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\ \textcircled{$\vartriangle$}\]
+
+Su $\circledast$ sto misurando in termini assoluti, devo invece misurare in termini \underline{relativi} dividendo per $\left\|x\right\|$:
+\begin{align*}
+    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le \left\|A^{-1}\right\|_*\left\|\delta b\right\|\cdot\frac{1}{\left\|x\right\|}\quad\text{Mi serve poter stimare da sopra $\left\|x\right\|\ge\dots$ qualcosa}\\
+    &\left\|x\right\|\ge\frac{\left\|b\right\|}{\left\|A\right\|_*}\Leftarrow\begin{cases}
+        &Ax=b\Rightarrow \left\|Ax\right\|=\left\|b\right\|\\
+        &\left\|Ax\right\|\le\left\|A\right\|_*\left\|x\right\|\ \textcircled{$\vartriangle$}
+    \end{cases}
+\end{align*}
 
 \end{document}
