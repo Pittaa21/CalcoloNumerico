@@ -7,7 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[sfdefault]{atkinson}
 \graphicspath{{images/}}
-\usepackage{amsthm, amssymb, amsmath}
+\usepackage{amsthm, amssymb, amsmath, bbold}
 \usepackage[a4paper]{geometry}
 \usepackage[skip=8pt, indent=0pt]{parskip}
 \usepackage{pgfplots}
@@ -39,6 +39,11 @@ top=20mm,
     colframe=blue!100!white,
     colback=blue!10!white
 }{def}
+
+\newtcbtheorem{note}{Nota}{
+    colframe=gray!80!black,
+    colback=gray!5!white
+}{nt}
 
 \renewcommand{\arraystretch}{2}
 \setlength{\tabcolsep}{20pt}
@@ -744,7 +749,7 @@ La moltiplicazione è quindi considerata \colorbox{yellow}{stabile}, ossia l'err
 
 L'errore relativo della somma macchina è:
 
-$$
+\[
 \boxed{
 \operatorname{Err}_{\mathrm{rel}}(x\oplus y)
 =
@@ -766,15 +771,15 @@ $$
 }{
 |x+y|
 }}
-$$
+\]
 
 Se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi una forte \underline{cancellazione numerica}, ossia la perdita di cifre significative.
 
 \begin{ex}{Cancellazione Numerica}{}
     Ipotesi in cui $x$ e $y$ si annullano fra loro lasciando solo un $\epsilon_{\mathrm{mach}}$:
-    $$
+    \[
     y=-x+\epsilon_{\mathrm{mach}}
-    $$
+    \]
 \end{ex}
 \colorbox{yellow}{Svolgimento}:
 \begin{align*}
@@ -789,10 +794,10 @@ Significa che se $x$ è grande, anche l'errore relativo è enorme.\\
 \subsection{Stabilità degli algoritmi}
 
 \begin{ex}{Calcolo dell'integrale col metodo iterativo}{}
-    $$I_n= \frac{1}{e}\int_{0}^{1}e^x\cdot x^n\cdot dx$$
+    \[I_n= \frac{1}{e}\int_{0}^{1}e^x\cdot x^n\cdot dx\]
 \end{ex}
 \colorbox{yellow}{Svolgimento}:
-Conoscendo il valore di $I_0$ ossia: $$I_0=\frac{1}{e}\int_{0}^{1}e^x\cdot dx=\frac{1}{e}\left[e^x\right]^1_0=\frac{e-1}{e}$$
+Conoscendo il valore di $I_0$ ossia: \[I_0=\frac{1}{e}\int_{0}^{1}e^x\cdot dx=\frac{1}{e}\left[e^x\right]^1_0=\frac{e-1}{e}\]
 
 Inoltre si può integrare per parti $I_n$:
 \begin{align*}
@@ -802,10 +807,10 @@ Inoltre si può integrare per parti $I_n$:
     &=1-n\cdot I_{n-1}
 \end{align*}
 Di conseguenza conosco la \underline{successione definita per ricorsione}:
-$$\boxed{\begin{cases}
+\[\boxed{\begin{cases}
     &I_0=\frac{e-1}{e}\\
     &I_n=1-n\cdot I_{n-1}
-\end{cases}}$$
+\end{cases}}\]
 In realtà $I_{n-1}$ viene calcolato con un errore, quindi supponiamo di aver calcolato $\widetilde{I}_{n-1}=I_{n-1}+\epsilon_{n-1}$.
 Quindi per calcolare $I_n$:
 \begin{align*}
@@ -814,36 +819,36 @@ Quindi per calcolare $I_n$:
     &=\boxed{I_n-n\epsilon_{n-1}}
 \end{align*}
 Questo risultato è iterabile dato che si verifica per ogni $n$, inoltre so che $\epsilon_n=-n\epsilon_{n-1}$.\\
-Iterando $n$ volte ottengo:$$\boxed{\epsilon_n=(-1)^n\cdot n!\cdot\epsilon_0}$$
+Iterando $n$ volte ottengo:\[\boxed{\epsilon_n=(-1)^n\cdot n!\cdot\epsilon_0}\]
 
-L'errore assoluto è quindi:$$|\widetilde{I}_n-I_n|=n!\cdot |\epsilon_0|=n!\cdot \operatorname{fl}\left(\frac{e-1}{e}\right)-\frac{e-1}{e}$$
+L'errore assoluto è quindi:\[|\widetilde{I}_n-I_n|=n!\cdot |\epsilon_0|=n!\cdot \operatorname{fl}\left(\frac{e-1}{e}\right)-\frac{e-1}{e}\]
 
-Da cui ottengo:$$=n!\cdot\underbrace{\frac{|\operatorname{fl}\left(\frac{e-1}{e}\right)-\frac{e-1}{e}|}{\frac{e-1}{e}}}_{\le\epsilon_{\mathrm{mach}}}\cdot \underbrace{\frac{e-1}{e}}_{\le 1}$$
+Da cui ottengo:\[=n!\cdot\underbrace{\frac{|\operatorname{fl}\left(\frac{e-1}{e}\right)-\frac{e-1}{e}|}{\frac{e-1}{e}}}_{\le\epsilon_{\mathrm{mach}}}\cdot \underbrace{\frac{e-1}{e}}_{\le 1}\]
 La frazione è l'errore relativo di rappresentazione di un numero reale\\
 L'\underline{errore assoluto} è dominato da:
-$$\boxed{\le n!\cdot\epsilon_{\mathrm{mach}}}$$
+\[\boxed{\le n!\cdot\epsilon_{\mathrm{mach}}}\]
 
 Adesso stimiamo quanto è $I_n$:
-    $$I_n=\frac{1}{e}\int_{0}^{1}x^ne^x\cdot dx=O(\frac{1}{n})$$
+    \[I_n=\frac{1}{e}\int_{0}^{1}x^ne^x\cdot dx=O(\frac{1}{n})\]
 Dimostriamo che è vero:
 
 Posso stimarlo da sopra con un integrale $\le$
-$$nI_n=\frac{1}{e}\int_{0}^{1}nx^ne^x\cdot dx\le\frac{1}{e}\int_{0}^{1}enx^n\cdot dx=\frac{n}{n+1}\left[x^{n+1}\right]_0^1=\frac{n}{n+1}$$
+\[nI_n=\frac{1}{e}\int_{0}^{1}nx^ne^x\cdot dx\le\frac{1}{e}\int_{0}^{1}enx^n\cdot dx=\frac{n}{n+1}\left[x^{n+1}\right]_0^1=\frac{n}{n+1}\]
 
 E posso stimarlo da sotto con un'integrale $\ge$
-$$nI_n=\frac{1}{e}\int_{0}^{1}nx^ne^x\cdot dx \ge \frac{1}{e}\int_{0}^{1}nx^n\cdot dx=\frac{n}{n+1}\cdot\frac{1}{e}$$
+\[nI_n=\frac{1}{e}\int_{0}^{1}nx^ne^x\cdot dx \ge \frac{1}{e}\int_{0}^{1}nx^n\cdot dx=\frac{n}{n+1}\cdot\frac{1}{e}\]
 Abbiamo quindi scoperto che $I_n \approx \frac{1}{n+1}$\\
 Adesso possiamo dire che l'\underline{errore relativo}:
-$$\frac{|\widetilde{I}_n-I_n|}{|I_n|}\le \frac{n!\epsilon_{\mathrm{mach}}}{\frac{1}{n+1}}=(n+1)n!\epsilon_{\mathrm{mach}}=\boxed{(n+1)!\epsilon_{\mathrm{mach}}}$$\\
+\[\frac{|\widetilde{I}_n-I_n|}{|I_n|}\le \frac{n!\epsilon_{\mathrm{mach}}}{\frac{1}{n+1}}=(n+1)n!\epsilon_{\mathrm{mach}}=\boxed{(n+1)!\epsilon_{\mathrm{mach}}}\]\\
 Questo algoritmo si dice \textbf{instabile}.\\
 
 \begin{defi}{Algoritmo Stabile}{}
     Un algoritmo si dice \textbf{stabile} se non amplifica in modo incontrollato gli errori presenti sui
     parametri di input e i dati. In generale, si dice \textbf{stabile} un algoritmo per cui vale:
     
-    $$
+    \[
     \operatorname{Err}^{\mathrm{rel}}(\text{output})\le C_{\mathrm{stab}}\operatorname{Err}^{\mathrm{rel}}(\text{input})
-    $$
+    \]
     Dove $C_{\mathrm{stab}}$ è la \underline{costante di stabilità}.
 \end{defi}
 
@@ -1063,20 +1068,57 @@ Come è condizionato il problema?
         &\delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\\
         &\Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|\quad\circledast
     \end{align*}
-\end{itemize}
 
-\colorbox{yellow}{Nota}: Dato che
+\begin{note}{}{}
+Dato che
 \[\frac{\left\|Ax\right\|}{\left\|x\right\|}\le\sup_{y}\frac{\left\|Ay\right\|}{\left\|y\right\|}=\left\|A\right\|_*\quad \forall x\in\mathbb{R}^n\]
 Allora:
-    \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\ \textcircled{$\vartriangle$}\]
-
+    \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\]
+\end{note}
 Su $\circledast$ sto misurando in termini assoluti, devo invece misurare in termini \underline{relativi} dividendo per $\left\|x\right\|$:
 \begin{align*}
-    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le \left\|A^{-1}\right\|_*\left\|\delta b\right\|\cdot\frac{1}{\left\|x\right\|}\quad\text{Mi serve poter stimare da sopra $\left\|x\right\|\ge\dots$ qualcosa}\\
-    &\left\|x\right\|\ge\frac{\left\|b\right\|}{\left\|A\right\|_*}\Leftarrow\begin{cases}
+    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le \left\|A^{-1}\right\|_*\left\|\delta b\right\|\cdot\frac{1}{\left\|x\right\|}\ \text{\textcircled{$\vartriangle$}}\quad\text{Mi serve poter stimare da sopra $\left\|x\right\|\ge\dots$ qualcosa}\\
+    &\circledast\ \left\|x\right\|\ge\frac{\left\|b\right\|}{\left\|A\right\|_*}\Leftarrow
+    \begin{cases}
         &Ax=b\Rightarrow \left\|Ax\right\|=\left\|b\right\|\\
-        &\left\|Ax\right\|\le\left\|A\right\|_*\left\|x\right\|\ \textcircled{$\vartriangle$}
-    \end{cases}
+        &\left\|Ax\right\|\le\left\|A\right\|_*\left\|x\right\|\quad \text{Nota 1}
+    \end{cases}\\
+    &\textcircled{$\vartriangle$}+\circledast\quad\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta b\right\|}{\left\|b\right\|}\ \forall b\in\mathbb R^n\\
+    &\text{Dove $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è l'indice di condizionamento globale del problema semplificato.}
 \end{align*}
 
+    \item Ora considero di perturbare anche $A$:
+    \begin{align*}
+        &\begin{cases}
+            &(A+\delta A)(x+\delta x)=b+\delta b\\
+            &Ax=b   
+        \end{cases}\\
+        &(A+\delta A)\delta x=b+\delta b-(A+\delta A)x=\delta b-\delta Ax\quad\odot 
+    \end{align*}
+    Noto che se \(\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}<\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\), allora
+    \(\mathbb 1+A^{-1}\delta A\) è \textbf{invertibile}.
+
+\colorbox{yellow}{Dimostrazione}: Suppongo per assurdo che $\mathbb 1+A^{-1}\delta A$ non sia invertibile
+\begin{align*}
+    &\exists y\ne 0\text{ tale che}\quad\left(\mathbb{1}+A^{-1}\delta A\right)y=0\quad\text{cioè}\quad A^{-1}\delta Ay=-y\ \Rightarrow\ \left\|A^{-1}\delta Ay\right\|=\left\|y\right\|\\
+    &1=\frac{\left\|A^{-1}\delta Ay\right\|}{\left\|y\right\|}\le\sup_{x\in\mathbb R^n\ x\ne0}\frac{\left\|A^{-1}\delta Ax\right\|}{\left\|x\right\|}=\left\|A^{-1}\delta A\right\|_*\\
+    &1\le\left\|A^{-1}\delta A\right\|_*\underset{\text{Nota 1}}{\le}\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*=\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\\
+    &\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\le\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\quad\text{\textbf{Assurdo} contraddice l'ipotesi.}
+\end{align*}
+
+Da $\odot$ segue che:
+\begin{align*}
+    &(A+\delta A)\delta x=\delta b-\delta Ax\\
+    &A(\mathbb 1+A^{-1}\delta A)\delta x=\delta b-\delta Ax\\
+    \delta x&=(\mathbb 1+A^{-1}\delta A)^{-1}\cdot A^{-1}(\delta b-\delta Ax)\\
+    &=(\mathbb 1+A^{-1}\delta A)^{-1}\cdot A^{-1}(\delta b-\delta AA^{-1}b)
+\end{align*}
+Passiamo alle norme
+\begin{align*}
+    \left\|\delta x\right\|&=\dots\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left\|\delta b-\delta AA^{-1}b\right\|\\
+    &\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta AA^{-1}b\right\|\right)\\
+    &\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta A\right\|_*\left\|A^{-1}\right\|_*\left\|b\right\|\right)
+\end{align*}
+
+\end{itemize}
 \end{document}
