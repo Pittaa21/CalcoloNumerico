@@ -1100,10 +1100,11 @@ Su $\circledast$ sto misurando in termini assoluti, devo invece misurare in term
 
 \colorbox{yellow}{Dimostrazione}: Suppongo per assurdo che $\mathbb 1+A^{-1}\delta A$ non sia invertibile
 \begin{align*}
-    &\exists y\ne 0\text{ tale che}\quad\left(\mathbb{1}+A^{-1}\delta A\right)y=0\quad\text{cioè}\quad A^{-1}\delta Ay=-y\ \Rightarrow\ \left\|A^{-1}\delta Ay\right\|=\left\|y\right\|\\
-    &1=\frac{\left\|A^{-1}\delta Ay\right\|}{\left\|y\right\|}\le\sup_{x\in\mathbb R^n\ x\ne0}\frac{\left\|A^{-1}\delta Ax\right\|}{\left\|x\right\|}=\left\|A^{-1}\delta A\right\|_*\\
+    &\exists y\ne 0\text{ tale che}\quad\left(\mathbb{1}+A^{-1}\delta A\right)y=0\quad\text{cioè}\quad A^{-1}\delta Ay=-y\\
+    &\Rightarrow\ \left\|A^{-1}\delta Ay\right\|=\left\|y\right\|\\
+    &1=\frac{\left\|A^{-1}\delta Ay\right\|}{\left\|y\right\|}\le\sup_{x\in\mathbb R^n\ x\ne0}\frac{\left\|A^{-1}\delta Ax\right\|}{\left\|x\right\|}\underset{\text{Nota 1}}{=}\left\|A^{-1}\delta A\right\|_*\\
     &1\le\left\|A^{-1}\delta A\right\|_*\underset{\text{Nota 1}}{\le}\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*=\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\\
-    &\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\le\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\quad\text{\textbf{Assurdo} contraddice l'ipotesi.}
+    &\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\le\underset{\text{Perturbazione rel.}}{\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}}\quad\text{\textbf{Assurdo} contraddice l'ipotesi.}\quad\checkmark
 \end{align*}
 
 Da $\odot$ segue che:
@@ -1120,5 +1121,25 @@ Passiamo alle norme
     &\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta A\right\|_*\left\|A^{-1}\right\|_*\left\|b\right\|\right)
 \end{align*}
 
+Prima abbiamo usato $\frac{1}{\left\|x\right\|}\le\frac{\left\|A\right\|_*}{\left\|b\right\|}$. Quindi Per l'errore relativo:
+\begin{align*}
+    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left\|A\right\|_*\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*\right)\\
+    &\text{$\left\|\delta A\right\|_*$ è un errore assoluto, noi stiamo usando solo errori relativi, quindi divido e moltiplico per $\left\|A\right\|_*$}\\
+    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\right)\quad\circledast
+\end{align*}
+La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
+si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$
+
+La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
 \end{itemize}
+
+Tipicamente per matrici grandi $\begin{cases}
+    &\text{Piene}\quad n>10^4\\
+    &\text{Sparse}\quad n>10^6\\
+\end{cases}$\\
+$\operatorname{Cond}(A,\left\|\cdot\right\|)$ è facilmente $\approx 10^4\ 10^5$ in casi buoni.\\
+Sbagliare $A$ di $10^{-16}$ relativo, implica avere un errore relativo su $x$ di $10^{-8}$. Quindi su 16 cifre significative
+ne calcolo solo 8 correttamente: questo è un caso buono per le matrici grandi.\\
+\colorbox{yellow}{Salvezza}: In generale tutti i $\le$ mostrati finora sono in realtà stretti, per ottenere l'uguaglianza, ossia l'errore massimo
+bisogna prendere il peggior dato con la peggior perturbazione (\textbf{molto improbabile}).
 \end{document}
