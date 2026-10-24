@@ -1148,12 +1148,40 @@ Riprendiamo il caso in cui $A$ è fissa ed esatta dove abbiamo $Ax=b$ ossia, per
 &A\left(x+\delta x\right)=b+\delta b\ \to\ \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\operatorname{k}(A,\left\|\cdot\right\|)\frac{\left\|\delta b\right\|}{\left\|b\right\|}\\
 &\operatorname{k}(A,\left\|\cdot\right\|)=\left\|A\right\|_*\left\|A^{-1}\right\|_*
 \end{align*}
-È una disequazione \underline{sharp}?
+Si tratta di una disequazione \underline{sharp}?  (potrebbe esistere il caso di uguaglianza)
 
-Suppongo di usare $\left\|\cdot\right\|=\left\|\cdot\right\|_2\quad\left\|v\right\|_2=\left(\sum v_i^2\right)^{1/2}$. Chi è la \textbf{Norma indotta} su $M_{n\times n}(\mathbb R)$?
+Suppongo di usare $\left\|\cdot\right\|=\left\|\cdot\right\|_2$, ossia la \textbf{norma euclidea} $\left\|v\right\|_2=\left(\sum v_i^2\right)^{1/2}$.\\
+Chi è la \textbf{Norma indotta} su $M_{n\times n}(\mathbb R)$?
 \begin{align*}
     \left\|A\right\|_*&=\max_{x\ne 0}\frac{\left\|Ax\right\|_2}{\left\|x\right\|_2}=\left(\max_{x\ne 0}\frac{\sum\left(Ax\right)^2_i}{\sum x^2_i}\right)^{\frac 12}\\
-    &=\left[\max_{x\ne0}\frac{x^TA^TAx}{x^Tx}\right]^{\frac 12}\quad\circledast\quad G=A^TA
+    &\text{Ricordiamo la proprietà del prodotto riga x colonna tra vettori: }\boxed{\sum y^2_i=y^T\cdot y}\\
+    &=\left[\max_{x\ne0}\frac{x^TA^TAx}{x^Tx}\right]^{\frac 12}\quad\circledast\quad G=A^TA=G^T\text{ matrice simmetrica}
 \end{align*}
+\begin{note}{}{}
+    $M$ è una matrice quadrata, \underline{se} è diagonalizzabile allora:$$M=P\Lambda P^{-1}$$
+    Dove $\lambda$ è la matrice diagonale con gli autovalori di $M$ e $P$ è una matrice invertibile le cui colonne sono autovettori di $M$.
+\end{note}
 
+\subsubsection{Teorema Spettrale}
+\begin{theo}{Teorema Spettrale}{}
+    Ho $G\in M_{n\times n}(\mathbb R)$ \textbf{simmetrica} allora: $\exists\ \lambda_1,\lambda_2,\dots,\lambda_n$
+    e $Q\in M_{n\times n(\mathbb R)}$ matrice \textbf{ortogonale} ($Q^TQ=QQ^T=\mathbb 1_n$) tali che:
+    $$\boxed{G=Q\Lambda Q^T}\quad \Lambda=\begin{pmatrix}
+        \lambda_1&\dots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\dots&\lambda_n
+    \end{pmatrix}$$
+\end{theo}
+
+Quindi:
+\begin{align*}
+    &x^TA^TAx=x^TGx\ge0\text{ dato che è uguale a }\left\|Ax\right\|^2_2\\
+    &\text{È }=0\text{ solo se }Ax=0\text{ se }A\text{ è di rango pieno ciò implica che }x=0\\
+    &\Rightarrow \lambda_i>0\text{ se }A\text{ è invertibile}
+\end{align*}
+$G$ si dice quindi, \textbf{simmetrica strettamente definita positiva}, ossia tutti i suoi autovalori sono maggiori stretti di $0$.
+
+\begin{align*}
+    \circledast&\left\|A\right\|_*^2=\max_{x\ne0}\frac{x^TGx}{x^Tx}\underset{\text{Teo. spett.}}{=}\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^Tx}
+\end{align*}
 \end{document}
