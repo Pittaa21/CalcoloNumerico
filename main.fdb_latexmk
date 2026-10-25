@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1792861933.50863 "c:/Users/pitta/Documents/Latex/CalcoloNumerico/main.tex" "main.pdf" "main" 1792861936.84501 0
-  "c:/Users/pitta/Documents/Latex/CalcoloNumerico/main.tex" 1792861932 43667 6367c8d4b236bdf95187d42f009235e1 ""
+["pdflatex"] 1792947535.95136 "c:/Users/pitta/Documents/Latex/CalcoloNumerico/main.tex" "main.pdf" "main" 1792947539.3894 0
+  "c:/Users/pitta/Documents/Latex/CalcoloNumerico/main.tex" 1792947534 51728 2f861888e1fc2a17273e3d9a5c142b7f ""
   "c:/texlive/2026/texmf-dist/fonts/enc/dvips/atkinson/atkinsn_bbsfwk.enc" 1791182975 2857 21ad4dc471fdf21b7b4c9b6eb60e24e4 ""
   "c:/texlive/2026/texmf-dist/fonts/enc/dvips/atkinson/atkinsn_ghg2ik.enc" 1791182975 3174 0c6c5ae77c2a5f9bf266d3937ce3634b ""
   "c:/texlive/2026/texmf-dist/fonts/enc/dvips/atkinson/atkinsnmono_bbsfwk.enc" 1791182975 2840 18f449c2a472ce7209545c314406be19 ""
@@ -44,6 +44,7 @@
   "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1791182854 37912 07513ec114ac737ab54cea0152f4424b ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1791182854 36281 c355509802a035cadc5f15869451dcee ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1791182854 35752 024fb6c41858982481f6968b5fc26508 ""
+  "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1791182854 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1791182854 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1791182854 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1791182854 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -273,10 +274,10 @@
   "c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1791188796 5655996 795b756740562267ad2ae16e70168a76 ""
   "c:/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1791188971 3668388 dcf9104d0d57282e45c8cd13829f83a2 ""
   "c:/texlive/2026/texmf.cnf" 1791188768 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1792861936 4534 7c955440d2566b9e57f0d64a6bec6c44 "pdflatex"
-  "main.out" 1792861936 6112 18f1eb652610db33fbf1f8a0e1b68cea "pdflatex"
-  "main.tex" 1792861932 43667 6367c8d4b236bdf95187d42f009235e1 ""
-  "main.toc" 1792861936 3018 02c823cd91db26fe8d2734549af93580 "pdflatex"
+  "main.aux" 1792947539 5090 b7fef41846f477cf693db0beb18ac5c0 "pdflatex"
+  "main.out" 1792947539 6864 d7d109811ed0fa32eb7a6cb66c2fa09f "pdflatex"
+  "main.tex" 1792947534 51728 2f861888e1fc2a17273e3d9a5c142b7f ""
+  "main.toc" 1792947539 3410 718b3fd8fa83d59cd2d29cc1ea014c1c "pdflatex"
   (generated)
   "main.aux"
   "main.log"

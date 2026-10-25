@@ -1127,8 +1127,10 @@ Prima abbiamo usato $\frac{1}{\left\|x\right\|}\le\frac{\left\|A\right\|_*}{\lef
     &\text{$\left\|\delta A\right\|_*$ è un errore assoluto, noi stiamo usando solo errori relativi, quindi divido e moltiplico per $\left\|A\right\|_*$}\\
     &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\right)\quad\circledast
 \end{align*}
+\begin{defi}{Numero di condizionamento}{}
 La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
 si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$
+\end{defi}
 
 La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
 \end{itemize}
@@ -1182,6 +1184,136 @@ Quindi:
 $G$ si dice quindi, \textbf{simmetrica strettamente definita positiva}, ossia tutti i suoi autovalori sono maggiori stretti di $0$.
 
 \begin{align*}
-    \circledast&\left\|A\right\|_*^2=\max_{x\ne0}\frac{x^TGx}{x^Tx}\underset{\text{Teo. spett.}}{=}\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^Tx}
+    \circledast\left\|A\right\|_*^2&=\max_{x\ne0}\frac{x^TGx}{x^Tx}\underset{\text{Teo. spett.}}{=}\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^Tx}\\
+    &=\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^T\underset{=QQ^T}{\mathbb 1}x}=\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^TQQ^Tx}\\
+    \text{Dato che }Q&\text{ è invertibile, allora posso fare un cambio di variabile: }y=Q^Tx\quad x=0\Leftrightarrow y=0\\
+    &=\max_{y\ne0}\frac{y^T\Lambda y}{y^Ty}=\max_{y\ne0}\left(\frac{y}{\left\|y\right\|}\right)^T\Lambda\frac{y}{\left\|y\right\|}
 \end{align*}
+Sono quindi passato da una generica matrice positiva ad un matrice \underline{diagonale} con diagonale positiva.
+\begin{align*}
+    &=max_{z:\ \left\|z\right\|_2=1}z^T\Lambda z\\
+    &\text{Vogliamo, quindi, risolvere: }\\
+    &max\sum_{i=1}^n \lambda_i z^2_i\quad\text{con}\quad\sum_{i=1}^n z_i^2=1\\
+    &\text{Ossia voglio trovare il massimo autovalore di }G\\
+    &\text{Provo con: }z=e_{\underline{i}}\ :\ \lambda_{\underline{i}}\ge\lambda_i\ \forall i=1\dots n\quad\text{suppongo: }\lambda_1\ge\lambda_2\ge\dots\ge\lambda_n>0\\
+    &\sum_{i=1}^{n}\lambda_iz^2_i=\underset{\text{Separo il primo termine}}{\lambda_1\left(z_1^2+\sum_{i=2}^{n}\frac{\lambda_i}{\lambda_1}z^2_i\right)}\le\lambda_1\underbrace{\left(z_1^2+\sum_{i=2}^{n}z^2_i\right)}_{=1}=\lambda_1\\
+    &\text{Se prendo }z=e_1\text{ (primo vettore della base canonica) ottengo:}\\
+    &\sum_{i=1}^{n}\lambda_iz^2_i=\lambda_1\cdot1^2+\lambda_2\cdot0^2+\dots+\lambda_n\cdot0^2=\boxed{\lambda_1}
+\end{align*}
+Quindi vale:$$\left\|A\right\|_*^2=\max_{z:\ \left\|z\right\|_2=1}\frac{z^TGz}{z^Tz}=\lambda_{\mathrm{max}}(G)\text{ autovalore massimo}$$
+$$\boxed{\left\|A\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^TA\right)}\text{ se }\left\|\cdot\right\|=\left\|\cdot\right\|_2}$$
+
+\subsubsection{Decomposizione ai valori singolari (SVD)}
+\begin{theo}{}{}
+    Se $A\in M_{n\times n}(\mathbb R)$ di rango pieno allora $\exists\ U,\Sigma\ V$ con $U,V$ \textbf{ortogonali} $n\times n\ \Sigma=\begin{pmatrix}
+        \sigma_1&\dots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\dots&\sigma_n
+    \end{pmatrix}
+    $ \textbf{diagonale}
+    con $\sigma_i>0$. Tale per cui:$$\boxed{A=U\Sigma V^T}$$
+\end{theo}
+Adesso vediamo cosa sono $U,\Sigma,V$:
+\begin{align*}
+    A^TA=V\Sigma U^T\cdot U\Sigma V^T=V\Sigma\cdot\Sigma V^T=V\Sigma^2 V^T\Rightarrow \sigma_i^2\text{ autovalore di }A^TA
+\end{align*}
+Si nota che le colonne di $V$ sono gli autovettori di $A^TA$. Per dimostrarlo, prendiamo una colonna di $V$, la moltiplichiamo e
+vediamo se otteniamo $\lambda$ volte la stessa colonna (proprietà \textbf{autovalore}).\\
+$V(:,j)$ è la $j$-esima colonna.
+\begin{align*}
+    &A^TA\cdot V(:,j)=V\Sigma^2\underbrace{V^TV(:,j)}_{w}\\
+    &w_i=V^T(i,:)V(:j)=V(:,i)^TV(:,j)=\left(V^TV\right)(i,j)=\mathbb 1(i,j)\begin{cases}
+        &1\quad\text{se }i=j\\
+        &0\quad\text{se }i\ne j
+    \end{cases}\\
+    &A^TA\cdot V(:,j)=V\Sigma^2 e_j=V\sigma_j^2e_j=\sigma^2_jVe_j=\underset{\text{autovalore}}{\sigma^2_j}\ \underset{\text{autovettore}}{V(:,j)}
+\end{align*}
+Questo spiega cos'è $V$ e $\Sigma^2$. Ora vediamo cos'è la matrice $U$:
+\begin{align*}
+    AA^T=&\ U\Sigma V^T\cdot V\Sigma U^T=U\Sigma^2 U^T\\
+    \text{Adesso}&\text{ non serve rifare i conti, sono gli stessi ma con nomi diversi. Quindi ottengo:}\\
+    \Rightarrow&\ \sigma_j^2\text{ sono anche autovalori di }AA^T\\
+    \Rightarrow&\ \text{Gli autovettori di }AA^T\text{ sono le colonne di }U
+\end{align*}
+
+Adesso continuiamo con il condizionamento in norma $2$ e nel vedere se la disequazione è \underline{sharp}:
+\begin{align*}
+    &\left\|A\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^TA\right)}=\sqrt{\lambda_{\mathrm{max}}\left(V\Sigma^2V^T\right)}=\sqrt{\max \sigma_i^2}=\sigma_{\mathrm{max}}\\
+    &\text{Per il condizionamento serve anche:}\\
+    &\left\|A^{-1}\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^{-T}A^{-1}\right)}\\
+    &A=U\Sigma V^T\Rightarrow A^{-1}=V\Sigma^{-1}U^T\qquad\Sigma^{-1}=\begin{pmatrix}
+        \frac{1}{\sigma_1}&\dots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\dots&\frac{1}{\sigma_n}
+    \end{pmatrix} \\
+    &A^{-T}A^{-1}=U\Sigma^{-1}V^T\cdot V\Sigma^{-1}U^T=U\Sigma^{-2}U^T\\
+    &\left\|A^{-1}\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(U\Sigma^{-2}U^T\right)}=\max\frac{1}{\sigma_i}=\frac{1}{\sigma_{\mathrm{min}}}\\
+    &\boxed{\operatorname{k}\left(A,\left\|\cdot\right\|_2\right)=\left\|A\right\|_*\left\|A^{-1}\right\|_*=\frac{\sigma_{\mathrm{max}}}{\sigma_{\mathrm{min}}}}
+\end{align*}
+$\left\|A\right\|_*$ nel caso $\left\|\cdot\right\|=\left\|\cdot\right\|_2$ su $\mathbb R^n$ viene denotata con $\left\|A\right\|_2$.\\
+
+Torniamo a domandarci se:$$\frac{\left\|\delta x\right\|_2}{\left\|x\right\|_2}\le\operatorname{k}\left(A,\left\|\cdot\right\|_2\right)\frac{\left\|\delta b\right\|_2}{\left\|b\right\|_2}$$
+è irrealistica, cioè esiste l'uguaglianza?\\
+Per dimostrarla abbiamo usato 2 stime:
+\begin{enumerate} 
+    \item $\left\|b\right\|_2=\left\|Ax\right\|_2\le\left\|A\right\|_2\left\|x\right\|_2\quad$Può valere nel caso di uguaglianza?
+    \begin{align*}
+        &\left\|Ax\right\|_2^2=x^TV\Sigma U^T\cdot U\Sigma V^Tx=x^TV\Sigma^2V^Tx\\
+        &y=V^Tx\quad\Rightarrow\quad y^T\Sigma^2y\\
+        &\left\|x\right\|_2^2=\left\|V^Tx\right\|_2^2=\left\|y\right\|_2^2
+    \end{align*}
+    \begin{note}{Ragionamento}{}
+    Il $\max\frac{\left\|Ax\right\|_2^2}{\left\|x\right\|_2^2}$ è raggiunto se $x$ è proporzionale all'autovettore relativo all'autovalore massimo di $A^TA$, ossia $\sigma_{\mathrm{max}}^2$ cioè la prima colonna di $V$.
+    Quindi esiste l'uguaglianza.
+    \end{note}
+
+    Se $x=c\cdot V(:,1)\quad Ax=b\Rightarrow b=c\cdot A^{-1}V(:,1)=c\cdot V\Sigma^{-1} U^TV(:,1)$ allora:
+    \[\left\|b\right\|_2=\left\|A\right\|_2\left\|x\right\|_2\qquad\text{(esiste l'uguaglianza)}\]
+
+    \item $\left\|\delta x\right\|_2=\left\|A^{-1}\delta b\right\|_2\le\left\|A^{-1}\right\|_2\left\|\delta b\right\|_2\quad$ Esiste l'uguaglianza?
+    
+    Usando nuovamente la \underline{nota 3} il caso di uguaglianza, si verifica se il vettore $\delta b$ è proporzionale all'autovettore relativo all'autovalore
+    massimo di $A^{-T}A^{-1}\Rightarrow\frac{1}{\sigma_{\mathrm{min}}}$. Dunque $\delta b=\epsilon U(:,n)$.
+\end{enumerate}
+
+Quindi la stima è \underline{sharp}, cioè ottimale dato che esiste l'uguale. In generale, è una stima pessimistica.
+
+\subsection{Risoluzione pratica $Ax=b$}
+\colorbox{yellow}{Osservazione}:\\Se la matrice $A$ è triangolare superiore $\begin{pmatrix}
+    1&1&1\\
+    0&1&1\\
+    0&0&1
+\end{pmatrix}$ o inferiore $\begin{pmatrix}
+    1&0&0\\
+    1&1&0\\
+    1&1&1
+\end{pmatrix}$: So risolvere il problema.
+
+\subsubsection{Caso inferiore}
+\begin{align*}
+    &a_{11}x_1=b_1\Rightarrow x_1=\frac{b_1}{a_{11}}\qquad\text{(Sto ignorando i valori $0$)}\\
+    &a_{21}x_1+a_{22}x_2=b_2\Rightarrow x_2=\frac{b_2-a_{21}x_1}{a_{22}}\\
+    &\text{In generale: }x_1=\frac{b_1}{a_{1}}\quad x_k=\boxed{\frac{b_k-\sum_{j=1}^{k-1}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo di sostituzione in avanti)}\\
+\end{align*}
+
+\subsubsection{Caso superiore}
+\begin{align*}
+    &a_{nn}x_n=b_n\Rightarrow x_n=\frac{b_n}{a_{nn}}\\
+    &\text{In generale: }x_{k}=\boxed{\frac{b_k-\sum_{j=k+1}^{n}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo sostituzione all'indietro)}
+\end{align*}
+
+Dato che le matrici triangolari sono poche, si usa il metodo di \underline{eliminazione gaussiana}, per ottenerne di più.
+\begin{note}{Fattorizzazione}{}
+    Il metodo di eliminazione gaussiana si può vedere come \textbf{fattorizazzione} di matrice. La fattorizzazione $LU$ tale che
+    $A=LU$ dove $L$ sta per "lower triangular" invertibile e $U$ "upper triangular" invertibile.
+\end{note}
+A cosa serve una fattorizzazione di questo tipo?
+
+$$Ax=b\Leftrightarrow \underset{\text{associativo}}{LUx}=b$$
+Faccio un cambio di variabile $y=Ux$ e ottengo:
+\begin{itemize}
+    \item $Ly=b$ posso calcolare $y$ con la sostituzione in avanti.
+    \item $Ux=y$ posso calcolare $x$ con la sostituzione all'indietro.
+\end{itemize} 
+
 \end{document}
