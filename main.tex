@@ -1302,6 +1302,7 @@ Quindi la stima è \underline{sharp}, cioè ottimale dato che esiste l'uguale. I
     &\text{In generale: }x_{k}=\boxed{\frac{b_k-\sum_{j=k+1}^{n}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo sostituzione all'indietro)}
 \end{align*}
 
+\subsection{Fattorizzazione}
 Dato che le matrici triangolari sono poche, si usa il metodo di \underline{eliminazione gaussiana}, per ottenerne di più.
 \begin{note}{Fattorizzazione}{}
     Il metodo di eliminazione gaussiana si può vedere come \textbf{fattorizazzione} di matrice. La fattorizzazione $LU$ tale che
@@ -1316,4 +1317,96 @@ Faccio un cambio di variabile $y=Ux$ e ottengo:
     \item $Ux=y$ posso calcolare $x$ con la sostituzione all'indietro.
 \end{itemize} 
 
+Rendiamo algoritmico il \underline{metodo di eliminazione gaussiana} (MEG):
+\begin{align*}
+    \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)=\mathbb 1-\begin{pmatrix}
+        0\\
+        m^k
+    \end{pmatrix}e^T_k\quad m^{(k)}\in \mathbb R^{n-k}
+\end{align*}
+\begin{note}{}{}
+    È colonna $\times$ riga, ossia $\left(u\ v^T\right)_{i,j}=u_iv_j$
+\end{note}
+\[\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)=\begin{pmatrix}
+    1&\dots&0\\
+    \vdots&1&\vdots\\
+    0&-m^{(k)}&1
+\end{pmatrix}\]
+Nella $k$-esima colonna ci metto $-m^{(k)}$ per questo è lunga $n-k$, sono gli elementi sotto la diagonale.
+
+Cosa succede se faccio $\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot A$?
+\begin{align*}
+    \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)A&=\left(\mathbb 1_n-\begin{pmatrix}
+        0\\
+        m^k
+    \end{pmatrix}e^T_k\right)A\underset{prop. assoc.}{=}A-\begin{pmatrix}
+        0\\
+        m^k
+    \end{pmatrix}\underbrace{e^T_kA}_{k\text{-esima riga di }A}\\
+    &=A-\begin{pmatrix}
+        0\\
+        m^k
+    \end{pmatrix}A(k,:)=A-\begin{pmatrix}
+        0&\dots&0\\
+        0&\dots&k\text{ righe}\\
+        m^k_1A(k,1)&\dots&m^k_1A(k,n)\\
+        \vdots&&\vdots\\
+        m^k_{n-k}A(k,1)&\dots&m^k_{n-k}A(k,n)
+    \end{pmatrix}
+\end{align*}
+Ossia ad ogni riga di $A$ da $k+1$ a $n$ togliamo la $k$-esima riga di $A$ moltiplicata per $m_1^k,\dots,m^k_{n-k}$ (\textbf{moltiplicatori}).
+Nel MEG scelgo i moltiplicatori per eliminare tutta la parte sottodiagonale di $A$ nella colonna $k$-esima.
+
+La colonna $k$-esima di $\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)A$ è:
+\[A(:,k)-\begin{pmatrix}
+    0\\
+    k\text{ volte}\\
+    0\\
+    m_1A(k,k)\\
+    \vdots\\
+    m_{n-k}^kA(k,k)
+\end{pmatrix}=\begin{pmatrix}
+    A(1,k)\\
+    \vdots\\
+    A(k,k)\\
+    \noindent\rule{3.5cm}{1pt}\\
+    A(k+1,k)-m^k_1A(k,k)\\
+    \vdots\\
+    A(n,k)-m^k_{n-k}A(k,k)
+\end{pmatrix}\]
+La parte bassa è quella che voglio annullare. Per far ciò devo "scegliere" $m$ nel seguente modo:
+\[\circledast\quad m^k_l=\frac{A(k+l,k)}{A(k,k)}\]
+Devo verificare che $A(k,k)\ne0$, ossia la diagonale diversa da zero, perchè potrebbe esserci il caso:
+\begin{ex}{Problema Diagonale $=0$}{}
+    $A=\begin{pmatrix}
+        0&1\\
+        1&0
+    \end{pmatrix}\quad \operatorname{det}(A)=-1$ La matrice è invertibile nonostante la diagonale $=0$.
+\end{ex}
+
+\colorbox{yellow}{Ipotesi}:
+Per il momento supponiamo che $A(k,k)\ne0$.\\
+Poniamo $\widetilde{\operatorname{L}}^{(k)}=\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)$ con $m^k$ 
+scelto come in $\circledast$.
+
+\colorbox{yellow}{Algoritmo}:
+\begin{itemize}
+    \item[] $A^{(1)}=A$
+    \item[] $A^{(k)}=\widetilde{\operatorname{L}}^{(k-1)}A^{(k-1)}$ Quello $k$-esimo è dato da quello $(k-1)$-esimo
+\end{itemize}
+Se vale l'ipotesi ad ogni passo: $\boxed{A^{(k-1)}(k-1,k-1)\ne0}$. Dopo $n-1$ passi avrò:
+\[A^n=\widetilde{\operatorname{L}}^{(n-1)}A^{(n-1)}=\widetilde{\operatorname{L}}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}A^{(n-2)}\dots=\widetilde{\operatorname{L}}^{(n-1)}\dots\widetilde{\operatorname{L}}^{(1)}A\]
+La matrice $A^n$ sarà, quindi, una triangolare superiore; perchè al primo passo abbiamo preso la colonna $1$ di $A$ ed eliminato
+la sua parte sotto la diagonale. Quindi $A^{(2)}$ ha la colonna $1$ con la parte sottodiagonale \textbf{nulla}.
+Poi $A^{(3)}=\widetilde{\operatorname{L}}^{(2)}A^2=\left(\mathbb 1-\begin{pmatrix}
+    0\\
+    m^2
+\end{pmatrix}e_2^T\right)A^2=A^2-\begin{pmatrix}
+    0\\
+    m^2
+\end{pmatrix}e^T_2A^{(2)}$ e dato che $A^2$ ha la prima colonna sottodiagonale $0$ e viene sottratta ad una cosa che ha la prima colonna tutto $0$.
+Quindi anche $A^{(3)}$ ha la prima colonna sottodiagonale $0$ e in più anche la seconda colonna ha la stessa proprietà per $\circledast$.\\
+Iterando questo ragionamento otteniamo che $A^{(n)}$ ha le colonne $1,2,\dots,n-1$ che rispettano la stessa proprietà. Di conseguenza è \textbf{triangolare superiore}.
+
+Pongo $U=A^{(n)}$
 \end{document}
