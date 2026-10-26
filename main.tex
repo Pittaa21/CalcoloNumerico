@@ -56,34 +56,34 @@ top=20mm,
 \section{Sistemi non decimali}
 
 \begin{defi}{Conversione da base $N$ a base $M$}{}
-Dato $x>0$ e nota la rappresentazione $(x)_N$, vogliamo trovare la rappresentazione $(x)_M$.
+    Dato $x>0$ e nota la rappresentazione $(x)_N$, vogliamo trovare la rappresentazione $(x)_M$.
 
-Scriviamo:
-\begin{align*}
-x
-&=x_nN^n+x_{n-1}N^{n-1}+\dots+x_0
-+x_{-1}N^{-1}+\dots+x_{-r}N^{-r}\\
-&=y_mM^m+y_{m-1}M^{m-1}+\dots+y_0
-+y_{-1}M^{-1}+\dots+y_{-q}M^{-q}.
-\end{align*}
+    Scriviamo:
+    \begin{align*}
+        x
+         & =x_nN^n+x_{n-1}N^{n-1}+\dots+x_0
+        +x_{-1}N^{-1}+\dots+x_{-r}N^{-r}    \\
+         & =y_mM^m+y_{m-1}M^{m-1}+\dots+y_0
+        +y_{-1}M^{-1}+\dots+y_{-q}M^{-q}.
+    \end{align*}
 
-Si procede separatamente per la \underline{parte intera} e per la \underline{parte frazionaria}.
+    Si procede separatamente per la \underline{parte intera} e per la \underline{parte frazionaria}.
 \end{defi}
 
 \subsection{Conversione della parte intera}
 
 Per convertire la parte intera si itera lo schema della divisione intera per $M$:
 \begin{align*}
-y_0&:=x\bmod M
-&
-x&=q_0M+y_0\\
-y_1&:=q_0\bmod M
-&
-q_0&=q_1M+y_1\\
-&\vdots\\
-y_m&:=q_{m-1}\bmod M
-&
-q_{m-1}&=y_m<M
+    y_0     & :=x\bmod M
+            &
+    x       & =q_0M+y_0        \\
+    y_1     & :=q_0\bmod M
+            &
+    q_0     & =q_1M+y_1        \\
+            & \vdots           \\
+    y_m     & :=q_{m-1}\bmod M
+            &
+    q_{m-1} & =y_m<M
 \end{align*}
 
 \colorbox{yellow}{\textbf{OSSERVAZIONE:}}
@@ -92,85 +92,85 @@ $x\bmod M$ indica il \underline{resto della divisione intera} di $x$ per $M$.
 I resti ottenuti sono le cifre della rappresentazione in base $M$, lette dal basso verso l'alto. Pertanto:
 
 $$
-(x_{\mathrm{int}})_M
-=
-y_my_{m-1}\dots y_1y_0
+    (x_{\mathrm{int}})_M
+    =
+    y_my_{m-1}\dots y_1y_0
 $$
 
 \begin{ex}{Conversione da base $2$ a base $10$}{}
-Convertiamo
+    Convertiamo
 
-$$
-(10011010010)_2
-$$
+    $$
+        (10011010010)_2
+    $$
 
-in base $10$.
+    in base $10$.
 
-Si ha:
-\begin{align*}
-(10011010010)_2
-&=
-1\cdot2^{10}
-+0\cdot2^9
-+0\cdot2^8
-+1\cdot2^7
-+1\cdot2^6\\
-&\qquad
-+0\cdot2^5
-+1\cdot2^4
-+0\cdot2^3
-+0\cdot2^2
-+1\cdot2^1
-+0\cdot2^0\\
-&=
-2^{10}+2^7+2^6+2^4+2^1\\
-&=
-1024+128+64+16+2\\
-&=
-1234
-\end{align*}
+    Si ha:
+    \begin{align*}
+        (10011010010)_2
+         & =
+        1\cdot2^{10}
+        +0\cdot2^9
+        +0\cdot2^8
+        +1\cdot2^7
+        +1\cdot2^6             \\
+         & \qquad
+        +0\cdot2^5
+        +1\cdot2^4
+        +0\cdot2^3
+        +0\cdot2^2
+        +1\cdot2^1
+        +0\cdot2^0             \\
+         & =
+        2^{10}+2^7+2^6+2^4+2^1 \\
+         & =
+        1024+128+64+16+2       \\
+         & =
+        1234
+    \end{align*}
 
-Quindi:
+    Quindi:
 
-$$
-\boxed{(10011010010)_2=(1234)_{10}}
-$$
+    $$
+        \boxed{(10011010010)_2=(1234)_{10}}
+    $$
 
 \end{ex}
 
 \begin{ex}{Conversione da base $10$ a base $2$}{}
-Convertiamo
+    Convertiamo
 
-$$
-(1234)_{10}
-$$
+    $$
+        (1234)_{10}
+    $$
 
-in base $2$ utilizzando divisioni successive per $2$:
-\begin{align*}
-1234&=617\cdot2+0\\
-617&=308\cdot2+1\\
-308&=154\cdot2+0\\
-154&=77\cdot2+0\\
-77&=38\cdot2+1\\
-38&=19\cdot2+0\\
-19&=9\cdot2+1\\
-9&=4\cdot2+1\\
-4&=2\cdot2+0\\
-2&=1\cdot2+0\\
-1&=0\cdot2+1
-\end{align*}
+    in base $2$ utilizzando divisioni successive per $2$:
+    \begin{align*}
+        1234 & =617\cdot2+0 \\
+        617  & =308\cdot2+1 \\
+        308  & =154\cdot2+0 \\
+        154  & =77\cdot2+0  \\
+        77   & =38\cdot2+1  \\
+        38   & =19\cdot2+0  \\
+        19   & =9\cdot2+1   \\
+        9    & =4\cdot2+1   \\
+        4    & =2\cdot2+0   \\
+        2    & =1\cdot2+0   \\
+        1    & =0\cdot2+1
+    \end{align*}
 
-Leggendo i resti dal basso verso l'alto otteniamo:
+    Leggendo i resti dal basso verso l'alto otteniamo:
 
-$$
-10011010010
-$$
+    $$
+        10011010010
+    $$
 
-Pertanto:
+    Pertanto:
 
-$$
-\boxed{(1234)_{10}=(10011010010)_2}
-$$
+    $$
+        \boxed{(1234)_{10}=(10011010010)_2}
+    $$
 
 \end{ex}
 
@@ -181,15 +181,15 @@ Per convertire la parte frazionaria si procede moltiplicando successivamente per
 Sia
 
 $$
-x_{\mathrm{fraz}}\in[0,1).
+    x_{\mathrm{fraz}}\in[0,1).
 $$
 
 Si calcola:
 
 $$
-Mx_{\mathrm{fraz}}=y_{-1}+r_1,
-\qquad
-0\le r_1<1,
+    Mx_{\mathrm{fraz}}=y_{-1}+r_1,
+    \qquad
+    0\le r_1<1,
 $$
 
 dove $y_{-1}$ è la parte intera del risultato.
@@ -197,11 +197,11 @@ dove $y_{-1}$ è la parte intera del risultato.
 Si ripete poi il procedimento:
 
 $$
-Mr_1=y_{-2}+r_2,
+    Mr_1=y_{-2}+r_2,
 $$
 
 $$
-Mr_2=y_{-3}+r_3,
+    Mr_2=y_{-3}+r_3,
 $$
 
 e così via.
@@ -209,15 +209,15 @@ e così via.
 In generale:
 
 $$
-Mr_k=y_{-(k+1)}+r_{k+1},
-\qquad
-0\le r_{k+1}<1.
+    Mr_k=y_{-(k+1)}+r_{k+1},
+    \qquad
+    0\le r_{k+1}<1.
 $$
 
 Se per qualche $k$ si ottiene
 
 $$
-r_k=0,
+    r_k=0,
 $$
 
 il procedimento termina e la rappresentazione frazionaria è finita.
@@ -225,74 +225,74 @@ il procedimento termina e la rappresentazione frazionaria è finita.
 Le cifre ottenute, questa volta, si leggono \underline{dall'alto verso il basso}:
 
 $$
-(x_{\mathrm{fraz}})_M
-=
-(0.y_{-1}y_{-2}y_{-3}\dots)_M.
+    (x_{\mathrm{fraz}})_M
+    =
+    (0.y_{-1}y_{-2}y_{-3}\dots)_M.
 $$
 
 \begin{ex}{Conversione di una frazione decimale in binario}{}
-Convertiamo
+    Convertiamo
 
-$$
-(0.0625)_{10}
-$$
+    $$
+        (0.0625)_{10}
+    $$
 
-in base $2$.
+    in base $2$.
 
-Moltiplichiamo successivamente per $2$:
-\begin{align*}
-0.0625\cdot2&=0.125
-&&\longrightarrow 0\\
-0.1250\cdot2&=0.250
-&&\longrightarrow 0\\
-0.2500\cdot2&=0.500
-&&\longrightarrow 0\\
-0.5000\cdot2&=1.000
-&&\longrightarrow 1
-\end{align*}
+    Moltiplichiamo successivamente per $2$:
+    \begin{align*}
+        0.0625\cdot2 & =0.125
+                     &        & \longrightarrow 0 \\
+        0.1250\cdot2 & =0.250
+                     &        & \longrightarrow 0 \\
+        0.2500\cdot2 & =0.500
+                     &        & \longrightarrow 0 \\
+        0.5000\cdot2 & =1.000
+                     &        & \longrightarrow 1
+    \end{align*}
 
-La parte frazionaria successiva è $0$, quindi il procedimento termina.
+    La parte frazionaria successiva è $0$, quindi il procedimento termina.
 
-Pertanto:
+    Pertanto:
 
-$$
-\boxed{(0.0625)_{10}=(0.0001)_2}
-$$
+    $$
+        \boxed{(0.0625)_{10}=(0.0001)_2}
+    $$
 
 \end{ex}
 
 \begin{ex}{Un numero frazionario periodico}{}
-Consideriamo il numero
+    Consideriamo il numero
 
-$$
-(0.1)_{10}.
-$$
+    $$
+        (0.1)_{10}.
+    $$
 
-Procedendo come sopra:
-\begin{align*}
-0.1\cdot2&=0.2 &&\longrightarrow 0\\
-0.2\cdot2&=0.4 &&\longrightarrow 0\\
-0.4\cdot2&=0.8 &&\longrightarrow 0\\
-0.8\cdot2&=1.6 &&\longrightarrow 1\\
-0.6\cdot2&=1.2 &&\longrightarrow 1\\
-0.2\cdot2&=0.4 &&\longrightarrow 0
-\end{align*}
-e da questo punto la sequenza si ripete.
+    Procedendo come sopra:
+    \begin{align*}
+        0.1\cdot2 & =0.2 &  & \longrightarrow 0 \\
+        0.2\cdot2 & =0.4 &  & \longrightarrow 0 \\
+        0.4\cdot2 & =0.8 &  & \longrightarrow 0 \\
+        0.8\cdot2 & =1.6 &  & \longrightarrow 1 \\
+        0.6\cdot2 & =1.2 &  & \longrightarrow 1 \\
+        0.2\cdot2 & =0.4 &  & \longrightarrow 0
+    \end{align*}
+    e da questo punto la sequenza si ripete.
 
-Quindi:
+    Quindi:
 
-$$
-\boxed{
-(0.1)_{10}
-=
-(0.0001100110011\ldots)_2
-}
-$$
+    $$
+        \boxed{
+            (0.1)_{10}
+            =
+            (0.0001100110011\ldots)_2
+        }
+    $$
 
-Il numero ha quindi una rappresentazione binaria infinita e periodica.
+    Il numero ha quindi una rappresentazione binaria infinita e periodica.
 
-\colorbox{yellow}{\textbf{OSSERVAZIONE:}}
-Un calcolatore binario non può rappresentare esattamente, in generale, un numero come $0.1$ utilizzando un numero finito di bit.
+    \colorbox{yellow}{\textbf{OSSERVAZIONE:}}
+    Un calcolatore binario non può rappresentare esattamente, in generale, un numero come $0.1$ utilizzando un numero finito di bit.
 \end{ex}
 
 \section{Numeri macchina}
@@ -307,33 +307,33 @@ Gli interi macchina a $32$ o $64$ bit non fanno parte dello standard IEEE 754, c
 Se il primo bit è riservato al segno:
 
 $$
-0\longrightarrow +
-\qquad
-1\longrightarrow -
+    0\longrightarrow +
+    \qquad
+    1\longrightarrow -
 $$
 
 Con $n$ bit e rappresentazione \underline{segno-modulo}, il massimo intero positivo rappresentabile è:
 
 $$
-I_{\max,n}
-=
-(011\dots1)_2
-=
-\sum_{i=0}^{n-2}2^i
-=
-2^{n-1}-1
+    I_{\max,n}
+    =
+    (011\dots1)_2
+    =
+    \sum_{i=0}^{n-2}2^i
+    =
+    2^{n-1}-1
 $$
 
 Per una rappresentazione \underline{senza segno}, invece:
 
 $$
-I_{\max,n}
-=
-(111\dots1)_2
-=
-\sum_{i=0}^{n-1}2^i
-=
-2^n-1
+    I_{\max,n}
+    =
+    (111\dots1)_2
+    =
+    \sum_{i=0}^{n-1}2^i
+    =
+    2^n-1
 $$
 
 \subsubsection{Overflow}
@@ -341,50 +341,50 @@ $$
 Si verifica un \underline{overflow} quando il risultato di un'operazione non è rappresentabile con il numero di bit disponibili.
 
 \begin{ex}{Overflow con interi macchina}{}
-Consideriamo interi macchina a $4$ bit in rappresentazione segno-modulo.
+    Consideriamo interi macchina a $4$ bit in rappresentazione segno-modulo.
 
-Calcoliamo:
+    Calcoliamo:
 
-$$
-7+2
-$$
+    $$
+        7+2
+    $$
 
-Abbiamo:
+    Abbiamo:
 
-$$
-7=(0111)_2
-\qquad
-2=(0010)_2
-$$
+    $$
+        7=(0111)_2
+        \qquad
+        2=(0010)_2
+    $$
 
-La somma produce:
+    La somma produce:
 
-$$
-\begin{array}{c}
-0111\\
-0010\\
-\hline
-1001
-\end{array}
-$$
+    $$
+        \begin{array}{c}
+            0111 \\
+            0010 \\
+            \hline
+            1001
+        \end{array}
+    $$
 
-Il risultato ottenuto è:
+    Il risultato ottenuto è:
 
-$$
-(1001)_2=-1
-$$
+    $$
+        (1001)_2=-1
+    $$
 
-nella rappresentazione segno-modulo.
+    nella rappresentazione segno-modulo.
 
-Quindi la macchina produce:
+    Quindi la macchina produce:
 
-$$
-\boxed{7+2=-1}
-$$
+    $$
+        \boxed{7+2=-1}
+    $$
 
-anziché $9$.
+    anziché $9$.
 
-Questo fenomeno prende il nome di \underline{overflow}.
+    Questo fenomeno prende il nome di \underline{overflow}.
 \end{ex}
 
 \subsection{Floating point e standard IEEE 754}
@@ -392,19 +392,19 @@ Questo fenomeno prende il nome di \underline{overflow}.
 Usando la notazione binaria, un numero reale $x\neq0$ può essere scritto, in forma normalizzata, come:
 
 $$
-(x)_2
-=
-(-1)^s\cdot 2^{e-b}\cdot(1.f)
+    (x)_2
+    =
+    (-1)^s\cdot 2^{e-b}\cdot(1.f)
 $$
 
 dove:
 
 \begin{itemize}
-\item $s$ è il \underline{bit di segno};
-\item $e$ è l'\underline{esponente memorizzato};
-\item $b$ è il \underline{bias}, cioè la deviazione utilizzata per memorizzare anche esponenti negativi;
-\item $e-b$ è l'\underline{esponente effettivo};
-\item $1.f$ è la \underline{significanda} (spesso chiamata informalmente mantissa).
+    \item $s$ è il \underline{bit di segno};
+    \item $e$ è l'\underline{esponente memorizzato};
+    \item $b$ è il \underline{bias}, cioè la deviazione utilizzata per memorizzare anche esponenti negativi;
+    \item $e-b$ è l'\underline{esponente effettivo};
+    \item $1.f$ è la \underline{significanda} (spesso chiamata informalmente mantissa).
 \end{itemize}
 
 Per un numero normalizzato, il bit iniziale $1$ è sempre presente e quindi non è necessario memorizzarlo esplicitamente: si parla di \underline{hidden bit}.
@@ -414,31 +414,31 @@ Il valore $0$ richiede invece una convenzione particolare.
 \subsection{Tabella riassuntiva IEEE 754}
 
 \begin{center}
-\begin{tabular}{|c|c|c|}
-    \hline
-    & \textbf{32 bit} & \textbf{64 bit}\\
-    \hline
-    Bit totali & 32 & 64\\
-    \hline
-    Bit segno & 1 & 1\\
-    \hline
-    Bit esponente & 8 & 11\\
-    \hline
-    Bit frazione & 23 & 52\\
-    \hline
-    Bias $b$ & 127 & 1023\\
-    \hline
-    Intervallo $e$ normalizzato & $0<e<255$ & $0<e<2047$\\
-    \hline
-    $e=0,\ f=0$ & $\pm0$ & $\pm0$\\
-    \hline
-    $e=0,\ f>0$ & denormalizzato & denormalizzato\\
-    \hline
-    $e=255,\ f=0$ & $\pm\infty$ & $\pm\infty$\\
-    \hline
-    $e=255,\ f>0$ & NaN & NaN\\
-    \hline
-\end{tabular}
+    \begin{tabular}{|c|c|c|}
+        \hline
+                                    & \textbf{32 bit} & \textbf{64 bit} \\
+        \hline
+        Bit totali                  & 32              & 64              \\
+        \hline
+        Bit segno                   & 1               & 1               \\
+        \hline
+        Bit esponente               & 8               & 11              \\
+        \hline
+        Bit frazione                & 23              & 52              \\
+        \hline
+        Bias $b$                    & 127             & 1023            \\
+        \hline
+        Intervallo $e$ normalizzato & $0<e<255$       & $0<e<2047$      \\
+        \hline
+        $e=0,\ f=0$                 & $\pm0$          & $\pm0$          \\
+        \hline
+        $e=0,\ f>0$                 & denormalizzato  & denormalizzato  \\
+        \hline
+        $e=255,\ f=0$               & $\pm\infty$     & $\pm\infty$     \\
+        \hline
+        $e=255,\ f>0$               & NaN             & NaN             \\
+        \hline
+    \end{tabular}
 \end{center}
 
 \subsection{Arrotondamento e troncamento}
@@ -446,24 +446,24 @@ Il valore $0$ richiede invece una convenzione particolare.
 Quando il numero possiede più cifre di quante ne possano essere memorizzate, è necessario decidere cosa fare delle cifre in eccesso.
 
 \begin{defi}{Troncamento}{}
-Con il \underline{troncamento}, le cifre oltre la precisione disponibile vengono semplicemente eliminate.
+    Con il \underline{troncamento}, le cifre oltre la precisione disponibile vengono semplicemente eliminate.
 \end{defi}
 
 \begin{defi}{Arrotondamento}{}
-Con l'\underline{arrotondamento}, si considera la prima cifra che non può essere memorizzata e si modifica l'ultima cifra memorizzabile in funzione del suo valore.
+    Con l'\underline{arrotondamento}, si considera la prima cifra che non può essere memorizzata e si modifica l'ultima cifra memorizzabile in funzione del suo valore.
 
-Nel caso binario:
-\begin{itemize}
-\item se la cifra successiva è $1$, si aumenta di $1$ l'ultima cifra memorizzata;
-\item se la cifra successiva è $0$, l'ultima cifra non viene modificata.
-\end{itemize}
+    Nel caso binario:
+    \begin{itemize}
+        \item se la cifra successiva è $1$, si aumenta di $1$ l'ultima cifra memorizzata;
+        \item se la cifra successiva è $0$, l'ultima cifra non viene modificata.
+    \end{itemize}
 \end{defi}
 \newpage
 \section{Errore e norme}
 
 \begin{defi}{Approssimazione}{}
     Supponiamo di voler rappresentare o calcolare un valore $x\in\mathbb{R}$ $\left(\text{o }\in\mathbb{R}^m\right)$,
-ma invece calcolo o ottengo un'\underline{approssimazione}: $$\widetilde{x}\approx x$$
+    ma invece calcolo o ottengo un'\underline{approssimazione}: $$\widetilde{x}\approx x$$
 \end{defi}
 
 \subsection{Errore assoluto e relativo}
@@ -471,38 +471,38 @@ ma invece calcolo o ottengo un'\underline{approssimazione}: $$\widetilde{x}\appr
 Se $x\in\mathbb{R}$, definiamo l'\underline{errore assoluto} come:
 
 $$
-\boxed{
-|\widetilde{x}-x|
-}
+    \boxed{
+        |\widetilde{x}-x|
+    }
 $$
 
 Se, invece, $x\in\mathbb{R}^n$, per rappresentare l'errore assoluto, si utilizza:
 
 $$
-\boxed{
-\|\widetilde{x}-x\|
-}
+    \boxed{
+        \|\widetilde{x}-x\|
+    }
 $$
 Dove $||\cdot||$ è una norma su $\mathbb R^m$.
 
 Se $x\in\mathbb{R}\setminus\{0\}$, allora definisco l'\underline{errore relativo} come:$$\boxed{\frac{|\widetilde{x}-x|}{|x|}}$$
 
 \begin{defi}{Norma}{}
-Sia $V$ uno spazio vettoriale e sia:
+    Sia $V$ uno spazio vettoriale e sia:
 
-$$
-\|\cdot\|:V\longrightarrow\mathbb{R}_{\ge0}
-$$
+    $$
+        \|\cdot\|:V\longrightarrow\mathbb{R}_{\ge0}
+    $$
 
-La funzione $\|\cdot\|$ è una norma se soddisfa, per ogni $u,v\in V$ e per ogni $\lambda\in\mathbb{R}$:
+    La funzione $\|\cdot\|$ è una norma se soddisfa, per ogni $u,v\in V$ e per ogni $\lambda\in\mathbb{R}$:
 
-\begin{enumerate}
-\item \textbf{omogeneità}: $\|\lambda v\|=|\lambda|\,\|v\|$
+    \begin{enumerate}
+        \item \textbf{omogeneità}: $\|\lambda v\|=|\lambda|\,\|v\|$
 
-\item \textbf{definitezza}: $\|v\|=0\quad\Longrightarrow\quad v=0_V$
+        \item \textbf{definitezza}: $\|v\|=0\quad\Longrightarrow\quad v=0_V$
 
-\item \textbf{disuguaglianza triangolare}: $\|u+v\|\le\|u\|+\|v\|$
-\end{enumerate}
+        \item \textbf{disuguaglianza triangolare}: $\|u+v\|\le\|u\|+\|v\|$
+    \end{enumerate}
 \end{defi}
 
 \subsection{Norma euclidea}
@@ -510,20 +510,20 @@ La funzione $\|\cdot\|$ è una norma se soddisfa, per ogni $u,v\in V$ e per ogni
 Per
 
 $$
-v=(v_1,\dots,v_n)^T\in\mathbb{R}^n
+    v=(v_1,\dots,v_n)^T\in\mathbb{R}^n
 $$
 
 la norma euclidea è definita da:
 
 $$
-\boxed{
-\|v\|
-=
-\sqrt{v_1^2+v_2^2+\dots+v_n^2}
-=
-\left(
-\sum_{d=1}^{n}v_d^2
-\right)^{1/2}}
+    \boxed{
+        \|v\|
+        =
+        \sqrt{v_1^2+v_2^2+\dots+v_n^2}
+        =
+        \left(
+        \sum_{d=1}^{n}v_d^2
+        \right)^{1/2}}
 $$
 
 \subsection{Norma $p$}
@@ -531,22 +531,22 @@ $$
 Per $p\ge1$ si definisce la norma $p$ come:
 
 $$
-\boxed{
-\|v\|_p
-=
-\left(
-\sum_{d=1}^{n}|v_d|^p
-\right)^{1/p}
-}
+    \boxed{
+        \|v\|_p
+        =
+        \left(
+        \sum_{d=1}^{n}|v_d|^p
+        \right)^{1/p}
+    }
 $$
 \subsection{Norma infinito}
 \begin{defi}{Norma infinito}{}
-La norma infinito è definita come:
-$$
-\|v\|_\infty
-:=
-\max_i |v_i|
-$$
+    La norma infinito è definita come:
+    $$
+        \|v\|_\infty
+        :=
+        \max_i |v_i|
+    $$
 \end{defi}
 \subsection{Equivalenza delle norme}
 
@@ -556,11 +556,11 @@ In $\mathbb{R}^n$ tutte le norme sono equivalenti. In particolare:
 
 
 \begin{align*}
-&v_k\longrightarrow v
-\quad\text{rispetto a }\|\cdot\|_a\quad\left(\text{ossia } \lim_{k\to+\infty}||v_k-v||_a=0\right)\\
-& \Updownarrow\\
-&v_k\longrightarrow v
-\quad\text{rispetto a }\|\cdot\|_b\quad\left(\text{ossia } \lim_{k\to+\infty}||v_k-v||_b=0\right)
+     & v_k\longrightarrow v
+    \quad\text{rispetto a }\|\cdot\|_a\quad\left(\text{ossia } \lim_{k\to+\infty}||v_k-v||_a=0\right) \\
+     & \Updownarrow                                                                                   \\
+     & v_k\longrightarrow v
+    \quad\text{rispetto a }\|\cdot\|_b\quad\left(\text{ossia } \lim_{k\to+\infty}||v_k-v||_b=0\right)
 \end{align*}
 
 
@@ -568,11 +568,11 @@ In $\mathbb{R}^n$ tutte le norme sono equivalenti. In particolare:
 Per $v\in\mathbb R^m$ e $\tilde{v}$ appross. di $v$ definiamo l'\underline{errore relativo} rispetto alla norma $\|\cdot\|$ su $\mathbb R^m$ come:
 
 $$
-\boxed{
-\operatorname{Err}_{\text{rel}}(\widetilde{v},\|\cdot\|)
-=
-\frac{\|\widetilde{v}-v\|}{\|v\|}
-}
+    \boxed{
+        \operatorname{Err}_{\text{rel}}(\widetilde{v},\|\cdot\|)
+        =
+        \frac{\|\widetilde{v}-v\|}{\|v\|}
+    }
 $$
 
 \subsection{Floating point: successivo e precedente}
@@ -580,102 +580,102 @@ $$
 Poiché $\mathbb{F}_{32}$ e $\mathbb{F}_{64}$ sono insiemi finiti e ordinati, possiamo definire:
 
 \begin{defi}{Successivo e precedente}{}
-Il \underline{successivo} di $x$:
+    Il \underline{successivo} di $x$:
 
-$$
-\operatorname{succ}(x)
-=
-\min\{y\in\mathbb{F}:y>x\}\quad \forall x\in\mathbb F \setminus\{\max\mathbb F\}
-$$
+    $$
+        \operatorname{succ}(x)
+        =
+        \min\{y\in\mathbb{F}:y>x\}\quad \forall x\in\mathbb F \setminus\{\max\mathbb F\}
+    $$
 
-Il \underline{precedente} di $x$:
+    Il \underline{precedente} di $x$:
 
-$$
-\operatorname{prec}(x)
-=
-\max\{y\in\mathbb{F}:y<x\}\quad \forall x\in\mathbb F \setminus\{\min\mathbb F\}
-$$
+    $$
+        \operatorname{prec}(x)
+        =
+        \max\{y\in\mathbb{F}:y<x\}\quad \forall x\in\mathbb F \setminus\{\min\mathbb F\}
+    $$
 \end{defi}
 
 Quanto vale $\operatorname{succ}(x)-x$?
 
 Pongo
 \begin{align*}
-x &= (-1)^s \cdot 2^{e-b} \cdot 1.f \\
-\operatorname{succ}(x) &= 
-\begin{cases}
-(-1)^s \cdot 2^{e-b} \cdot 1.f + (-1)^s \cdot 2^{e-b} \cdot 0.\overbrace{00\dots0}^{m-1}1 & , s=0 \\
-x - (-1)^s \cdot 2^{e-b} \cdot 0.\overbrace{00\dots0}^{m-1}1 & , s=1
-\end{cases}
+    x                      & = (-1)^s \cdot 2^{e-b} \cdot 1.f \\
+    \operatorname{succ}(x) & =
+    \begin{cases}
+        (-1)^s \cdot 2^{e-b} \cdot 1.f + (-1)^s \cdot 2^{e-b} \cdot 0.\overbrace{00\dots0}^{m-1}1 & , s=0 \\
+        x - (-1)^s \cdot 2^{e-b} \cdot 0.\overbrace{00\dots0}^{m-1}1                              & , s=1
+    \end{cases}
 \end{align*}
 
 Dato che $f$ contiene $n$ bit, allora la distanza tra due numeri floating point consecutivi, nello stesso intervallo di esponente, è:
 
 $$
-\boxed{
-\operatorname{succ}(x)-x
-=
-2^{e-b-n}
-}
+    \boxed{
+        \operatorname{succ}(x)-x
+        =
+        2^{e-b-n}
+    }
 $$
 
 \subsection{Errore di rappresentazione}
 $$
-|x-\operatorname{fl}^{T}(x)|
-\le
-\begin{cases}
-& \operatorname{succ}(\widetilde{x})-\widetilde{x}\quad x>0\\
-& \widetilde{x} - \operatorname{succ}(\widetilde{x})\quad x<0
-\end{cases}
-\ =
-|\operatorname{succ}(\widetilde{x})-\widetilde{x}|
-=
-2^{e-b-n}
+    |x-\operatorname{fl}^{T}(x)|
+    \le
+    \begin{cases}
+         & \operatorname{succ}(\widetilde{x})-\widetilde{x}\quad x>0   \\
+         & \widetilde{x} - \operatorname{succ}(\widetilde{x})\quad x<0
+    \end{cases}
+    \ =
+    |\operatorname{succ}(\widetilde{x})-\widetilde{x}|
+    =
+    2^{e-b-n}
 $$
 
 \subsubsection{Errore dovuto al troncamento}
 
 \begin{align*}
-\frac{\left|x-\operatorname{fl}^T(x)\right|}{|x|}&\le\frac{\left|x-\operatorname{fl}^T(x)\right|}{\left|\operatorname{fl}^T(x)\right|}\le\frac{2^{e-b-n}}{2^{e-b}\cdot1.f}\\\\
-&\le\frac{2^{e-b-n}}{2^{e-b}\cdot1.0}=\boxed{2^{-n}}
+    \frac{\left|x-\operatorname{fl}^T(x)\right|}{|x|} & \le\frac{\left|x-\operatorname{fl}^T(x)\right|}{\left|\operatorname{fl}^T(x)\right|}\le\frac{2^{e-b-n}}{2^{e-b}\cdot1.f} \\\\
+                                                      & \le\frac{2^{e-b-n}}{2^{e-b}\cdot1.0}=\boxed{2^{-n}}
 \end{align*}
 
 Pertanto:
 $$
-\boxed{
-\frac{\left|x-\operatorname{fl}^{T}(x)\right|}{\left|x\right|}\le2^{-n}}
+    \boxed{
+        \frac{\left|x-\operatorname{fl}^{T}(x)\right|}{\left|x\right|}\le2^{-n}}
 $$
 \subsubsection{Errore dovuto all'arrotondamento}
 L'arrotondamento fa meglio perchè:
 $$
-\left|x-\operatorname{fl}^{A}(x)\right|
-\le
-\frac12
-\left|\operatorname{succ}(\widetilde{x})-\widetilde{x}\right|=\frac{1}{2}\cdot2^{e-b-n}=2^{e-b-n-1}
+    \left|x-\operatorname{fl}^{A}(x)\right|
+    \le
+    \frac12
+    \left|\operatorname{succ}(\widetilde{x})-\widetilde{x}\right|=\frac{1}{2}\cdot2^{e-b-n}=2^{e-b-n-1}
 $$
 
 Dividendo per $|x|\ge2^{e-b}$ otteniamo:
 $$
-\left|\frac{x-\operatorname{fl}^{A}(x)}{x}\right|\le\frac{2^{e-b-n-1}}{2^{e-b}}=2^{-n-1}
+    \left|\frac{x-\operatorname{fl}^{A}(x)}{x}\right|\le\frac{2^{e-b-n-1}}{2^{e-b}}=2^{-n-1}
 $$
 
 Pertanto:
 $$
-\boxed{\frac{\left|x-\operatorname{fl}^{A}(x)\right|}{\left|x\right|}\le2^{-n-1}}
+    \boxed{\frac{\left|x-\operatorname{fl}^{A}(x)\right|}{\left|x\right|}\le2^{-n-1}}
 $$
 
 \section{Precisione di macchina}
 \begin{defi}{Precisione macchina}{}
-Definiamo la \underline{precisione di macchina} come il più piccolo numero positivo $\epsilon$ tale che, se sommato a $1$ in virgola mobile, da un risultato diverso da $1$.
-$$
-\epsilon_{\mathrm{mach}}
-:=
-\min
-\left\{
-\epsilon>0:
-\operatorname{fl}(1+\epsilon)>1
-\right\}
-$$ 
+    Definiamo la \underline{precisione di macchina} come il più piccolo numero positivo $\epsilon$ tale che, se sommato a $1$ in virgola mobile, da un risultato diverso da $1$.
+    $$
+        \epsilon_{\mathrm{mach}}
+        :=
+        \min
+        \left\{
+        \epsilon>0:
+        \operatorname{fl}(1+\epsilon)>1
+        \right\}
+    $$
 \end{defi}
 
 \subsection{Operazioni macchina}
@@ -683,62 +683,62 @@ $$
 Siano definite le operazioni esatte:
 
 \begin{align*}
-\Delta:\ &\mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{R},&(+,\cdot)\\
-&\mathbb{R}\times(\mathbb{R}\setminus\{0\})\longrightarrow\mathbb{R},&(:)
+    \Delta:\  & \mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{R},                 & (+,\cdot) \\
+              & \mathbb{R}\times(\mathbb{R}\setminus\{0\})\longrightarrow\mathbb{R}, & (:)
 \end{align*}
 
 Operazione macchina associata \textcircled{$\Delta$}:
 \begin{align*}
-\textcircled{$\Delta$}\quad&\mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{F}\\
-&\left(x,y\right)\longrightarrow\textcircled{$\Delta$}\left(x,y\right)=\operatorname{fl}\left(\operatorname{fl}(x)\Delta\cdot \operatorname{fl}(y)\right)
+    \textcircled{$\Delta$}\quad & \mathbb{R}\times\mathbb{R}\longrightarrow\mathbb{F}                                                                                                      \\
+                                & \left(x,y\right)\longrightarrow\textcircled{$\Delta$}\left(x,y\right)=\operatorname{fl}\left(\operatorname{fl}(x)\Delta\cdot \operatorname{fl}(y)\right)
 \end{align*}
 
 \subsection{Errore relativo della moltiplicazione}
 
 $$
-\boxed{
-\operatorname{Err}_{\mathrm{rel}}(x\odot y)
-=
-\frac{
-|x\odot y-xy|
-}{
-|xy|
-}
-=
-\frac{
-\left|
-\operatorname{fl}
-\left(
-\operatorname{fl}(x)\operatorname{fl}(y)
-\right)
--
-xy
-\right|
-}{
-|xy|
-}}
+    \boxed{
+        \operatorname{Err}_{\mathrm{rel}}(x\odot y)
+        =
+        \frac{
+            |x\odot y-xy|
+        }{
+            |xy|
+        }
+        =
+        \frac{
+            \left|
+            \operatorname{fl}
+            \left(
+            \operatorname{fl}(x)\operatorname{fl}(y)
+            \right)
+            -
+            xy
+            \right|
+        }{
+            |xy|
+        }}
 $$
 
 \colorbox{yellow}{N.B.}: noi supponiamo che $$
-\frac{\left|x\cdot y-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}\le\epsilon_{\text{mach}}
-\begin{cases}
-    &2^{-n}\\
-    &2^{-n-1}
-\end{cases}
+    \frac{\left|x\cdot y-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}\le\epsilon_{\text{mach}}
+    \begin{cases}
+         & 2^{-n}   \\
+         & 2^{-n-1}
+    \end{cases}
 $$
 $z=x\cdot y$
 
 \begin{align*}
-     \operatorname{Err}_{\mathrm{rel}}(x\odot y)&=\frac{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x\cdot y)+\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}\\
-     &\le\frac{\left|\operatorname{fl}(\operatorname{fl}(x)\cdot\operatorname{fl}(y))-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}+\overbrace{\frac{\left|\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}}^{\epsilon_{\mathrm{mach}}}\\
-    &=\frac{\overbrace{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}^{\textcolor{red}{1}}+\overbrace{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-\operatorname{fl}(x\cdot y)\right|}^{\textcolor{blue}{2}}}{\left|x\cdot y\right|}+\epsilon_{\mathrm{mach}}\\
-    &\le^{\textcolor{red}{1}}\frac{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}\cdot\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\\
-    &\le \epsilon_{\mathrm{mach}}\cdot \frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\\
-    &\le^{\textcolor{blue}{2}}\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y+x\cdot y-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}\\
-    &\le\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}+\frac{\left|\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}\le \epsilon_{\mathrm{mach}}\\
-    &\le\epsilon_{\mathrm{mach}}+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}\\
-    \textcolor{red}{1}+\textcolor{blue}{2}&\le\epsilon_{\mathrm{mach}}\left(1+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\right)+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}\\
-    &\le\epsilon_{\mathrm{mach}}\left(1+\epsilon_{\mathrm{mach}}(\underbrace{\dots\dots\dots}_{\text{dipende da $x,y$}})\right)
+    \operatorname{Err}_{\mathrm{rel}}(x\odot y) & =\frac{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x\cdot y)+\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}                                                                                                                                                                 \\
+                                                & \le\frac{\left|\operatorname{fl}(\operatorname{fl}(x)\cdot\operatorname{fl}(y))-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}+\overbrace{\frac{\left|\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}}^{\epsilon_{\mathrm{mach}}}                                                                                        \\
+                                                & =\frac{\overbrace{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}^{\textcolor{red}{1}}+\overbrace{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-\operatorname{fl}(x\cdot y)\right|}^{\textcolor{blue}{2}}}{\left|x\cdot y\right|}+\epsilon_{\mathrm{mach}} \\
+                                                & \le^{\textcolor{red}{1}}\frac{\left|\operatorname{fl}\left(\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right)-\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}\cdot\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}                           \\
+                                                & \le \epsilon_{\mathrm{mach}}\cdot \frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}                                                                                                                                                                                                                               \\
+                                                & \le^{\textcolor{blue}{2}}\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y+x\cdot y-\operatorname{fl}(x\cdot y)\right|}{\left|x\cdot y\right|}                                                                                                                                                                                          \\
+                                                & \le\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}+\frac{\left|\operatorname{fl}(x\cdot y)-x\cdot y\right|}{\left|x\cdot y\right|}\le \epsilon_{\mathrm{mach}}                                                                                                                                         \\
+                                                & \le\epsilon_{\mathrm{mach}}+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}                                                                                                                                                                                                                            \\
+    \textcolor{red}{1}+\textcolor{blue}{2}      & \le\epsilon_{\mathrm{mach}}\left(1+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)\right|}{\left|x\cdot y\right|}\right)+\frac{\left|\operatorname{fl}(x)\cdot\operatorname{fl}(y)-x\cdot y\right|}{\left|x\cdot y\right|}                                                                                                                     \\
+                                                & \le\epsilon_{\mathrm{mach}}\left(1+\epsilon_{\mathrm{mach}}(\underbrace{\dots\dots\dots}_{\text{dipende da $x,y$}})\right)
 \end{align*}
 
 Al primo ordine, il comportamento dell'errore relativo non dipende dai valori specifici di $x$ e $y$.\\
@@ -750,27 +750,27 @@ La moltiplicazione è quindi considerata \colorbox{yellow}{stabile}, ossia l'err
 L'errore relativo della somma macchina è:
 
 \[
-\boxed{
-\operatorname{Err}_{\mathrm{rel}}(x\oplus y)
-=
-\frac{
-\left|
-\operatorname{fl}
-\left(
-\operatorname{fl}(x)+\operatorname{fl}(y)
-\right)
--
-(x+y)
-\right|
-}{
-|x+y|
-}
-=
-\frac{
-|x\oplus y-(x+y)|
-}{
-|x+y|
-}}
+    \boxed{
+        \operatorname{Err}_{\mathrm{rel}}(x\oplus y)
+        =
+        \frac{
+            \left|
+            \operatorname{fl}
+            \left(
+            \operatorname{fl}(x)+\operatorname{fl}(y)
+            \right)
+            -
+            (x+y)
+            \right|
+        }{
+            |x+y|
+        }
+        =
+        \frac{
+            |x\oplus y-(x+y)|
+        }{
+            |x+y|
+        }}
 \]
 
 Se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi una forte \underline{cancellazione numerica}, ossia la perdita di cifre significative.
@@ -778,15 +778,15 @@ Se $x$ e $y$ hanno segno opposto e sono molto vicini tra loro, può verificarsi 
 \begin{ex}{Cancellazione Numerica}{}
     Ipotesi in cui $x$ e $y$ si annullano fra loro lasciando solo un $\epsilon_{\mathrm{mach}}$:
     \[
-    y=-x+\epsilon_{\mathrm{mach}}
+        y=-x+\epsilon_{\mathrm{mach}}
     \]
 \end{ex}
 \colorbox{yellow}{Svolgimento}:
 \begin{align*}
-    \operatorname{Err}_{\mathrm{rel}}(x\oplus y)&\le\epsilon_{\mathrm{mach}}\left(1+\frac{|x|+|y|}{|x+y|}+\epsilon_{\mathrm{mach}}\frac{|x|+|y|}{|x+y|}\right)\\
-    &=\epsilon_{\mathrm{mach}}\left(1+\frac{2|x|+\epsilon_{\mathrm{mach}}}{\epsilon_{\mathrm{mach}}}+2|x|+\epsilon_{\mathrm{mach}}\right)\\
-    &=\left(\epsilon_{\mathrm{mach}}+2|x|+\epsilon_{\mathrm{mach}}+2|x|\epsilon_{\mathrm{mach}}+\epsilon_{\mathrm{mach}}^2\right)\\
-    &=2\left(|x|+\epsilon_{\mathrm{mach}}\right)+\dots
+    \operatorname{Err}_{\mathrm{rel}}(x\oplus y) & \le\epsilon_{\mathrm{mach}}\left(1+\frac{|x|+|y|}{|x+y|}+\epsilon_{\mathrm{mach}}\frac{|x|+|y|}{|x+y|}\right)                        \\
+                                                 & =\epsilon_{\mathrm{mach}}\left(1+\frac{2|x|+\epsilon_{\mathrm{mach}}}{\epsilon_{\mathrm{mach}}}+2|x|+\epsilon_{\mathrm{mach}}\right) \\
+                                                 & =\left(\epsilon_{\mathrm{mach}}+2|x|+\epsilon_{\mathrm{mach}}+2|x|\epsilon_{\mathrm{mach}}+\epsilon_{\mathrm{mach}}^2\right)         \\
+                                                 & =2\left(|x|+\epsilon_{\mathrm{mach}}\right)+\dots
 \end{align*}
 I $\dots$ assorbono $\epsilon_{\mathrm{mach}}^2$ e $2|x|\epsilon_{\mathrm{mach}}$ che sono numeri talmente piccoli rispetto agli altri da essere irrilevanti.\\
 Significa che se $x$ è grande, anche l'errore relativo è enorme.\\
@@ -801,22 +801,22 @@ Conoscendo il valore di $I_0$ ossia: \[I_0=\frac{1}{e}\int_{0}^{1}e^x\cdot dx=\f
 
 Inoltre si può integrare per parti $I_n$:
 \begin{align*}
-    I_n &=\frac{1}{e}\left[\left(e^xx^n\right)^1_0-\int^1_0 e^x\cdot nx^{n-1}\cdot dx\right]\\
-    &=\frac{1}{e}\left[e-n\int^1_0 e^x\cdot x^{n-1}\cdot dx\right]\\
-    &=1-n\frac{1}{e}\int_{0}^{1}e^x\cdot x^{n-1}\cdot dx\\
-    &=1-n\cdot I_{n-1}
+    I_n & =\frac{1}{e}\left[\left(e^xx^n\right)^1_0-\int^1_0 e^x\cdot nx^{n-1}\cdot dx\right] \\
+        & =\frac{1}{e}\left[e-n\int^1_0 e^x\cdot x^{n-1}\cdot dx\right]                       \\
+        & =1-n\frac{1}{e}\int_{0}^{1}e^x\cdot x^{n-1}\cdot dx                                 \\
+        & =1-n\cdot I_{n-1}
 \end{align*}
 Di conseguenza conosco la \underline{successione definita per ricorsione}:
 \[\boxed{\begin{cases}
-    &I_0=\frac{e-1}{e}\\
-    &I_n=1-n\cdot I_{n-1}
-\end{cases}}\]
+             & I_0=\frac{e-1}{e}    \\
+             & I_n=1-n\cdot I_{n-1}
+        \end{cases}}\]
 In realtà $I_{n-1}$ viene calcolato con un errore, quindi supponiamo di aver calcolato $\widetilde{I}_{n-1}=I_{n-1}+\epsilon_{n-1}$.
 Quindi per calcolare $I_n$:
 \begin{align*}
-    I_n&=1-n\cdot I_{n-1}\\
-    \widetilde{I}_n&=1-n\cdot \widetilde{I}_{n-1}=\underbrace{1-nI_{n-1}}-n\epsilon_{n-1}\\
-    &=\boxed{I_n-n\epsilon_{n-1}}
+    I_n             & =1-n\cdot I_{n-1}                                                     \\
+    \widetilde{I}_n & =1-n\cdot \widetilde{I}_{n-1}=\underbrace{1-nI_{n-1}}-n\epsilon_{n-1} \\
+                    & =\boxed{I_n-n\epsilon_{n-1}}
 \end{align*}
 Questo risultato è iterabile dato che si verifica per ogni $n$, inoltre so che $\epsilon_n=-n\epsilon_{n-1}$.\\
 Iterando $n$ volte ottengo:\[\boxed{\epsilon_n=(-1)^n\cdot n!\cdot\epsilon_0}\]
@@ -829,7 +829,7 @@ L'\underline{errore assoluto} è dominato da:
 \[\boxed{\le n!\cdot\epsilon_{\mathrm{mach}}}\]
 
 Adesso stimiamo quanto è $I_n$:
-    \[I_n=\frac{1}{e}\int_{0}^{1}x^ne^x\cdot dx=O(\frac{1}{n})\]
+\[I_n=\frac{1}{e}\int_{0}^{1}x^ne^x\cdot dx=O(\frac{1}{n})\]
 Dimostriamo che è vero:
 
 Posso stimarlo da sopra con un integrale $\le$
@@ -845,9 +845,9 @@ Questo algoritmo si dice \textbf{instabile}.\\
 \begin{defi}{Algoritmo Stabile}{}
     Un algoritmo si dice \textbf{stabile} se non amplifica in modo incontrollato gli errori presenti sui
     parametri di input e i dati. In generale, si dice \textbf{stabile} un algoritmo per cui vale:
-    
+
     \[
-    \operatorname{Err}^{\mathrm{rel}}(\text{output})\le C_{\mathrm{stab}}\operatorname{Err}^{\mathrm{rel}}(\text{input})
+        \operatorname{Err}^{\mathrm{rel}}(\text{output})\le C_{\mathrm{stab}}\operatorname{Err}^{\mathrm{rel}}(\text{input})
     \]
     Dove $C_{\mathrm{stab}}$ è la \underline{costante di stabilità}.
 \end{defi}
@@ -855,7 +855,7 @@ Questo algoritmo si dice \textbf{instabile}.\\
 \subsection{Condizionamento dei problemi}
 
 Per ogni problema abbiamo $x^*$ che è la soluzione, su $F:\ X\times D\to\mathbb{R}\ (\text{o }\mathbb{R}^m)$ dove, $X$ è il dominio della soluzione
- e $D$ è l'insieme dei dati ammissibili.
+e $D$ è l'insieme dei dati ammissibili.
 \begin{defi}{Problema ben posto}{}
     Un problema si dice \textbf{ben posto} se:
     \begin{enumerate}
@@ -865,25 +865,25 @@ Per ogni problema abbiamo $x^*$ che è la soluzione, su $F:\ X\times D\to\mathbb
     \end{enumerate}
     La soluzione è data dalla \textbf{mappa soluzione}:\[d\mapsto x^*(d)\ :\ \operatorname{F}(x^*(d),d)=0\quad x^*\ :\ D\to X\]
 \end{defi}
-I \textbf{problemi inversi}, ossia quando dato l'output si vuole ricavare l'input, \textbf{non} sono ben posti; dato che più input possono avere lo stesso output. 
+I \textbf{problemi inversi}, ossia quando dato l'output si vuole ricavare l'input, \textbf{non} sono ben posti; dato che più input possono avere lo stesso output.
 Vengono quindi \textbf{regolarizzati}, ossia si modifica il problema in modo da penalizzare soluzioni "non fisiche" o "di bassa energia".
 
 \begin{defi}{Condizionamento Numerico}{}
     È dato dal rapporto tra l'errore commesso sul risultato di un calcolo e l'incertezza sui dati in ingresso.\\
     Un problema si dice \textbf{ben condizionato} se la soluzione del problema con delle piccole variazioni, non cambia
-    di molto la soluzione del problema originale. Un problema è \textbf{mal condizionato} se la soluzione è molto sensibile 
+    di molto la soluzione del problema originale. Un problema è \textbf{mal condizionato} se la soluzione è molto sensibile
     a piccole variazioni dei dati iniziali.
 \end{defi}
 
 \subsubsection{Condizionamento di un problema ben posto}
 \begin{align*}
- \frac{\text{cond. locale}}{\text{assoluto}}\quad &\operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}
- \end{align*}
+    \frac{\text{cond. locale}}{\text{assoluto}}\quad & \operatorname{k}(d):=\limsup_{\widetilde{d}\to d}\frac{\left|x(d)-x(\widetilde{d})\right|}{\left|d-\widetilde{d}\right|}
+\end{align*}
 Quindi $\operatorname{k}(d)$ è rappresentato dal limite da i dati approssimati $\widetilde{d}$ verso il dato vero $d$ del condizionamento assoluto diviso l'errore sul dato.
 Questo limite rappresenta il rapporto incrementale, come nelle derivate.
 \begin{align*}
- \limsup_{\widetilde{d}\to d}f(\widetilde{d})&=\lim_{r\to 0^+}\sup_{\widetilde{d}\in\ ]d-r,d+r[}f(\widetilde{d})
-\end{align*} 
+    \limsup_{\widetilde{d}\to d}f(\widetilde{d}) & =\lim_{r\to 0^+}\sup_{\widetilde{d}\in\ ]d-r,d+r[}f(\widetilde{d})
+\end{align*}
 Ossia prendo l'intorno del dato $d$ e trovo il sup diminuendo $r$, in questo modo mi avvicino a $d$ tenendo $f$ più grande possibile.
 
 $\operatorname{k}(d)$ è la pendenza del grafico di $x(d)$ \textbf{massima in modulo}. Se abbiamo una pendenza $\operatorname{k}(d)$, allora
@@ -967,28 +967,28 @@ In questo la caso la pendenza vicino a $0$ tende a $\infty$.\\
 Quindi: \[\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\widetilde{d}-d\right|}=\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\left(\sqrt{\widetilde{d}}-\sqrt{d}\right)\left(\sqrt{\widetilde{d}}+\sqrt{d}\right)\right|}=\frac{1}{\left|\sqrt{\widetilde{d}}+\sqrt{d}\right|}\]
 Ossia abbiamo che:
 \[
-\limsup_{\widetilde{d}\to d}\frac{1}{2\sqrt{d}}
-\begin{cases}
-    &d\ne0\quad\checkmark\\
-    &d=0\quad+\infty
-\end{cases}
+    \limsup_{\widetilde{d}\to d}\frac{1}{2\sqrt{d}}
+    \begin{cases}
+         & d\ne0\quad\checkmark \\
+         & d=0\quad+\infty
+    \end{cases}
 \]
 Quindi avvicinandomi a $d=0$ non riesco a fare delle stime quantitative.\\
-Si introduce quindi il \textbf{condizionamento globale assoluto} di \textbf{ordine} $\alpha\in(0,1)$ 
+Si introduce quindi il \textbf{condizionamento globale assoluto} di \textbf{ordine} $\alpha\in(0,1)$
 \[\operatorname{k}_{\alpha}=\boxed{\sup_{d,\widetilde{d}}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|\widetilde{d}-d\right|^\alpha}}\]
 Lo usiamo per studiare problemi \textbf{molto mal condizionati}.
 
 Nell'esempio $\alpha=\frac{1}{2}$:
 \begin{align*}
-    &=\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\widetilde{d}-d\right|^{\frac 12}}\\
-    &=\frac{\epsilon}{\left(\epsilon(2\sqrt{d}+\epsilon)\right)^{\frac 12}}=\frac{\epsilon}{\left(\epsilon^2+2\epsilon\sqrt d\right)^{\frac 12}}\quad \text{se }d=0\rightarrow\frac{\epsilon}{\epsilon}=1
+     & =\frac{\left|\sqrt{\widetilde{d}}-\sqrt{d}\right|}{\left|\widetilde{d}-d\right|^{\frac 12}}                                                                                                          \\
+     & =\frac{\epsilon}{\left(\epsilon(2\sqrt{d}+\epsilon)\right)^{\frac 12}}=\frac{\epsilon}{\left(\epsilon^2+2\epsilon\sqrt d\right)^{\frac 12}}\quad \text{se }d=0\rightarrow\frac{\epsilon}{\epsilon}=1
 \end{align*}
 se $d>0$ si mostra che è limitata.
 
-Se vale: 
+Se vale:
 \begin{align*}
-&\sup_{d,\widetilde{d}}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|\widetilde{d}-d\right|^\alpha}\le \operatorname{k}_\alpha\\
-&\left|x(\widetilde{d})-x(d)\right|\le\operatorname{k}_\alpha\left|\widetilde{d}-d\right|^\alpha\quad\forall d,\widetilde{d}\in D
+     & \sup_{d,\widetilde{d}}\frac{\left|x(\widetilde{d})-x(d)\right|}{\left|\widetilde{d}-d\right|^\alpha}\le \operatorname{k}_\alpha  \\
+     & \left|x(\widetilde{d})-x(d)\right|\le\operatorname{k}_\alpha\left|\widetilde{d}-d\right|^\alpha\quad\forall d,\widetilde{d}\in D
 \end{align*}
 \colorbox{yellow}{Nota}: $\alpha<1\quad\left|\widetilde{d}-d\right|<<1\Rightarrow\left|\widetilde{d}-d\right|^\alpha >>\left|\widetilde{d}-d\right|$.
 
@@ -1009,47 +1009,47 @@ Su $\mathbb{R}^n$ prendiamo una norma qualsiasi.
 \subsection{Norma indotta}
 \begin{defi}{Norma Indotta}{}
     Se $\|\cdot\|$ è una norma su $\mathbb{R}^m$ esiste una norma detta \textbf{naturale} su $M_{m\times m}(\mathbb{R})$ \textbf{indotta}
-     da $\|\cdot\|$: \[\|A\|_*=\sup_{x\in\mathbb R^m\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\]
-     Questa norma indicata è $\|\cdot\|_*$
+    da $\|\cdot\|$: \[\|A\|_*=\sup_{x\in\mathbb R^m\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\]
+    Questa norma indicata è $\|\cdot\|_*$
 \end{defi}
 
 \colorbox{yellow}{Proposizione}: $\|\cdot\|_*$ è una norma.
 
-\colorbox{yellow}{Dimostrazione}: Devo dimostrare che rispetta le proprietà di una norma. 
+\colorbox{yellow}{Dimostrazione}: Devo dimostrare che rispetta le proprietà di una norma.
 \begin{enumerate}
     \item Omogeneità di grado $1$. Prendiamo $\lambda\in\mathbb R\setminus\{0\}$ allora:
-\begin{align*}
-    \|\lambda A\|_*\quad&=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|\lambda (Ax)\|_*}{\|x\|}=\sup_{x\in\mathbb R\setminus\{0\}}|\lambda|\cdot\frac{\|Ax\|}{\|x\|}\\
-    &=|\lambda|\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}=|\lambda|\cdot\|A\|_*\quad \checkmark
-\end{align*}
+          \begin{align*}
+              \|\lambda A\|_*\quad & =\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|\lambda (Ax)\|_*}{\|x\|}=\sup_{x\in\mathbb R\setminus\{0\}}|\lambda|\cdot\frac{\|Ax\|}{\|x\|} \\
+                                   & =|\lambda|\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}=|\lambda|\cdot\|A\|_*\quad \checkmark
+          \end{align*}
 
-\item Una norma è $=0$ se e solo se è$\|0\|$. Quindi supponiamo che la norma sai uguale a $0$:
-\begin{align*}
-    0=&\|A\|_*=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\Rightarrow\|Ax\|=0\quad\forall\ x\in\mathbb R^m\\
-    &Ax=\begin{pmatrix}
-        0\\
-        \vdots\\
-        0
-    \end{pmatrix}\quad \forall\ x\in\mathbb R^m\qquad\text{Quindi è un vettore nullo}\\
-    \underset{i\text{-esima colonna}}{A(:,i)}&=\quad A_{ei}=\begin{pmatrix}
-        0\\
-        \vdots\\
-        0
-    \end{pmatrix}\quad\forall\ i\quad\Rightarrow\quad A=\begin{pmatrix}
-        0 & \dots & 0 \\
-        \vdots & &\vdots\\
-        0 & \dots & 0
-    \end{pmatrix}\quad\checkmark
-\end{align*}
+    \item Una norma è $=0$ se e solo se è$\|0\|$. Quindi supponiamo che la norma sai uguale a $0$:
+          \begin{align*}
+              0=                                        & \|A\|_*=\sup_{x\in\mathbb R\setminus\{0\}}\frac{\|Ax\|}{\|x\|}\Rightarrow\|Ax\|=0\quad\forall\ x\in\mathbb R^m \\
+                                                        & Ax=\begin{pmatrix}
+                                                                 0      \\
+                                                                 \vdots \\
+                                                                 0
+                                                             \end{pmatrix}\quad \forall\ x\in\mathbb R^m\qquad\text{Quindi è un vettore nullo}                           \\
+              \underset{i\text{-esima colonna}}{A(:,i)} & =\quad A_{ei}=\begin{pmatrix}
+                                                                            0      \\
+                                                                            \vdots \\
+                                                                            0
+                                                                        \end{pmatrix}\quad\forall\ i\quad\Rightarrow\quad A=\begin{pmatrix}
+                                                                                                                                0      & \dots & 0      \\
+                                                                                                                                \vdots &       & \vdots \\
+                                                                                                                                0      & \dots & 0
+                                                                                                                            \end{pmatrix}\quad\checkmark
+          \end{align*}
 
-\item Disuguaglianza triangolare:
+    \item Disuguaglianza triangolare:
 \end{enumerate}
 Ho dimostrato che è una norma dato che rispetta tutte e tre le proprietà.
 
 Che norma si usa su $V\times W$ con $V$ e $W$ che hanno le norme $\|\cdot\|_v,\|\cdot\|_w$?
 \begin{align*}
-    &\|(v,w)\|_{v\times w}:=\|v\|_v+\|w\|_w\quad\text{Per esempio}\\
-    &\text{La mappa soluzione: }x(A,b)=A^{-1}b \text{ è continua?}
+     & \|(v,w)\|_{v\times w}:=\|v\|_v+\|w\|_w\quad\text{Per esempio} \\
+     & \text{La mappa soluzione: }x(A,b)=A^{-1}b \text{ è continua?}
 \end{align*}
 $\forall\epsilon>0\ \exists\delta>0$ tale che $$\left\|x\left(\widetilde{A},\widetilde{b}\right)-x\left(A,b\right)\right\|<\epsilon\quad\text{se}\quad\left\|\left(\widetilde{A},\widetilde{b}\right)-\left(A,b\right)\right\|\underset{\mathbb{M}_{m\times m}(\mathbb R)\times \mathbb R^m}{<\delta}$$
 \colorbox{yellow}{Osservazione}: È composizione di $A\mapsto A^{-1}$ continua sulle matrici invertibili.\\
@@ -1059,105 +1059,105 @@ Dunque la mappa soluzione è continua in $(A,b)$ se $A$ è invertibile.
 Come è condizionato il problema?
 \begin{itemize}
     \item Considero il caso in cui $A$ sia fissa ed "esatta".
-    \begin{align*}
-        &b\mapsto x(A,b)=A^{-1}b\\
-        &A(x+\delta x)=b+\delta b\quad x+\delta x\text{ soluzione del sistema, con termine noto perturbato}\\
-        &Ax=b\\
-        &\text{Ci interessa quindi l'errore relativo: }\frac{\|\delta x\|}{\|x\|}\le \dots\cdot\frac{\|\delta b\|}{\|b\|}\\
-        &\underset{=b}{Ax}+A\delta x=b+\delta b\\
-        &\delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\\
-        &\Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|\quad\circledast
-    \end{align*}
+          \begin{align*}
+               & b\mapsto x(A,b)=A^{-1}b                                                                                                                               \\
+               & A(x+\delta x)=b+\delta b\quad x+\delta x\text{ soluzione del sistema, con termine noto perturbato}                                                    \\
+               & Ax=b                                                                                                                                                  \\
+               & \text{Ci interessa quindi l'errore relativo: }\frac{\|\delta x\|}{\|x\|}\le \dots\cdot\frac{\|\delta b\|}{\|b\|}                                      \\
+               & \underset{=b}{Ax}+A\delta x=b+\delta b                                                                                                                \\
+               & \delta x=A^{-1}\delta b\Rightarrow \text{ Se due vettori sono uguali hanno anche norme uguali: }\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\| \\
+               & \Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|\quad\circledast
+          \end{align*}
 
-\begin{note}{}{}
-Dato che
-\[\frac{\left\|Ax\right\|}{\left\|x\right\|}\le\sup_{y}\frac{\left\|Ay\right\|}{\left\|y\right\|}=\left\|A\right\|_*\quad \forall x\in\mathbb{R}^n\]
-Allora:
-    \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\]
-\end{note}
-Su $\circledast$ sto misurando in termini assoluti, devo invece misurare in termini \underline{relativi} dividendo per $\left\|x\right\|$:
-\begin{align*}
-    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le \left\|A^{-1}\right\|_*\left\|\delta b\right\|\cdot\frac{1}{\left\|x\right\|}\ \text{\textcircled{$\vartriangle$}}\quad\text{Mi serve poter stimare da sopra $\left\|x\right\|\ge\dots$ qualcosa}\\
-    &\circledast\ \left\|x\right\|\ge\frac{\left\|b\right\|}{\left\|A\right\|_*}\Leftarrow
-    \begin{cases}
-        &Ax=b\Rightarrow \left\|Ax\right\|=\left\|b\right\|\\
-        &\left\|Ax\right\|\le\left\|A\right\|_*\left\|x\right\|\quad \text{Nota 1}
-    \end{cases}\\
-    &\textcircled{$\vartriangle$}+\circledast\quad\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta b\right\|}{\left\|b\right\|}\ \forall b\in\mathbb R^n\\
-    &\text{Dove $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è l'indice di condizionamento globale del problema semplificato.}
-\end{align*}
+          \begin{note}{}{}
+              Dato che
+              \[\frac{\left\|Ax\right\|}{\left\|x\right\|}\le\sup_{y}\frac{\left\|Ay\right\|}{\left\|y\right\|}=\left\|A\right\|_*\quad \forall x\in\mathbb{R}^n\]
+              Allora:
+              \[\boxed{\left\|Ax\right\|\underset{\forall x\in\mathbb{R}^n}{\le}\left\|A\right\|_*\cdot\left\|x\right\|}\]
+          \end{note}
+          Su $\circledast$ sto misurando in termini assoluti, devo invece misurare in termini \underline{relativi} dividendo per $\left\|x\right\|$:
+          \begin{align*}
+               & \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le \left\|A^{-1}\right\|_*\left\|\delta b\right\|\cdot\frac{1}{\left\|x\right\|}\ \text{\textcircled{$\vartriangle$}}\quad\text{Mi serve poter stimare da sopra $\left\|x\right\|\ge\dots$ qualcosa} \\
+               & \circledast\ \left\|x\right\|\ge\frac{\left\|b\right\|}{\left\|A\right\|_*}\Leftarrow
+              \begin{cases}
+                   & Ax=b\Rightarrow \left\|Ax\right\|=\left\|b\right\|                        \\
+                   & \left\|Ax\right\|\le\left\|A\right\|_*\left\|x\right\|\quad \text{Nota 1}
+              \end{cases}                                                                                                                                                                             \\
+               & \textcircled{$\vartriangle$}+\circledast\quad\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta b\right\|}{\left\|b\right\|}\ \forall b\in\mathbb R^n                               \\
+               & \text{Dove $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è l'indice di condizionamento globale del problema semplificato.}
+          \end{align*}
 
     \item Ora considero di perturbare anche $A$:
-    \begin{align*}
-        &\begin{cases}
-            &(A+\delta A)(x+\delta x)=b+\delta b\\
-            &Ax=b   
-        \end{cases}\\
-        &(A+\delta A)\delta x=b+\delta b-(A+\delta A)x=\delta b-\delta Ax\quad\odot 
-    \end{align*}
-    Noto che se \(\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}<\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\), allora
-    \(\mathbb 1+A^{-1}\delta A\) è \textbf{invertibile}.
+          \begin{align*}
+               & \begin{cases}
+                      & (A+\delta A)(x+\delta x)=b+\delta b \\
+                      & Ax=b
+                 \end{cases}                                     \\
+               & (A+\delta A)\delta x=b+\delta b-(A+\delta A)x=\delta b-\delta Ax\quad\odot
+          \end{align*}
+          Noto che se \(\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}<\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\), allora
+          \(\mathbb 1+A^{-1}\delta A\) è \textbf{invertibile}.
 
-\colorbox{yellow}{Dimostrazione}: Suppongo per assurdo che $\mathbb 1+A^{-1}\delta A$ non sia invertibile
-\begin{align*}
-    &\exists y\ne 0\text{ tale che}\quad\left(\mathbb{1}+A^{-1}\delta A\right)y=0\quad\text{cioè}\quad A^{-1}\delta Ay=-y\\
-    &\Rightarrow\ \left\|A^{-1}\delta Ay\right\|=\left\|y\right\|\\
-    &1=\frac{\left\|A^{-1}\delta Ay\right\|}{\left\|y\right\|}\le\sup_{x\in\mathbb R^n\ x\ne0}\frac{\left\|A^{-1}\delta Ax\right\|}{\left\|x\right\|}\underset{\text{Nota 1}}{=}\left\|A^{-1}\delta A\right\|_*\\
-    &1\le\left\|A^{-1}\delta A\right\|_*\underset{\text{Nota 1}}{\le}\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*=\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\\
-    &\frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\le\underset{\text{Perturbazione rel.}}{\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}}\quad\text{\textbf{Assurdo} contraddice l'ipotesi.}\quad\checkmark
-\end{align*}
+          \colorbox{yellow}{Dimostrazione}: Suppongo per assurdo che $\mathbb 1+A^{-1}\delta A$ non sia invertibile
+          \begin{align*}
+               & \exists y\ne 0\text{ tale che}\quad\left(\mathbb{1}+A^{-1}\delta A\right)y=0\quad\text{cioè}\quad A^{-1}\delta Ay=-y                                                                                                \\
+               & \Rightarrow\ \left\|A^{-1}\delta Ay\right\|=\left\|y\right\|                                                                                                                                                        \\
+               & 1=\frac{\left\|A^{-1}\delta Ay\right\|}{\left\|y\right\|}\le\sup_{x\in\mathbb R^n\ x\ne0}\frac{\left\|A^{-1}\delta Ax\right\|}{\left\|x\right\|}\underset{\text{Nota 1}}{=}\left\|A^{-1}\delta A\right\|_*          \\
+               & 1\le\left\|A^{-1}\delta A\right\|_*\underset{\text{Nota 1}}{\le}\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*=\left\|A^{-1}\right\|_*\left\|A\right\|_*\cdot\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*} \\
+               & \frac{1}{\left\|A\right\|_*\left\|A^{-1}\right\|_*}\le\underset{\text{Perturbazione rel.}}{\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}}\quad\text{\textbf{Assurdo} contraddice l'ipotesi.}\quad\checkmark
+          \end{align*}
 
-Da $\odot$ segue che:
-\begin{align*}
-    &(A+\delta A)\delta x=\delta b-\delta Ax\\
-    &A(\mathbb 1+A^{-1}\delta A)\delta x=\delta b-\delta Ax\\
-    \delta x&=(\mathbb 1+A^{-1}\delta A)^{-1}\cdot A^{-1}(\delta b-\delta Ax)\\
-    &=(\mathbb 1+A^{-1}\delta A)^{-1}\cdot A^{-1}(\delta b-\delta AA^{-1}b)
-\end{align*}
-Passiamo alle norme
-\begin{align*}
-    \left\|\delta x\right\|&=\dots\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left\|\delta b-\delta AA^{-1}b\right\|\\
-    &\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta AA^{-1}b\right\|\right)\\
-    &\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta A\right\|_*\left\|A^{-1}\right\|_*\left\|b\right\|\right)
-\end{align*}
+          Da $\odot$ segue che:
+          \begin{align*}
+                       & (A+\delta A)\delta x=\delta b-\delta Ax                                \\
+                       & A(\mathbb 1+A^{-1}\delta A)\delta x=\delta b-\delta Ax                 \\
+              \delta x & =(\mathbb 1+A^{-1}\delta A)^{-1}\cdot A^{-1}(\delta b-\delta Ax)       \\
+                       & =(\mathbb 1+A^{-1}\delta A)^{-1}\cdot A^{-1}(\delta b-\delta AA^{-1}b)
+          \end{align*}
+          Passiamo alle norme
+          \begin{align*}
+              \left\|\delta x\right\| & =\dots\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left\|\delta b-\delta AA^{-1}b\right\|                                                         \\
+                                      & \le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta AA^{-1}b\right\|\right)                                   \\
+                                      & \le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left(\left\|\delta b\right\|+\left\|\delta A\right\|_*\left\|A^{-1}\right\|_*\left\|b\right\|\right)
+          \end{align*}
 
-Prima abbiamo usato $\frac{1}{\left\|x\right\|}\le\frac{\left\|A\right\|_*}{\left\|b\right\|}$. Quindi Per l'errore relativo:
-\begin{align*}
-    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left\|A\right\|_*\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*\right)\\
-    &\text{$\left\|\delta A\right\|_*$ è un errore assoluto, noi stiamo usando solo errori relativi, quindi divido e moltiplico per $\left\|A\right\|_*$}\\
-    &\frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\right)\quad\circledast
-\end{align*}
-\begin{defi}{Numero di condizionamento}{}
-La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
-si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$
-\end{defi}
+          Prima abbiamo usato $\frac{1}{\left\|x\right\|}\le\frac{\left\|A\right\|_*}{\left\|b\right\|}$. Quindi Per l'errore relativo:
+          \begin{align*}
+               & \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\left\|A^{-1}\right\|_*\left\|A\right\|_*\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\left\|A^{-1}\right\|_*\left\|\delta A\right\|_*\right)                                                                              \\
+               & \text{$\left\|\delta A\right\|_*$ è un errore assoluto, noi stiamo usando solo errori relativi, quindi divido e moltiplico per $\left\|A\right\|_*$}                                                                                                                                                                                               \\
+               & \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\right)\quad\circledast
+          \end{align*}
+          \begin{defi}{Numero di condizionamento}{}
+              La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
+              si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$
+          \end{defi}
 
-La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
+          La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
 \end{itemize}
 
 Tipicamente per matrici grandi $\begin{cases}
-    &\text{Piene}\quad n>10^4\\
-    &\text{Sparse}\quad n>10^6\\
-\end{cases}$\\
+         & \text{Piene}\quad n>10^4  \\
+         & \text{Sparse}\quad n>10^6 \\
+    \end{cases}$\\
 $\operatorname{Cond}(A,\left\|\cdot\right\|)$ è facilmente $\approx 10^4\ 10^5$ in casi buoni.\\
 Sbagliare $A$ di $10^{-16}$ relativo, implica avere un errore relativo su $x$ di $10^{-8}$. Quindi su 16 cifre significative
 ne calcolo solo 8 correttamente: questo è un caso buono per le matrici grandi.\\
 \colorbox{yellow}{Salvezza}: In generale tutti i $\le$ mostrati finora sono in realtà stretti, per ottenere l'uguaglianza, ossia l'errore massimo
 bisogna prendere il peggior dato con la peggior perturbazione (\textbf{molto improbabile}).
 
-Riprendiamo il caso in cui $A$ è fissa ed esatta dove abbiamo $Ax=b$ ossia, perturbando $A$: 
+Riprendiamo il caso in cui $A$ è fissa ed esatta dove abbiamo $Ax=b$ ossia, perturbando $A$:
 \begin{align*}
-&A\left(x+\delta x\right)=b+\delta b\ \to\ \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\operatorname{k}(A,\left\|\cdot\right\|)\frac{\left\|\delta b\right\|}{\left\|b\right\|}\\
-&\operatorname{k}(A,\left\|\cdot\right\|)=\left\|A\right\|_*\left\|A^{-1}\right\|_*
+     & A\left(x+\delta x\right)=b+\delta b\ \to\ \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\operatorname{k}(A,\left\|\cdot\right\|)\frac{\left\|\delta b\right\|}{\left\|b\right\|} \\
+     & \operatorname{k}(A,\left\|\cdot\right\|)=\left\|A\right\|_*\left\|A^{-1}\right\|_*
 \end{align*}
 Si tratta di una disequazione \underline{sharp}?  (potrebbe esistere il caso di uguaglianza)
 
 Suppongo di usare $\left\|\cdot\right\|=\left\|\cdot\right\|_2$, ossia la \textbf{norma euclidea} $\left\|v\right\|_2=\left(\sum v_i^2\right)^{1/2}$.\\
 Chi è la \textbf{Norma indotta} su $M_{n\times n}(\mathbb R)$?
 \begin{align*}
-    \left\|A\right\|_*&=\max_{x\ne 0}\frac{\left\|Ax\right\|_2}{\left\|x\right\|_2}=\left(\max_{x\ne 0}\frac{\sum\left(Ax\right)^2_i}{\sum x^2_i}\right)^{\frac 12}\\
-    &\text{Ricordiamo la proprietà del prodotto riga x colonna tra vettori: }\boxed{\sum y^2_i=y^T\cdot y}\\
-    &=\left[\max_{x\ne0}\frac{x^TA^TAx}{x^Tx}\right]^{\frac 12}\quad\circledast\quad G=A^TA=G^T\text{ matrice simmetrica}
+    \left\|A\right\|_* & =\max_{x\ne 0}\frac{\left\|Ax\right\|_2}{\left\|x\right\|_2}=\left(\max_{x\ne 0}\frac{\sum\left(Ax\right)^2_i}{\sum x^2_i}\right)^{\frac 12} \\
+                       & \text{Ricordiamo la proprietà del prodotto riga x colonna tra vettori: }\boxed{\sum y^2_i=y^T\cdot y}                                        \\
+                       & =\left[\max_{x\ne0}\frac{x^TA^TAx}{x^Tx}\right]^{\frac 12}\quad\circledast\quad G=A^TA=G^T\text{ matrice simmetrica}
 \end{align*}
 \begin{note}{}{}
     $M$ è una matrice quadrata, \underline{se} è diagonalizzabile allora:$$M=P\Lambda P^{-1}$$
@@ -1169,36 +1169,36 @@ Chi è la \textbf{Norma indotta} su $M_{n\times n}(\mathbb R)$?
     Ho $G\in M_{n\times n}(\mathbb R)$ \textbf{simmetrica} allora: $\exists\ \lambda_1,\lambda_2,\dots,\lambda_n$
     e $Q\in M_{n\times n(\mathbb R)}$ matrice \textbf{ortogonale} ($Q^TQ=QQ^T=\mathbb 1_n$) tali che:
     $$\boxed{G=Q\Lambda Q^T}\quad \Lambda=\begin{pmatrix}
-        \lambda_1&\dots&0\\
-        \vdots&\ddots&\vdots\\
-        0&\dots&\lambda_n
-    \end{pmatrix}$$
+            \lambda_1 & \dots  & 0         \\
+            \vdots    & \ddots & \vdots    \\
+            0         & \dots  & \lambda_n
+        \end{pmatrix}$$
 \end{theo}
 
 Quindi:
 \begin{align*}
-    &x^TA^TAx=x^TGx\ge0\text{ dato che è uguale a }\left\|Ax\right\|^2_2\\
-    &\text{È }=0\text{ solo se }Ax=0\text{ se }A\text{ è di rango pieno ciò implica che }x=0\\
-    &\Rightarrow \lambda_i>0\text{ se }A\text{ è invertibile}
+     & x^TA^TAx=x^TGx\ge0\text{ dato che è uguale a }\left\|Ax\right\|^2_2                     \\
+     & \text{È }=0\text{ solo se }Ax=0\text{ se }A\text{ è di rango pieno ciò implica che }x=0 \\
+     & \Rightarrow \lambda_i>0\text{ se }A\text{ è invertibile}
 \end{align*}
 $G$ si dice quindi, \textbf{simmetrica strettamente definita positiva}, ossia tutti i suoi autovalori sono maggiori stretti di $0$.
 
 \begin{align*}
-    \circledast\left\|A\right\|_*^2&=\max_{x\ne0}\frac{x^TGx}{x^Tx}\underset{\text{Teo. spett.}}{=}\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^Tx}\\
-    &=\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^T\underset{=QQ^T}{\mathbb 1}x}=\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^TQQ^Tx}\\
-    \text{Dato che }Q&\text{ è invertibile, allora posso fare un cambio di variabile: }y=Q^Tx\quad x=0\Leftrightarrow y=0\\
-    &=\max_{y\ne0}\frac{y^T\Lambda y}{y^Ty}=\max_{y\ne0}\left(\frac{y}{\left\|y\right\|}\right)^T\Lambda\frac{y}{\left\|y\right\|}
+    \circledast\left\|A\right\|_*^2 & =\max_{x\ne0}\frac{x^TGx}{x^Tx}\underset{\text{Teo. spett.}}{=}\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^Tx}                      \\
+                                    & =\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^T\underset{=QQ^T}{\mathbb 1}x}=\max_{x\ne0}\frac{x^TQ\Lambda Q^Tx}{x^TQQ^Tx}           \\
+    \text{Dato che }Q               & \text{ è invertibile, allora posso fare un cambio di variabile: }y=Q^Tx\quad x=0\Leftrightarrow y=0                           \\
+                                    & =\max_{y\ne0}\frac{y^T\Lambda y}{y^Ty}=\max_{y\ne0}\left(\frac{y}{\left\|y\right\|}\right)^T\Lambda\frac{y}{\left\|y\right\|}
 \end{align*}
 Sono quindi passato da una generica matrice positiva ad un matrice \underline{diagonale} con diagonale positiva.
 \begin{align*}
-    &=max_{z:\ \left\|z\right\|_2=1}z^T\Lambda z\\
-    &\text{Vogliamo, quindi, risolvere: }\\
-    &max\sum_{i=1}^n \lambda_i z^2_i\quad\text{con}\quad\sum_{i=1}^n z_i^2=1\\
-    &\text{Ossia voglio trovare il massimo autovalore di }G\\
-    &\text{Provo con: }z=e_{\underline{i}}\ :\ \lambda_{\underline{i}}\ge\lambda_i\ \forall i=1\dots n\quad\text{suppongo: }\lambda_1\ge\lambda_2\ge\dots\ge\lambda_n>0\\
-    &\sum_{i=1}^{n}\lambda_iz^2_i=\underset{\text{Separo il primo termine}}{\lambda_1\left(z_1^2+\sum_{i=2}^{n}\frac{\lambda_i}{\lambda_1}z^2_i\right)}\le\lambda_1\underbrace{\left(z_1^2+\sum_{i=2}^{n}z^2_i\right)}_{=1}=\lambda_1\\
-    &\text{Se prendo }z=e_1\text{ (primo vettore della base canonica) ottengo:}\\
-    &\sum_{i=1}^{n}\lambda_iz^2_i=\lambda_1\cdot1^2+\lambda_2\cdot0^2+\dots+\lambda_n\cdot0^2=\boxed{\lambda_1}
+     & =max_{z:\ \left\|z\right\|_2=1}z^T\Lambda z                                                                                                                                                                                      \\
+     & \text{Vogliamo, quindi, risolvere: }                                                                                                                                                                                             \\
+     & max\sum_{i=1}^n \lambda_i z^2_i\quad\text{con}\quad\sum_{i=1}^n z_i^2=1                                                                                                                                                          \\
+     & \text{Ossia voglio trovare il massimo autovalore di }G                                                                                                                                                                           \\
+     & \text{Provo con: }z=e_{\underline{i}}\ :\ \lambda_{\underline{i}}\ge\lambda_i\ \forall i=1\dots n\quad\text{suppongo: }\lambda_1\ge\lambda_2\ge\dots\ge\lambda_n>0                                                               \\
+     & \sum_{i=1}^{n}\lambda_iz^2_i=\underset{\text{Separo il primo termine}}{\lambda_1\left(z_1^2+\sum_{i=2}^{n}\frac{\lambda_i}{\lambda_1}z^2_i\right)}\le\lambda_1\underbrace{\left(z_1^2+\sum_{i=2}^{n}z^2_i\right)}_{=1}=\lambda_1 \\
+     & \text{Se prendo }z=e_1\text{ (primo vettore della base canonica) ottengo:}                                                                                                                                                       \\
+     & \sum_{i=1}^{n}\lambda_iz^2_i=\lambda_1\cdot1^2+\lambda_2\cdot0^2+\dots+\lambda_n\cdot0^2=\boxed{\lambda_1}
 \end{align*}
 Quindi vale:$$\left\|A\right\|_*^2=\max_{z:\ \left\|z\right\|_2=1}\frac{z^TGz}{z^Tz}=\lambda_{\mathrm{max}}(G)\text{ autovalore massimo}$$
 $$\boxed{\left\|A\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^TA\right)}\text{ se }\left\|\cdot\right\|=\left\|\cdot\right\|_2}$$
@@ -1206,10 +1206,10 @@ $$\boxed{\left\|A\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^TA\right)}\text{
 \subsubsection{Decomposizione ai valori singolari (SVD)}
 \begin{theo}{}{}
     Se $A\in M_{n\times n}(\mathbb R)$ di rango pieno allora $\exists\ U,\Sigma\ V$ con $U,V$ \textbf{ortogonali} $n\times n\ \Sigma=\begin{pmatrix}
-        \sigma_1&\dots&0\\
-        \vdots&\ddots&\vdots\\
-        0&\dots&\sigma_n
-    \end{pmatrix}
+            \sigma_1 & \dots  & 0        \\
+            \vdots   & \ddots & \vdots   \\
+            0        & \dots  & \sigma_n
+        \end{pmatrix}
     $ \textbf{diagonale}
     con $\sigma_i>0$. Tale per cui:$$\boxed{A=U\Sigma V^T}$$
 \end{theo}
@@ -1221,85 +1221,85 @@ Si nota che le colonne di $V$ sono gli autovettori di $A^TA$. Per dimostrarlo, p
 vediamo se otteniamo $\lambda$ volte la stessa colonna (proprietà \textbf{autovalore}).\\
 $V(:,j)$ è la $j$-esima colonna.
 \begin{align*}
-    &A^TA\cdot V(:,j)=V\Sigma^2\underbrace{V^TV(:,j)}_{w}\\
-    &w_i=V^T(i,:)V(:j)=V(:,i)^TV(:,j)=\left(V^TV\right)(i,j)=\mathbb 1(i,j)\begin{cases}
-        &1\quad\text{se }i=j\\
-        &0\quad\text{se }i\ne j
-    \end{cases}\\
-    &A^TA\cdot V(:,j)=V\Sigma^2 e_j=V\sigma_j^2e_j=\sigma^2_jVe_j=\underset{\text{autovalore}}{\sigma^2_j}\ \underset{\text{autovettore}}{V(:,j)}
+     & A^TA\cdot V(:,j)=V\Sigma^2\underbrace{V^TV(:,j)}_{w}                                                                                         \\
+     & w_i=V^T(i,:)V(:j)=V(:,i)^TV(:,j)=\left(V^TV\right)(i,j)=\mathbb 1(i,j)\begin{cases}
+                                                                                  & 1\quad\text{se }i=j    \\
+                                                                                  & 0\quad\text{se }i\ne j
+                                                                             \end{cases}                                              \\
+     & A^TA\cdot V(:,j)=V\Sigma^2 e_j=V\sigma_j^2e_j=\sigma^2_jVe_j=\underset{\text{autovalore}}{\sigma^2_j}\ \underset{\text{autovettore}}{V(:,j)}
 \end{align*}
 Questo spiega cos'è $V$ e $\Sigma^2$. Ora vediamo cos'è la matrice $U$:
 \begin{align*}
-    AA^T=&\ U\Sigma V^T\cdot V\Sigma U^T=U\Sigma^2 U^T\\
-    \text{Adesso}&\text{ non serve rifare i conti, sono gli stessi ma con nomi diversi. Quindi ottengo:}\\
-    \Rightarrow&\ \sigma_j^2\text{ sono anche autovalori di }AA^T\\
-    \Rightarrow&\ \text{Gli autovettori di }AA^T\text{ sono le colonne di }U
+    AA^T=         & \ U\Sigma V^T\cdot V\Sigma U^T=U\Sigma^2 U^T                                           \\
+    \text{Adesso} & \text{ non serve rifare i conti, sono gli stessi ma con nomi diversi. Quindi ottengo:} \\
+    \Rightarrow   & \ \sigma_j^2\text{ sono anche autovalori di }AA^T                                      \\
+    \Rightarrow   & \ \text{Gli autovettori di }AA^T\text{ sono le colonne di }U
 \end{align*}
 
 Adesso continuiamo con il condizionamento in norma $2$ e nel vedere se la disequazione è \underline{sharp}:
 \begin{align*}
-    &\left\|A\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^TA\right)}=\sqrt{\lambda_{\mathrm{max}}\left(V\Sigma^2V^T\right)}=\sqrt{\max \sigma_i^2}=\sigma_{\mathrm{max}}\\
-    &\text{Per il condizionamento serve anche:}\\
-    &\left\|A^{-1}\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^{-T}A^{-1}\right)}\\
-    &A=U\Sigma V^T\Rightarrow A^{-1}=V\Sigma^{-1}U^T\qquad\Sigma^{-1}=\begin{pmatrix}
-        \frac{1}{\sigma_1}&\dots&0\\
-        \vdots&\ddots&\vdots\\
-        0&\dots&\frac{1}{\sigma_n}
-    \end{pmatrix} \\
-    &A^{-T}A^{-1}=U\Sigma^{-1}V^T\cdot V\Sigma^{-1}U^T=U\Sigma^{-2}U^T\\
-    &\left\|A^{-1}\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(U\Sigma^{-2}U^T\right)}=\max\frac{1}{\sigma_i}=\frac{1}{\sigma_{\mathrm{min}}}\\
-    &\boxed{\operatorname{k}\left(A,\left\|\cdot\right\|_2\right)=\left\|A\right\|_*\left\|A^{-1}\right\|_*=\frac{\sigma_{\mathrm{max}}}{\sigma_{\mathrm{min}}}}
+     & \left\|A\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^TA\right)}=\sqrt{\lambda_{\mathrm{max}}\left(V\Sigma^2V^T\right)}=\sqrt{\max \sigma_i^2}=\sigma_{\mathrm{max}} \\
+     & \text{Per il condizionamento serve anche:}                                                                                                                            \\
+     & \left\|A^{-1}\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(A^{-T}A^{-1}\right)}                                                                                        \\
+     & A=U\Sigma V^T\Rightarrow A^{-1}=V\Sigma^{-1}U^T\qquad\Sigma^{-1}=\begin{pmatrix}
+                                                                            \frac{1}{\sigma_1} & \dots  & 0                  \\
+                                                                            \vdots             & \ddots & \vdots             \\
+                                                                            0                  & \dots  & \frac{1}{\sigma_n}
+                                                                        \end{pmatrix}                                                     \\
+     & A^{-T}A^{-1}=U\Sigma^{-1}V^T\cdot V\Sigma^{-1}U^T=U\Sigma^{-2}U^T                                                                                                     \\
+     & \left\|A^{-1}\right\|_*=\sqrt{\lambda_{\mathrm{max}}\left(U\Sigma^{-2}U^T\right)}=\max\frac{1}{\sigma_i}=\frac{1}{\sigma_{\mathrm{min}}}                              \\
+     & \boxed{\operatorname{k}\left(A,\left\|\cdot\right\|_2\right)=\left\|A\right\|_*\left\|A^{-1}\right\|_*=\frac{\sigma_{\mathrm{max}}}{\sigma_{\mathrm{min}}}}
 \end{align*}
 $\left\|A\right\|_*$ nel caso $\left\|\cdot\right\|=\left\|\cdot\right\|_2$ su $\mathbb R^n$ viene denotata con $\left\|A\right\|_2$.\\
 
 Torniamo a domandarci se:$$\frac{\left\|\delta x\right\|_2}{\left\|x\right\|_2}\le\operatorname{k}\left(A,\left\|\cdot\right\|_2\right)\frac{\left\|\delta b\right\|_2}{\left\|b\right\|_2}$$
 è irrealistica, cioè esiste l'uguaglianza?\\
 Per dimostrarla abbiamo usato 2 stime:
-\begin{enumerate} 
+\begin{enumerate}
     \item $\left\|b\right\|_2=\left\|Ax\right\|_2\le\left\|A\right\|_2\left\|x\right\|_2\quad$Può valere nel caso di uguaglianza?
-    \begin{align*}
-        &\left\|Ax\right\|_2^2=x^TV\Sigma U^T\cdot U\Sigma V^Tx=x^TV\Sigma^2V^Tx\\
-        &y=V^Tx\quad\Rightarrow\quad y^T\Sigma^2y\\
-        &\left\|x\right\|_2^2=\left\|V^Tx\right\|_2^2=\left\|y\right\|_2^2
-    \end{align*}
-    \begin{note}{Ragionamento}{}
-    Il $\max\frac{\left\|Ax\right\|_2^2}{\left\|x\right\|_2^2}$ è raggiunto se $x$ è proporzionale all'autovettore relativo all'autovalore massimo di $A^TA$, ossia $\sigma_{\mathrm{max}}^2$ cioè la prima colonna di $V$.
-    Quindi esiste l'uguaglianza.
-    \end{note}
+          \begin{align*}
+               & \left\|Ax\right\|_2^2=x^TV\Sigma U^T\cdot U\Sigma V^Tx=x^TV\Sigma^2V^Tx \\
+               & y=V^Tx\quad\Rightarrow\quad y^T\Sigma^2y                                \\
+               & \left\|x\right\|_2^2=\left\|V^Tx\right\|_2^2=\left\|y\right\|_2^2
+          \end{align*}
+          \begin{note}{Ragionamento}{}
+              Il $\max\frac{\left\|Ax\right\|_2^2}{\left\|x\right\|_2^2}$ è raggiunto se $x$ è proporzionale all'autovettore relativo all'autovalore massimo di $A^TA$, ossia $\sigma_{\mathrm{max}}^2$ cioè la prima colonna di $V$.
+              Quindi esiste l'uguaglianza.
+          \end{note}
 
-    Se $x=c\cdot V(:,1)\quad Ax=b\Rightarrow b=c\cdot A^{-1}V(:,1)=c\cdot V\Sigma^{-1} U^TV(:,1)$ allora:
-    \[\left\|b\right\|_2=\left\|A\right\|_2\left\|x\right\|_2\qquad\text{(esiste l'uguaglianza)}\]
+          Se $x=c\cdot V(:,1)\quad Ax=b\Rightarrow b=c\cdot A^{-1}V(:,1)=c\cdot V\Sigma^{-1} U^TV(:,1)$ allora:
+          \[\left\|b\right\|_2=\left\|A\right\|_2\left\|x\right\|_2\qquad\text{(esiste l'uguaglianza)}\]
 
     \item $\left\|\delta x\right\|_2=\left\|A^{-1}\delta b\right\|_2\le\left\|A^{-1}\right\|_2\left\|\delta b\right\|_2\quad$ Esiste l'uguaglianza?
-    
-    Usando nuovamente la \underline{nota 3} il caso di uguaglianza, si verifica se il vettore $\delta b$ è proporzionale all'autovettore relativo all'autovalore
-    massimo di $A^{-T}A^{-1}\Rightarrow\frac{1}{\sigma_{\mathrm{min}}}$. Dunque $\delta b=\epsilon U(:,n)$.
+
+          Usando nuovamente la \underline{nota 3} il caso di uguaglianza, si verifica se il vettore $\delta b$ è proporzionale all'autovettore relativo all'autovalore
+          massimo di $A^{-T}A^{-1}\Rightarrow\frac{1}{\sigma_{\mathrm{min}}}$. Dunque $\delta b=\epsilon U(:,n)$.
 \end{enumerate}
 
 Quindi la stima è \underline{sharp}, cioè ottimale dato che esiste l'uguale. In generale, è una stima pessimistica.
 
 \subsection{Risoluzione pratica $Ax=b$}
 \colorbox{yellow}{Osservazione}:\\Se la matrice $A$ è triangolare superiore $\begin{pmatrix}
-    1&1&1\\
-    0&1&1\\
-    0&0&1
-\end{pmatrix}$ o inferiore $\begin{pmatrix}
-    1&0&0\\
-    1&1&0\\
-    1&1&1
-\end{pmatrix}$: So risolvere il problema.
+        1 & 1 & 1 \\
+        0 & 1 & 1 \\
+        0 & 0 & 1
+    \end{pmatrix}$ o inferiore $\begin{pmatrix}
+        1 & 0 & 0 \\
+        1 & 1 & 0 \\
+        1 & 1 & 1
+    \end{pmatrix}$: So risolvere il problema.
 
 \subsubsection{Caso inferiore}
 \begin{align*}
-    &a_{11}x_1=b_1\Rightarrow x_1=\frac{b_1}{a_{11}}\qquad\text{(Sto ignorando i valori $0$)}\\
-    &a_{21}x_1+a_{22}x_2=b_2\Rightarrow x_2=\frac{b_2-a_{21}x_1}{a_{22}}\\
-    &\text{In generale: }x_1=\frac{b_1}{a_{1}}\quad x_k=\boxed{\frac{b_k-\sum_{j=1}^{k-1}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo di sostituzione in avanti)}\\
+     & a_{11}x_1=b_1\Rightarrow x_1=\frac{b_1}{a_{11}}\qquad\text{(Sto ignorando i valori $0$)}                                                                   \\
+     & a_{21}x_1+a_{22}x_2=b_2\Rightarrow x_2=\frac{b_2-a_{21}x_1}{a_{22}}                                                                                        \\
+     & \text{In generale: }x_1=\frac{b_1}{a_{1}}\quad x_k=\boxed{\frac{b_k-\sum_{j=1}^{k-1}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo di sostituzione in avanti)} \\
 \end{align*}
 
 \subsubsection{Caso superiore}
 \begin{align*}
-    &a_{nn}x_n=b_n\Rightarrow x_n=\frac{b_n}{a_{nn}}\\
-    &\text{In generale: }x_{k}=\boxed{\frac{b_k-\sum_{j=k+1}^{n}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo sostituzione all'indietro)}
+     & a_{nn}x_n=b_n\Rightarrow x_n=\frac{b_n}{a_{nn}}                                                                                   \\
+     & \text{In generale: }x_{k}=\boxed{\frac{b_k-\sum_{j=k+1}^{n}a_{k,j}x_j}{a_{k,k}}}\quad\text{(algoritmo sostituzione all'indietro)}
 \end{align*}
 
 \subsection{Fattorizzazione}
@@ -1315,78 +1315,78 @@ Faccio un cambio di variabile $y=Ux$ e ottengo:
 \begin{itemize}
     \item $Ly=b$ posso calcolare $y$ con la sostituzione in avanti.
     \item $Ux=y$ posso calcolare $x$ con la sostituzione all'indietro.
-\end{itemize} 
+\end{itemize}
 
 Rendiamo algoritmico il \underline{metodo di eliminazione gaussiana} (MEG):
 \begin{align*}
     \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)=\mathbb 1-\begin{pmatrix}
-        0\\
-        m^k
-    \end{pmatrix}e^T_k\quad m^{(k)}\in \mathbb R^{n-k}
+                                                                    0 \\
+                                                                    m^k
+                                                                \end{pmatrix}e^T_k\quad m^{(k)}\in \mathbb R^{n-k}
 \end{align*}
 \begin{note}{}{}
     È colonna $\times$ riga, ossia $\left(u\ v^T\right)_{i,j}=u_iv_j$
 \end{note}
 \[\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)=\begin{pmatrix}
-    1&\dots&0\\
-    \vdots&1&\vdots\\
-    0&-m^{(k)}&1
-\end{pmatrix}\]
+        1      & \dots    & 0      \\
+        \vdots & 1        & \vdots \\
+        0      & -m^{(k)} & 1
+    \end{pmatrix}\]
 Nella $k$-esima colonna ci metto $-m^{(k)}$ per questo è lunga $n-k$, sono gli elementi sotto la diagonale.
 
 Cosa succede se faccio $\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot A$?
 \begin{align*}
-    \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)A&=\left(\mathbb 1_n-\begin{pmatrix}
-        0\\
-        m^k
-    \end{pmatrix}e^T_k\right)A\underset{prop. assoc.}{=}A-\begin{pmatrix}
-        0\\
-        m^k
-    \end{pmatrix}\underbrace{e^T_kA}_{k\text{-esima riga di }A}\\
-    &=A-\begin{pmatrix}
-        0\\
-        m^k
-    \end{pmatrix}A(k,:)=A-\begin{pmatrix}
-        0&\dots&0\\
-        0&\dots&k\text{ righe}\\
-        m^k_1A(k,1)&\dots&m^k_1A(k,n)\\
-        \vdots&&\vdots\\
-        m^k_{n-k}A(k,1)&\dots&m^k_{n-k}A(k,n)
-    \end{pmatrix}
+    \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)A & =\left(\mathbb 1_n-\begin{pmatrix}
+                                                                                    0 \\
+                                                                                    m^k
+                                                                                \end{pmatrix}e^T_k\right)A\underset{prop. assoc.}{=}A-\begin{pmatrix}
+                                                                                                                                      0 \\
+                                                                                                                                      m^k
+                                                                                                                                  \end{pmatrix}\underbrace{e^T_kA}_{k\text{-esima riga di }A} \\
+                                                       & =A-\begin{pmatrix}
+                                                                0 \\
+                                                                m^k
+                                                            \end{pmatrix}A(k,:)=A-\begin{pmatrix}
+                                                                                      0               & \dots & 0               \\
+                                                                                      0               & \dots & k\text{ righe}  \\
+                                                                                      m^k_1A(k,1)     & \dots & m^k_1A(k,n)     \\
+                                                                                      \vdots          &       & \vdots          \\
+                                                                                      m^k_{n-k}A(k,1) & \dots & m^k_{n-k}A(k,n)
+                                                                                  \end{pmatrix}
 \end{align*}
 Ossia ad ogni riga di $A$ da $k+1$ a $n$ togliamo la $k$-esima riga di $A$ moltiplicata per $m_1^k,\dots,m^k_{n-k}$ (\textbf{moltiplicatori}).
 Nel MEG scelgo i moltiplicatori per eliminare tutta la parte sottodiagonale di $A$ nella colonna $k$-esima.
 
 La colonna $k$-esima di $\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)A$ è:
 \[A(:,k)-\begin{pmatrix}
-    0\\
-    k\text{ volte}\\
-    0\\
-    m_1A(k,k)\\
-    \vdots\\
-    m_{n-k}^kA(k,k)
-\end{pmatrix}=\begin{pmatrix}
-    A(1,k)\\
-    \vdots\\
-    A(k,k)\\
-    \noindent\rule{3.5cm}{1pt}\\
-    A(k+1,k)-m^k_1A(k,k)\\
-    \vdots\\
-    A(n,k)-m^k_{n-k}A(k,k)
-\end{pmatrix}\]
+        0              \\
+        k\text{ volte} \\
+        0              \\
+        m_1A(k,k)      \\
+        \vdots         \\
+        m_{n-k}^kA(k,k)
+    \end{pmatrix}=\begin{pmatrix}
+        A(1,k)                     \\
+        \vdots                     \\
+        A(k,k)                     \\
+        \noindent\rule{3.5cm}{1pt} \\
+        A(k+1,k)-m^k_1A(k,k)       \\
+        \vdots                     \\
+        A(n,k)-m^k_{n-k}A(k,k)
+    \end{pmatrix}\]
 La parte bassa è quella che voglio annullare. Per far ciò devo "scegliere" $m$ nel seguente modo:
 \[\circledast\quad m^k_l=\frac{A(k+l,k)}{A(k,k)}\]
 Devo verificare che $A(k,k)\ne0$, ossia la diagonale diversa da zero, perchè potrebbe esserci il caso:
 \begin{ex}{Problema Diagonale $=0$}{}
     $A=\begin{pmatrix}
-        0&1\\
-        1&0
-    \end{pmatrix}\quad \operatorname{det}(A)=-1$ La matrice è invertibile nonostante la diagonale $=0$.
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix}\quad \operatorname{det}(A)=-1$ La matrice è invertibile nonostante la diagonale $=0$.
 \end{ex}
 
 \colorbox{yellow}{Ipotesi}:
 Per il momento supponiamo che $A(k,k)\ne0$.\\
-Poniamo $\widetilde{\operatorname{L}}^{(k)}=\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)$ con $m^k$ 
+Poniamo $\widetilde{\operatorname{L}}^{(k)}=\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)$ con $m^k$
 scelto come in $\circledast$.
 
 \colorbox{yellow}{Algoritmo}:
@@ -1399,14 +1399,74 @@ Se vale l'ipotesi ad ogni passo: $\boxed{A^{(k-1)}(k-1,k-1)\ne0}$. Dopo $n-1$ pa
 La matrice $A^n$ sarà, quindi, una triangolare superiore; perchè al primo passo abbiamo preso la colonna $1$ di $A$ ed eliminato
 la sua parte sotto la diagonale. Quindi $A^{(2)}$ ha la colonna $1$ con la parte sottodiagonale \textbf{nulla}.
 Poi $A^{(3)}=\widetilde{\operatorname{L}}^{(2)}A^2=\left(\mathbb 1-\begin{pmatrix}
-    0\\
-    m^2
-\end{pmatrix}e_2^T\right)A^2=A^2-\begin{pmatrix}
-    0\\
-    m^2
-\end{pmatrix}e^T_2A^{(2)}$ e dato che $A^2$ ha la prima colonna sottodiagonale $0$ e viene sottratta ad una cosa che ha la prima colonna tutto $0$.
+            0 \\
+            m^2
+        \end{pmatrix}e_2^T\right)A^2=A^2-\begin{pmatrix}
+        0 \\
+        m^2
+    \end{pmatrix}e^T_2A^{(2)}$ e dato che $A^2$ ha la prima colonna sottodiagonale $0$ e viene sottratta ad una cosa che ha la prima colonna tutto $0$.
 Quindi anche $A^{(3)}$ ha la prima colonna sottodiagonale $0$ e in più anche la seconda colonna ha la stessa proprietà per $\circledast$.\\
 Iterando questo ragionamento otteniamo che $A^{(n)}$ ha le colonne $1,2,\dots,n-1$ che rispettano la stessa proprietà. Di conseguenza è \textbf{triangolare superiore}.
 
-Pongo $U=A^{(n)}$
+Pongo $U=A^{(n)}$, ossia $U=\widetilde{\operatorname{L}}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\dots\ \widetilde{\operatorname{L}}^{(1)}A\quad$ Dato che ogni $\widetilde{\operatorname{L}}^{(k)}$ è invertibile, si ha:
+\[\left(\widetilde{\operatorname{L}}^1\right)^{-1}\left(\widetilde{\operatorname{L}}^2\right)^{-1}\dots\left(\widetilde{\operatorname{L}}^{(n-1)}\right)^{-1}U=A\]
+\newpage
+Adesso devo:
+\begin{itemize}
+    \item calcolare $\left(\widetilde{\operatorname{L}}^{(k)}\right)^{-1}$
+    \item calcolare il prodotto
+    \item mostrare che è triangolare infinita
+\end{itemize}
+
+\begin{align*}
+     & \widetilde{\operatorname{L}}^{(k)}=\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right) \text{ con }m^{(k)}\text{ scelto secondo } \circledast                                                              \\
+     & \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot\widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)=\left(\mathbb 1-\begin{pmatrix}
+                                                                                                                                        0 \\
+                                                                                                                                        m^k
+                                                                                                                                    \end{pmatrix}e^T_k\right)
+    \left(\mathbb 1+\begin{pmatrix}
+                            0 \\
+                            m^k
+                        \end{pmatrix}e^T_k\right)                                                                                                                                                                   \\
+     & =\mathbb 1 + \begin{pmatrix}0\\m^k\end{pmatrix}e^T_k-\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k-\underbrace{\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k}_{\triangle}     \\
+     & \begin{pmatrix}0\\m^k\end{pmatrix}e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k=\begin{pmatrix}0\\m^k\end{pmatrix}\underbrace{\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]}_{\text{scalare}}e^T_k \\
+     & =\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k                                                                                                             \\
+     & \text{Cosa significa fare }e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\text{, vuol dire: }\begin{pmatrix}0&\dots&0&\underbrace{1}_k&0&\dots&0\end{pmatrix}
+    \cdot\begin{pmatrix}
+             0                  \\
+             \vdots             \\
+             \underbrace{0}_{k} \\
+             m_1^k              \\
+             \vdots             \\
+             m_{n-k}^k
+         \end{pmatrix}=0                                                                                                                                                                                     \\
+     & \triangle \Rightarrow\ \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot \widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)=\mathbb 1
+\end{align*}
+Dunque \[\operatorname{L}^{(k)}:=\left(\widetilde{\operatorname{L}}^{(k)}\right)^{-1}=\left(\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\right)=\left(\widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)\right)=\mathbb 1+\begin{pmatrix}
+        0 \\
+        m^k
+    \end{pmatrix}e^T_k\]
+
+Adesso passo al secondo punto, ossia calcolare i prodotti:
+\begin{align*}
+     & \operatorname{L}^{k}\cdot\operatorname{L}^{k+1}=\left(\mathbb 1+\begin{pmatrix}
+                                                                               0 \\
+                                                                               m^k
+                                                                           \end{pmatrix}e^T_k\right)\cdot
+    \left(\mathbb 1+\begin{pmatrix}
+                        0 \\
+                        m^{k+1}
+                    \end{pmatrix}e^T_{k+1}\right)                                                     \\
+     & =\mathbb 1+\begin{pmatrix}
+                      0 \\
+                      m^{k+1}
+                  \end{pmatrix}e^T_{k+1}+
+    \begin{pmatrix}
+        0 \\
+        m^k
+    \end{pmatrix}e^T_k+\begin{pmatrix}
+                           0 \\
+                           m^k
+                       \end{pmatrix}e^T_k
+\end{align*}
 \end{document}
