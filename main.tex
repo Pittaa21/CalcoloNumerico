@@ -1304,10 +1304,10 @@ Quindi la stima è \underline{sharp}, cioè ottimale dato che esiste l'uguale. I
 
 \subsection{Fattorizzazione}
 Dato che le matrici triangolari sono poche, si usa il metodo di \underline{eliminazione gaussiana}, per ottenerne di più.
-\begin{note}{Fattorizzazione}{}
+\begin{defi}{Fattorizzazione}{}
     Il metodo di eliminazione gaussiana si può vedere come \textbf{fattorizazzione} di matrice. La fattorizzazione $LU$ tale che
     $A=LU$ dove $L$ sta per "lower triangular" invertibile e $U$ "upper triangular" invertibile.
-\end{note}
+\end{defi}
 A cosa serve una fattorizzazione di questo tipo?
 
 $$Ax=b\Leftrightarrow \underset{\text{associativo}}{LUx}=b$$
@@ -1325,7 +1325,19 @@ Rendiamo algoritmico il \underline{metodo di eliminazione gaussiana} (MEG):
                                                                 \end{pmatrix}e^T_k\quad m^{(k)}\in \mathbb R^{n-k}
 \end{align*}
 \begin{note}{}{}
-    È colonna $\times$ riga, ossia $\left(u\ v^T\right)_{i,j}=u_iv_j$
+    $\begin{pmatrix}
+        0\\
+        m^k
+    \end{pmatrix}$ è una matrice con tutti $0$ tranne la parte sotto la diagonale della $k$-esima colonna che ha da $m^k_1$ a $m^k_{n-k}$.\\
+    Se moltiplicata con $e^T_k$, si ottiene la matrice:
+    \[\begin{pmatrix}
+        1&0&\dots&\dots&0\\
+        m_1^1&1&0&&\vdots\\
+        \vdots&m^2_1&\ddots&\ddots&\vdots\\
+        \vdots&\vdots&\ddots&1&0\\
+        m^1_{n-1}&m^2_{n-2}&\dots&m_1^{n-1}&1
+    \end{pmatrix}\]
+    È \textbf{triangolare superiore} e la chiamo $L$.
 \end{note}
 \[\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)=\begin{pmatrix}
         1      & \dots    & 0      \\
@@ -1389,7 +1401,7 @@ Per il momento supponiamo che $A(k,k)\ne0$.\\
 Poniamo $\widetilde{\operatorname{L}}^{(k)}=\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)$ con $m^k$
 scelto come in $\circledast$.
 
-\colorbox{yellow}{Algoritmo}:
+\subsubsection{Algoritmo Instabile}
 \begin{itemize}
     \item[] $A^{(1)}=A$
     \item[] $A^{(k)}=\widetilde{\operatorname{L}}^{(k-1)}A^{(k-1)}$ Quello $k$-esimo è dato da quello $(k-1)$-esimo
@@ -1408,14 +1420,14 @@ Poi $A^{(3)}=\widetilde{\operatorname{L}}^{(2)}A^2=\left(\mathbb 1-\begin{pmatri
 Quindi anche $A^{(3)}$ ha la prima colonna sottodiagonale $0$ e in più anche la seconda colonna ha la stessa proprietà per $\circledast$.\\
 Iterando questo ragionamento otteniamo che $A^{(n)}$ ha le colonne $1,2,\dots,n-1$ che rispettano la stessa proprietà. Di conseguenza è \textbf{triangolare superiore}.
 
-Pongo $U=A^{(n)}$, ossia $U=\widetilde{\operatorname{L}}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\dots\ \widetilde{\operatorname{L}}^{(1)}A\quad$ Dato che ogni $\widetilde{\operatorname{L}}^{(k)}$ è invertibile, si ha:
+Pongo $U=A^{(n)}$, ossia $U=\widetilde{\operatorname{L}}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\dots\ \widetilde{\operatorname{L}}^{(1)}A\quad$ Dato che ogni $\widetilde{\operatorname{L}}^{(k)}$ è invertibile e voglio ottenere $LU=A$, divido per $L$:
 \[\left(\widetilde{\operatorname{L}}^1\right)^{-1}\left(\widetilde{\operatorname{L}}^2\right)^{-1}\dots\left(\widetilde{\operatorname{L}}^{(n-1)}\right)^{-1}U=A\]
 \newpage
 Adesso devo:
 \begin{itemize}
     \item calcolare $\left(\widetilde{\operatorname{L}}^{(k)}\right)^{-1}$
     \item calcolare il prodotto
-    \item mostrare che è triangolare infinita
+    \item mostrare che è triangolare inferiore
 \end{itemize}
 
 \begin{align*}
@@ -1430,7 +1442,7 @@ Adesso devo:
                         \end{pmatrix}e^T_k\right)                                                                                                                                                                   \\
      & =\mathbb 1 + \begin{pmatrix}0\\m^k\end{pmatrix}e^T_k-\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k-\underbrace{\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k}_{\triangle}     \\
      & \begin{pmatrix}0\\m^k\end{pmatrix}e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k=\begin{pmatrix}0\\m^k\end{pmatrix}\underbrace{\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]}_{\text{scalare}}e^T_k \\
-     & =\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k                                                                                                             \\
+     & \triangle=\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k                                                                                                             \\
      & \text{Cosa significa fare }e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\text{, vuol dire: }\begin{pmatrix}0&\dots&0&\underbrace{1}_k&0&\dots&0\end{pmatrix}
     \cdot\begin{pmatrix}
              0                  \\
@@ -1440,9 +1452,10 @@ Adesso devo:
              \vdots             \\
              m_{n-k}^k
          \end{pmatrix}=0                                                                                                                                                                                     \\
-     & \triangle \Rightarrow\ \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot \widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)=\mathbb 1
+     & \triangle=0s \Rightarrow\ \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot \widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)=\mathbb 1
 \end{align*}
-Dunque \[\operatorname{L}^{(k)}:=\left(\widetilde{\operatorname{L}}^{(k)}\right)^{-1}=\left(\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\right)=\left(\widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)\right)=\mathbb 1+\begin{pmatrix}
+Dunque, abbiamo dimostrato che una è l'inversa dell'altra, e
+\[\operatorname{L}^{(k)}:=\left(\widetilde{\operatorname{L}}^{(k)}\right)^{-1}=\left(\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\right)=\left(\widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)\right)=\mathbb 1+\begin{pmatrix}
         0 \\
         m^k
     \end{pmatrix}e^T_k\]
@@ -1464,9 +1477,44 @@ Adesso passo al secondo punto, ossia calcolare i prodotti:
     \begin{pmatrix}
         0 \\
         m^k
-    \end{pmatrix}e^T_k+\begin{pmatrix}
+    \end{pmatrix}e^T_k+\underbrace{\begin{pmatrix}
                            0 \\
                            m^k
                        \end{pmatrix}e^T_k
+    \begin{pmatrix}
+                        0 \\
+                        m^{k+1}
+                    \end{pmatrix}e^T_{k+1}}_{\text{Come prima }=0}\\
+    & \operatorname{L}^{k}\cdot\operatorname{L}^{k+1}=\mathbb 1+\begin{pmatrix}
+        0 \\
+        m^k
+    \end{pmatrix}e^T_k+
+    \begin{pmatrix}
+                      0 \\
+                      m^{k+1}
+                  \end{pmatrix}e^T_{k+1}
 \end{align*}
+Volevamo calcolare:
+\begin{align*}
+&\left(\widetilde{\operatorname{L}}^1\right)^{-1}\left(\widetilde{\operatorname{L}}^2\right)^{-1}\dots\left(\widetilde{\operatorname{L}}^{(n-1)}\right)^{-1}=\operatorname{L}^1\operatorname{L}^2\dots\operatorname{L}^{n-1}\\
+&=\mathbb 1+\begin{pmatrix}
+                      0 \\
+                      m^{1}
+                  \end{pmatrix}e^T_{1}+\begin{pmatrix}
+                      0 \\
+                      m^{2}
+                  \end{pmatrix}e^T_{2}\dots\begin{pmatrix}
+                      0 \\
+                      m^{n-1}
+                  \end{pmatrix}e^T_{n-1}
+\end{align*}
+
+Se vale l'\textbf{ipotesi} iniziale ad ogni passo e scelgo gli $m$ secondo $\circledast$ ottengo $A=LU$, come volevamo $\checkmark$.
+
+\colorbox{yellow}{Osservazione}: Se $A^{(k)}(k,k)$ detto \textbf{Pivot}, è molto piccolo in modulo. La scelta $\circledast$, causa
+moltiplicatori molto grandi e le sottrazioni per eliminare gli elementi sottodiagonali, diventano fortemente \textbf{instabili}.
+
+\colorbox{yellow}{Conclusione}: \underline{$LU$ così non può essere calcolato}.
+
+
 \end{document}
