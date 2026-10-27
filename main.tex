@@ -1326,17 +1326,17 @@ Rendiamo algoritmico il \underline{metodo di eliminazione gaussiana} (MEG):
 \end{align*}
 \begin{note}{}{}
     $\begin{pmatrix}
-        0\\
-        m^k
-    \end{pmatrix}$ è una matrice con tutti $0$ tranne la parte sotto la diagonale della $k$-esima colonna che ha da $m^k_1$ a $m^k_{n-k}$.\\
+            0 \\
+            m^k
+        \end{pmatrix}$ è una matrice con tutti $0$ tranne la parte sotto la diagonale della $k$-esima colonna che ha da $m^k_1$ a $m^k_{n-k}$.\\
     Se moltiplicata con $e^T_k$, si ottiene la matrice:
     \[\begin{pmatrix}
-        1&0&\dots&\dots&0\\
-        m_1^1&1&0&&\vdots\\
-        \vdots&m^2_1&\ddots&\ddots&\vdots\\
-        \vdots&\vdots&\ddots&1&0\\
-        m^1_{n-1}&m^2_{n-2}&\dots&m_1^{n-1}&1
-    \end{pmatrix}\]
+            1         & 0         & \dots  & \dots     & 0      \\
+            m_1^1     & 1         & 0      &           & \vdots \\
+            \vdots    & m^2_1     & \ddots & \ddots    & \vdots \\
+            \vdots    & \vdots    & \ddots & 1         & 0      \\
+            m^1_{n-1} & m^2_{n-2} & \dots  & m_1^{n-1} & 1
+        \end{pmatrix}\]
     È \textbf{triangolare superiore} e la chiamo $L$.
 \end{note}
 \[\widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)=\begin{pmatrix}
@@ -1422,7 +1422,7 @@ Iterando questo ragionamento otteniamo che $A^{(n)}$ ha le colonne $1,2,\dots,n-
 
 Pongo $U=A^{(n)}$, ossia $U=\widetilde{\operatorname{L}}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\dots\ \widetilde{\operatorname{L}}^{(1)}A\quad$ Dato che ogni $\widetilde{\operatorname{L}}^{(k)}$ è invertibile e voglio ottenere $LU=A$, divido per $L$:
 \[\left(\widetilde{\operatorname{L}}^1\right)^{-1}\left(\widetilde{\operatorname{L}}^2\right)^{-1}\dots\left(\widetilde{\operatorname{L}}^{(n-1)}\right)^{-1}U=A\]
-\newpage
+
 Adesso devo:
 \begin{itemize}
     \item calcolare $\left(\widetilde{\operatorname{L}}^{(k)}\right)^{-1}$
@@ -1442,7 +1442,9 @@ Adesso devo:
                         \end{pmatrix}e^T_k\right)                                                                                                                                                                   \\
      & =\mathbb 1 + \begin{pmatrix}0\\m^k\end{pmatrix}e^T_k-\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k-\underbrace{\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k}_{\triangle}     \\
      & \begin{pmatrix}0\\m^k\end{pmatrix}e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k=\begin{pmatrix}0\\m^k\end{pmatrix}\underbrace{\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]}_{\text{scalare}}e^T_k \\
-     & \triangle=\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k                                                                                                             \\
+     & \triangle=\left[e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\right]\begin{pmatrix}0\\m^k\end{pmatrix}e^T_k                                                                                                    \\
+\end{align*}
+\begin{align*}
      & \text{Cosa significa fare }e^T_k\begin{pmatrix}0\\m^k\end{pmatrix}\text{, vuol dire: }\begin{pmatrix}0&\dots&0&\underbrace{1}_k&0&\dots&0\end{pmatrix}
     \cdot\begin{pmatrix}
              0                  \\
@@ -1451,7 +1453,7 @@ Adesso devo:
              m_1^k              \\
              \vdots             \\
              m_{n-k}^k
-         \end{pmatrix}=0                                                                                                                                                                                     \\
+         \end{pmatrix}=0                                                                                                                                   \\
      & \triangle=0s \Rightarrow\ \widetilde{\mathcal{L}}^{(k)}\left(m^{(k)}\right)\cdot \widetilde{\mathcal{L}}^{(k)}\left(-m^{(k)}\right)=\mathbb 1
 \end{align*}
 Dunque, abbiamo dimostrato che una è l'inversa dell'altra, e
@@ -1478,35 +1480,35 @@ Adesso passo al secondo punto, ossia calcolare i prodotti:
         0 \\
         m^k
     \end{pmatrix}e^T_k+\underbrace{\begin{pmatrix}
-                           0 \\
-                           m^k
-                       \end{pmatrix}e^T_k
+                                           0 \\
+                                           m^k
+                                       \end{pmatrix}e^T_k
     \begin{pmatrix}
-                        0 \\
-                        m^{k+1}
-                    \end{pmatrix}e^T_{k+1}}_{\text{Come prima }=0}\\
-    & \operatorname{L}^{k}\cdot\operatorname{L}^{k+1}=\mathbb 1+\begin{pmatrix}
+            0 \\
+            m^{k+1}
+        \end{pmatrix}e^T_{k+1}}_{\text{Come prima }=0}                                                    \\
+     & \operatorname{L}^{k}\cdot\operatorname{L}^{k+1}=\mathbb 1+\begin{pmatrix}
+                                                                     0 \\
+                                                                     m^k
+                                                                 \end{pmatrix}e^T_k+
+    \begin{pmatrix}
         0 \\
-        m^k
-    \end{pmatrix}e^T_k+
-    \begin{pmatrix}
-                      0 \\
-                      m^{k+1}
-                  \end{pmatrix}e^T_{k+1}
+        m^{k+1}
+    \end{pmatrix}e^T_{k+1}
 \end{align*}
 Volevamo calcolare:
 \begin{align*}
-&\left(\widetilde{\operatorname{L}}^1\right)^{-1}\left(\widetilde{\operatorname{L}}^2\right)^{-1}\dots\left(\widetilde{\operatorname{L}}^{(n-1)}\right)^{-1}=\operatorname{L}^1\operatorname{L}^2\dots\operatorname{L}^{n-1}\\
-&=\mathbb 1+\begin{pmatrix}
+     & \left(\widetilde{\operatorname{L}}^1\right)^{-1}\left(\widetilde{\operatorname{L}}^2\right)^{-1}\dots\left(\widetilde{\operatorname{L}}^{(n-1)}\right)^{-1}=\operatorname{L}^1\operatorname{L}^2\dots\operatorname{L}^{n-1} \\
+     & =\mathbb 1+\begin{pmatrix}
                       0 \\
                       m^{1}
                   \end{pmatrix}e^T_{1}+\begin{pmatrix}
-                      0 \\
-                      m^{2}
-                  \end{pmatrix}e^T_{2}\dots\begin{pmatrix}
-                      0 \\
-                      m^{n-1}
-                  \end{pmatrix}e^T_{n-1}
+                                           0 \\
+                                           m^{2}
+                                       \end{pmatrix}e^T_{2}\dots\begin{pmatrix}
+                                                                    0 \\
+                                                                    m^{n-1}
+                                                                \end{pmatrix}e^T_{n-1}
 \end{align*}
 
 Se vale l'\textbf{ipotesi} iniziale ad ogni passo e scelgo gli $m$ secondo $\circledast$ ottengo $A=LU$, come volevamo $\checkmark$.
@@ -1516,5 +1518,49 @@ moltiplicatori molto grandi e le sottrazioni per eliminare gli elementi sottodia
 
 \colorbox{yellow}{Conclusione}: \underline{$LU$ così non può essere calcolato}.
 
+\colorbox{yellow}{Osservazione}: La limitazione che deriva dall'\textbf{ipotesi} si può rimuovere scambiando
+la $k$-esima riga con quella $l$-esima con $l>k$.
+$\exists$ sicuramente $l>k:\ A^{(K)}(l,k)\ne0$.
 
+\subsection{Matrici di Permutazione}
+\begin{defi}{Matrice di Permutazione}{}
+    Sia $P\in M_{n\times n}(\mathbb R):\ P_{ij}=\begin{cases}
+            1 \\0
+        \end{cases}$ Tale per cui esiste una permutazione $\sigma$ dell'insieme $\{1,2,\dots,n\}$, può essere associata alla matrice $$P_{ij}:=\begin{cases}
+            1\text{ se } j=\sigma(i) \\
+            0\text{ altrimenti}
+        \end{cases}$$
+    Ossia la matrice che si ottiene permutando con $\sigma$ le righe di $\mathbb 1_n$.
+\end{defi}
+Le matrici di permutazione hanno delle proprietà notevoli:
+\begin{enumerate}
+    \item Se $P,Q$ sono matrici di permutazione $\Rightarrow PQ,QP$ sono di permutazione.
+    \item $PP^T=P^TP=\mathbb 1_n$ sono \textbf{ortogonali}.
+    \item $\det P=\pm 1$ quelle con determinante positivo/negativo sono dette \textbf{pari}/\textbf{dispari}.
+    \item Se $\sigma$ è lo scambio di due elementi, allora $P$ è detta di scambio e $P=P^T=P^{-1}$
+\end{enumerate}
+
+Se $P$ è una matrice di permutazione che rappresenta $\sigma$ ed $A$ ha dimensione uguale a $P$, allora
+\begin{itemize}
+    \item $AP_\sigma=A$ (moltiplicazione a destra) significa permutare le colonne di $A$, ossia $\left(AP_\sigma\right)_{:,j}=A_{:,\sigma(j)}$
+    \item $P_\sigma A=A$ (moltiplicazione a sinistra) significa permutare le righe di $A$, ossia $\left(P_\sigma A\right)_{i,:}=A_{\sigma(i),:}$
+
+\end{itemize}
+
+Le permutazioni più semplici sono gli scambi, se $\sigma$ è uno scambio $\left(k\to l,l\to k\right)$
+
+\begin{defi}{Pivoting}{}
+    Fattorizzazione $LU$ con \underline{pivoting} parziale per righe:
+    \[\boxed{LU=PA}\]
+    Quindi $Ax=b\Leftrightarrow PAx=Pb$ e $LUx=Pb$.
+\end{defi}
+Risolviamo $Ly=Pb$ con $Ux=y$ usando la sostituzione in avanti e all'indietro.
+
+La Fattorizzazione ha costo totale:\[\sum_{k=1}^{n-1}\left[(n-k)+2(n-k)^2\right]=\boxed{0(n^3)}\]
+Di cui $(n-k)$ è dato dalle divisioni, mentre $2(n-k)^2$ è dato dalle moltiplicazioni $+$ le somme.
+
+\colorbox{yellow}{Osservazione}: In moltissime applicazioni le matrici sono \underline{sparse}, ossia molti elementi sono nulli.
+\begin{note}{Matrici Sparse}{}
+    Una successione di matrici $A^{(n)}\in M_{n\times n}(\mathbb R)$ è \textbf{sparsa} se $n\in\left(A^{(n)}\right)=O(n)$
+\end{note}
 \end{document}
