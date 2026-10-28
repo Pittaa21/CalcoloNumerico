@@ -1547,13 +1547,37 @@ Se $P$ è una matrice di permutazione che rappresenta $\sigma$ ed $A$ ha dimensi
 
 \end{itemize}
 
-Le permutazioni più semplici sono gli scambi, se $\sigma$ è uno scambio $\left(k\to l,l\to k\right)$
+Le permutazioni più semplici sono gli scambi, se $\sigma$ è uno scambio $\left(k\to l,l\to k\right)$, allora
+vuole dire che $P_\sigma$ ha la diagonale con tutti $1$ e alla riga $k$ colonna $l$ ho $1$ e anche alla riga $l$ colonna $k$, mentre il resto rimane uguale.\\
+Equivale a prendere $\mathbb 1$ ed effettuare lo scambio o su righe o su colonne.
+
+Se si aggiunge nel vecchio algoritmo la possibilità di scambiare le righe, ossia il \textbf{pivoting parziale} $\times$ righe; si passa da:
+\begin{align*}
+    &A^1=A\\
+    &A^k=\widetilde{\operatorname{L}}^{(k-1)}A^{(k-1)}\quad k=2\dots n\\
+\end{align*}
+e diventa:
+\begin{align*}
+    &\widetilde{A}^1=A\\
+    &A^1=P^1A\\
+    &\widetilde{A}^k=\widetilde{L}^{(k-1)}A^{k-1}\\
+    &A^k=P^k\widetilde{A}^k
+\end{align*}
+Ossia ad ogni passo permuto e mi calcolo i moltiplicatori. Successivamente calcolo $\widetilde{L}^{(k-1)}$, poi moltiplico.
 
 \begin{defi}{Pivoting}{}
     Fattorizzazione $LU$ con \underline{pivoting} parziale per righe:
     \[\boxed{LU=PA}\]
     Quindi $Ax=b\Leftrightarrow PAx=Pb$ e $LUx=Pb$.
 \end{defi}
+Lo scambio permette di avere la possibilità di calcolo. La strategia di scelta del \textbf{pivot} ci consente di non averne uno troppo piccolo, che nel caso non andrebbe bene 
+dato che ci uscirebbe un moltiplicatore grande e avremmo una sottrazione tra due numeri grandi.
+
+Scelgo, quindi, $l>k\ :\ \left|A(l,k)\right|=\max_{p>k}\left|A(p,k)\right|$, ossia scelgo la riga in modo che il suo elemento nella posizione $k$ sia massimo in modulo rispetto agli elementi
+sotto la diagonale in una certa colonna.
+
+\[P^k=\mathbb 1_{k-1}\]
+
 Risolviamo $Ly=Pb$ con $Ux=y$ usando la sostituzione in avanti e all'indietro.
 
 La Fattorizzazione ha costo totale:\[\sum_{k=1}^{n-1}\left[(n-k)+2(n-k)^2\right]=\boxed{0(n^3)}\]
