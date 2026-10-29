@@ -1522,7 +1522,7 @@ moltiplicatori molto grandi e le sottrazioni per eliminare gli elementi sottodia
 la $k$-esima riga con quella $l$-esima con $l>k$.
 $\exists$ sicuramente $l>k:\ A^{(K)}(l,k)\ne0$.
 
-\subsection{Matrici di Permutazione}
+\subsection{Fattorizzazione con Pivoting}
 \begin{defi}{Matrice di Permutazione}{}
     Sia $P\in M_{n\times n}(\mathbb R):\ P_{ij}=\begin{cases}
             1 \\0
@@ -1565,26 +1565,71 @@ e diventa:
 \end{align*}
 Ossia ad ogni passo permuto e mi calcolo i moltiplicatori. Successivamente calcolo $\widetilde{L}^{(k-1)}$, poi moltiplico.
 
-\begin{defi}{Pivoting}{}
-    Fattorizzazione $LU$ con \underline{pivoting} parziale per righe:
-    \[\boxed{LU=PA}\]
-    Quindi $Ax=b\Leftrightarrow PAx=Pb$ e $LUx=Pb$.
-\end{defi}
 Lo scambio permette di avere la possibilità di calcolo. La strategia di scelta del \textbf{pivot} ci consente di non averne uno troppo piccolo, che nel caso non andrebbe bene 
 dato che ci uscirebbe un moltiplicatore grande e avremmo una sottrazione tra due numeri grandi.
 
 Scelgo, quindi, $l>k\ :\ \left|A(l,k)\right|=\max_{p>k}\left|A(p,k)\right|$, ossia scelgo la riga in modo che il suo elemento nella posizione $k$ sia massimo in modulo rispetto agli elementi
 sotto la diagonale in una certa colonna.
 
-\[P^k=\mathbb 1_{k-1}\]
+$P^k$ è una matrice che scambia la riga $k$ con una sucessiva, e sarà fatta nel seguente modo:
+\[P^k=\begin{pmatrix}
+    \mathbb 1_{k-1}& \mathbb 0_{k-1,n-(k-1)}\\
+    \mathbb 0_{n-(k-1),k-1}& \widetilde{P}^{(k)}_{n-(k-1)}
+\end{pmatrix}\]
+ossia le prime $k-1$ righe/colonne restano identiche si ha quindi $\mathbb 1_{k-1}$ e il restante della riga è $0$.
+Ad una determinata riga $l$ alla posizione $k$ avrò un $1$ (lo stesso vale per riga $k$ elemento $l$), mentre sulla stessa riga nella diagonale invece che $1$ ci sarà uno $0$.
+E il resto continua con la matrice diagonale.\\
+La \underline{matrice di scambio}, opera soltanto sulla parte inferiore della colonna dei moltiplicatori, 
+permettendo di permutare i coefficienti di Gauss senza rovinare la struttura inferiore triangolare dell'algoritmo.
 
-Risolviamo $Ly=Pb$ con $Ux=y$ usando la sostituzione in avanti e all'indietro.
+Moltiplicandolo con $\widetilde{\operatorname{L}}^{k-1}$ che ha elementi non nulli sono nella colonna $k-1$, ossia:
+\[\begin{pmatrix}
+    \mathbb 1_{k-1}&\mathbb 0_{k-1,n-(k-1)}\\
+    M^{(k-1)}&\mathbb 1_{n-(k-1)}
+\end{pmatrix}\]
+Ossia nella colonna $k-1$ sotto la diagonale, ci saranno i moltiplicatori $m$, ovviamente sulle colonne a sinistra dei moltiplicatori, cè $0$.
 
-La Fattorizzazione ha costo totale:\[\sum_{k=1}^{n-1}\left[(n-k)+2(n-k)^2\right]=\boxed{0(n^3)}\]
+Quindi
+\begin{align*}
+    P^k\cdot \widetilde{\operatorname{L}}^{k-1}=\begin{pmatrix}
+        \mathbb 1_{k-1}&\mathbb 0_{k-1,n-(k-1)}\\
+        d&\mathbb 1_{n-(k-1)}
+    \end{pmatrix}
+\end{align*}
+Il termine sotto diagonale alla colonna $k$ è $m$ con la permutazione dell'elemento $1$ con $l-k$.
+
+\begin{align*}
+    A^n&=\widetilde{\operatorname{L}}^{(n-1)}\operatorname{P}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\operatorname{P}^{(n-2)}\dots\widetilde{\operatorname{L}}^{(1)}\operatorname{P}^{(1)}A\\    
+    P^2\widetilde{\operatorname{L}}^1\operatorname{P}^1&=\operatorname{P}^2\widetilde{\mathcal{L}}(m^1)\operatorname{P}^1=\widetilde{\mathcal{L}}(\widetilde m^1)\operatorname{P}^2\operatorname{P}^1
+\end{align*}
+In questo passaggio $\widetilde{\mathcal{L}}(m^1)=\widetilde{\mathcal{L}}(\widetilde m^1)$ ho fatto la permutazione degli elementi diagonali come descritto prima.
+
+Iterando:
+\[\operatorname{P}^{n-1}\widetilde{\operatorname{L}}^{n-2}\dots\operatorname{P}^{2}\widetilde{\operatorname{L}}^{1}\operatorname{P}^1=\widetilde{\mathcal{L}}^{(n-1)}(\widetilde m^{(n-1)})\dots\widetilde{\mathcal{L}}^1(\widetilde m^1)\operatorname{P}^{n-1}\dots\operatorname{P}^1\]
+Dove gli $\widetilde{m}$ sono stati permutati con tutte le permutazioni che stavano alla loro sinistra.
+
+\colorbox{yellow}{Nota}: Le $\widetilde{\mathcal{L}}$ adesso, le so \underline{moltiplicare} ed \underline{invertire}.
+
+Ottengo quindi:\[\underbrace{\operatorname{L}^1\ \dots\ \operatorname{L}^{(n-1)}}_{\text{Triang. inf.}}\underbrace{A^n}_U=\underbrace{\operatorname{P}^{n-1}\ \dots\ \operatorname{P}^1}_{\text{Permutazione }\mathbb P}A\]
+Dove $U$ è, ovviamente, triangolare superiore.
+
+Abbiamo ottenuto quindi:
+\begin{defi}{Pivoting}{}
+    Fattorizzazione $LU$ con \underline{pivoting} parziale per righe del tipo:
+    \[\boxed{LU=PA}\]
+    Quindi 
+    \[Ax=b\Leftrightarrow PAx=Pb \text{ e }LUx=Pb\]
+\end{defi}
+
+Adesso risolviamo $Ly=Pb$ e poi $Ux=y$ usando la sostituzione in avanti e all'indietro.\\
+\textbf{FINE algoritmo} con pivoting.
+
+\subsubsection{Complessità Fattorizzazione $LU$}
+La Fattorizzazione ha costo totale "pessimistico":\[\sum_{k=1}^{n-1}\left[(n-k)+2(n-k)^2\right]=\boxed{0(n^3)}\]
 Di cui $(n-k)$ è dato dalle divisioni, mentre $2(n-k)^2$ è dato dalle moltiplicazioni $+$ le somme.
 
 \colorbox{yellow}{Osservazione}: In moltissime applicazioni le matrici sono \underline{sparse}, ossia molti elementi sono nulli.
 \begin{note}{Matrici Sparse}{}
-    Una successione di matrici $A^{(n)}\in M_{n\times n}(\mathbb R)$ è \textbf{sparsa} se $n\in\left(A^{(n)}\right)=O(n)$
+    Una successione di matrici $A^{(n)}\in M_{n\times n}(\mathbb R)$ è \textbf{sparsa} se $nz\left(A^{(n)}\right)=O(n)$, dove $nz$ sta per gli elementi \underline{non-zero}.
 \end{note}
 \end{document}
