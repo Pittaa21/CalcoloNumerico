@@ -1634,24 +1634,27 @@ Di cui $(n-k)$ è dato dalle divisioni, mentre $2(n-k)^2$ è dato dalle moltipli
 \end{note}
 
 \subsection{Metodi per sistemi lineari}
+Ci sono due metodi principali: quello \textbf{diretto} come la fattorizzazione $LU$, visto in precedenza; oppure i metodi \textbf{iterativi}.
+
 \colorbox{yellow}{Idea} dei metodi iterativi per la soluzione dei sistemi lineari:
 \begin{itemize}
-    \item[] Creare una successione di approssimazioni della soluzione in modo iterativo con basso costo computazionale della singola iterazione.
+    \item[] Creare una successione di approssimazioni della soluzione in modo iterativo con basso costo computazionale della singola iterazione.    
 \end{itemize}
 
 \begin{defi}{Metodo iterativo lineare stazionario}{}
     Dato un sistema lineare $Ex+q$, dove $E,q$ sono \textbf{costanti} e partendo da un vettore iniziale
     $x^{(0)}$. Assume la forma:
     \[x^{(k+1)}=\operatorname{F}_k(x^k)=\operatorname{E}x^{(k)}+q\]
-    E si dice \textbf{matrice di iterazione}.
+    La matrice $\operatorname{E}$ si dice \textbf{matrice di iterazione}.
 \end{defi}
 \begin{itemize}
-    \item $\exists\ x^\alpha\in\mathbb R^n:\ x^{(k)}\to x^x$ se $k\to +\infty$ per qualche norma $\left\|\cdot\right\|$ che 
-    \[\lim_{k\to +\infty}\left\|x^{(k)}-x^x\right\|=0\]
-    Se vale la convergenza in una norma allora vale per \underline{tutte} perchè $n<+\infty$.
-    \item Vogliamo che $Ax^x=b$ sia consistente
+    \item $\exists\ x^\ast\in\mathbb R^n:\ x^{(k)}\to x^\ast$ se $k\to +\infty$ per qualche norma $\left\|\cdot\right\|$ si ha che:
+    \[\lim_{k\to +\infty}\left\|x^{(k)}-x^\ast\right\|=0\]
+    Se vale la convergenza in una norma allora vale per \underline{tutte} perchè siamo in uno spazio vettoriale finito.
+    \item Vogliamo che $Ax^\ast=b$ (\textbf{consistenza})
 \end{itemize}
 
+Lo studio di questi aspetti avviene tramite il \underline{Lemma delle contrazioni}.
 \begin{defi}{Lemma delle contrazioni}{}
     Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ se $\exists\ \operatorname{L}<1$. Tale che (per una data
     norma $\left\|\cdot\right\|$)
@@ -1660,18 +1663,42 @@ Di cui $(n-k)$ è dato dalle divisioni, mentre $2(n-k)^2$ è dato dalle moltipli
 \end{defi}
 \colorbox{yellow}{Osservazione}: Se $\operatorname{F}$ è contrazione, allora è anche continua.
 
+\begin{theo}{Lemma delle contrazioni}{}
 Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ contrazione rispetto alla norma $\left\|\cdot\right\|$ della costante $\operatorname{L}<1$. Allora vale:
+
 \begin{enumerate}
-    \item $\exists\ x^x\in\mathbb R^n$ punto fisso di $\operatorname{F}$, cioè $\operatorname{F}(x^x)=x^x$
+    \item $\exists\ x^\ast\in\mathbb R^n$ ed è unico \underline{punto fisso} di $\operatorname{F}$, ossia \[\operatorname{F}(x^\ast)=x^\ast\]
     \item $\forall x^{(0)}\in\mathbb R^n$ la successione $\begin{cases}
         &x^{(0)}\quad\text{Dato}\\
-        &x^{(k+1)}=\operatorname{F}(x^x)
-    \end{cases}$ converge a $x^x$
-    \item Se $e^{(k)}=\left\|x^{(k)}-x^x\right\|$ vale 
+        &x^{(k+1)}=\operatorname{F}(x^\ast)
+    \end{cases}$ converge a $x^\ast$
+    \item Se $e^{(k)}=\left\|x^{(k)}-x^\ast\right\|$ vale 
     \[e^{(k)}\le\operatorname{L}e^{k-1}\le\operatorname{L}^2e^{(k-2)}\dots\le\operatorname{L}^ke^{(0)}\]
-    \textbf{Convergenza geometrica lineare}.
+    E si chiama \textbf{convergenza geometrica lineare}, ossia ad ogni passo l'errore viene dimezzato.
 \end{enumerate}
+\end{theo}
 
-\colorbox{yellow}{Dimostrazione}:
+\colorbox{yellow}{Richiami}:
+Ricordiamo da \underline{analisi 1} che $\mathbb R$ è completo ($\Rightarrow(\mathbb R,\left\|\cdot\right\|)$ è completo) e una:
+\[\text{successione è convergente}\Leftrightarrow\text{È successione di cauchy}\]
+$x^k$ è di \textbf{cauchy} in $\mathbb R$ se $\forall\epsilon>0\ \exists k_\epsilon$ tale che se $l,m>k$ allora $\left|x^l-x^m\right|<\epsilon$, ossia
+avanzando con l'indice della successione la differenza tra gli elementi, diminuisce continuamente.
+
+\colorbox{yellow}{Dimostrazione}: Siano $l,m>0$ con $l>m$ interi. Studio:
+\begin{align*}
+    \left\|x^{k+l}-x^{k+m}\right\|&=\left\|x^{k+l}-x^{k+l-1}+x^{k+l-1}\dots x^{k+m+1}-x^{k+m}\right\|\\
+    &\le\left\|x^{k+l}-x^{k+l-1}\right\|+\left\|x^{k+l-1}-x^{k+l-2}\right\|+\dots+\left\|x^{k+m+1}-x^{k+m}\right\|\\
+    x^{k+1}-x^k&:=S^k\quad\text{scarto}
+\end{align*}
+    Usando questa notazione
+    \[\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\left\|S^{k+m+j}\right\|\quad\circledast\]
+    Come posso stimare $\left\|S^k\right\|$?
+    \begin{align*}
+        \left\|S^k\right\|&=\left\|x^{k+1}-x^k\right\|\underset{\text{def. succ.}}{=}\left\|\operatorname{F}(x^k)-\operatorname{F}(x^{k-1})\right\|\\
+        \text{da def. contrazione}&\le\operatorname{L}\left\|x^k-x^{k-1}\right\|=\operatorname{L}\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^{k-2})\right\|\\
+        \text{da def. contrazione}&\le\operatorname{L}\cdot\operatorname{L}\left\|x^{k-1}-x^{k-2}\right\|\dots\le\operatorname{L}^k\cdot\left\|S_0\right\|\quad\blacktriangle\\
+        \circledast+\blacktriangle&=\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\operatorname{L}^{k+m+j}\cdot\left\|S_0\right\|\\
+        &=\operatorname{L}^{k+m}\left\|S_0\right\|\sum_{j=0}^{l-m-1}L^j\quad \text{(serie geometrica)}\frac{1-\operatorname{L}^{l-m}}{1-\operatorname{L}}
+    \end{align*}
 
 \end{document}
