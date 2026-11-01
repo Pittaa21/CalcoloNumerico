@@ -1656,7 +1656,7 @@ Ci sono due metodi principali: quello \textbf{diretto} come la fattorizzazione $
 
 Lo studio di questi aspetti avviene tramite il \underline{Lemma delle contrazioni}.
 \begin{defi}{Lemma delle contrazioni}{}
-    Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ se $\exists\ \operatorname{L}<1$. Tale che (per una data
+    Sia una funzione $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ se esiste $0\le\operatorname{L}<1$, tale che (per una data
     norma $\left\|\cdot\right\|$)
     \[\left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|\le\operatorname{L}\left\|x-y\right\|\quad\forall x,y\in\mathbb R^n\]
     Allora $\operatorname{F}$ è una \textbf{contrazione} di parametro $\operatorname L$ rispetto alla norma $\left\|\cdot\right\|$.
@@ -1664,13 +1664,13 @@ Lo studio di questi aspetti avviene tramite il \underline{Lemma delle contrazion
 \colorbox{yellow}{Osservazione}: Se $\operatorname{F}$ è contrazione, allora è anche continua.
 
 \begin{theo}{Lemma delle contrazioni}{}
-Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ contrazione rispetto alla norma $\left\|\cdot\right\|$ della costante $\operatorname{L}<1$. Allora vale:
+Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ contrazione rispetto alla norma $\left\|\cdot\right\|$ della costante $0\le\operatorname{L}<1$. Allora vale:
 
 \begin{enumerate}
-    \item $\exists\ x^\ast\in\mathbb R^n$ ed è unico \underline{punto fisso} di $\operatorname{F}$, ossia \[\operatorname{F}(x^\ast)=x^\ast\]
+    \item Esiste $x^\ast\in\mathbb R^n$ ed è l'unico \underline{punto fisso} di $\operatorname{F}$, ossia \(\operatorname{F}(x^\ast)=x^\ast\)
     \item $\forall x^{(0)}\in\mathbb R^n$ la successione $\begin{cases}
         &x^{(0)}\quad\text{Dato}\\
-        &x^{(k+1)}=\operatorname{F}(x^\ast)
+        &x^{(k+1)}=\operatorname{F}(x^k)
     \end{cases}$ converge a $x^\ast$
     \item Se $e^{(k)}=\left\|x^{(k)}-x^\ast\right\|$ vale 
     \[e^{(k)}\le\operatorname{L}e^{k-1}\le\operatorname{L}^2e^{(k-2)}\dots\le\operatorname{L}^ke^{(0)}\]
@@ -1690,15 +1690,32 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
     &\le\left\|x^{k+l}-x^{k+l-1}\right\|+\left\|x^{k+l-1}-x^{k+l-2}\right\|+\dots+\left\|x^{k+m+1}-x^{k+m}\right\|\\
     x^{k+1}-x^k&:=S^k\quad\text{scarto}
 \end{align*}
-    Usando questa notazione
-    \[\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\left\|S^{k+m+j}\right\|\quad\circledast\]
+    Usando questa notazione, si può maggiorare la distanza tra due elementi della successione $x^{k+l},x^{k+m}$, sommando gli scarti intermedi:
+    \[\boxed{\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\left\|S^{k+m+j}\right\|}\quad\circledast\]
     Come posso stimare $\left\|S^k\right\|$?
     \begin{align*}
-        \left\|S^k\right\|&=\left\|x^{k+1}-x^k\right\|\underset{\text{def. succ.}}{=}\left\|\operatorname{F}(x^k)-\operatorname{F}(x^{k-1})\right\|\\
-        \text{da def. contrazione}&\le\operatorname{L}\left\|x^k-x^{k-1}\right\|=\operatorname{L}\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^{k-2})\right\|\\
-        \text{da def. contrazione}&\le\operatorname{L}\cdot\operatorname{L}\left\|x^{k-1}-x^{k-2}\right\|\dots\le\operatorname{L}^k\cdot\left\|S_0\right\|\quad\blacktriangle\\
-        \circledast+\blacktriangle&=\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\operatorname{L}^{k+m+j}\cdot\left\|S_0\right\|\\
-        &=\operatorname{L}^{k+m}\left\|S_0\right\|\sum_{j=0}^{l-m-1}L^j\quad \text{(serie geometrica)}\frac{1-\operatorname{L}^{l-m}}{1-\operatorname{L}}
+        \left\|S^k\right\|&=\left\|x^{k+1}-x^k\right\|\underset{\text{p.2 lemma}}{=}\left\|\operatorname{F}(x^k)-\operatorname{F}(x^{k-1})\right\|\\
+        \text{da def. contrazione}&\le\operatorname{L}\left\|x^k-x^{k-1}\right\|\underset{\text{p.2 lemma}}{=}\operatorname{L}\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^{k-2})\right\|\\
+        \text{da def. contrazione}&\le\underbrace{\operatorname{L}\cdot\operatorname{L}\left\|x^{k-1}-x^{k-2}\right\|\dots}_{k\text{-volte}}\le\boxed{\operatorname{L}^k\cdot\left\|S_0\right\|}\quad\blacktriangle\\
+        \circledast\text{ unito a }\blacktriangle&=\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\operatorname{L}^{k+m+j}\cdot\left\|S_0\right\|\\
+        &=\operatorname{L}^{k+m}\left\|S_0\right\|\sum_{j=0}^{l-m-1}L^j
     \end{align*}
+        Quest'ultima sommatoria è una serie geometrica che converge a $\frac{1}{1-\operatorname{L}}$ dato che la ragione è: $0\le\operatorname{L}<1$.\\
+        Inoltre dato che $m$ può essere come minimo $1$, posso porre $\operatorname{L}^{k+m}\le\operatorname{L}^{k+1}$:
+    \begin{align*}
+        &<\operatorname{L}^{k+m}\left\|S_0\right\|\frac{1}{1-\operatorname{L}}\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}\quad\text{è $<$ di $\epsilon$? Per un certo $k$ grande}
+    \end{align*}
+    Adesso risolvo la disuguaglianza $\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon$
+    \begin{align*}
+        &\operatorname{L}^{k+1}<\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\\
+        &\text{uso i logaritmi}\\
+        &(k+1)\cdot\log\operatorname{L}<\log\left(\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\right)\\
+        &\Rightarrow\ k+1>\frac{\log\left(\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\right)}{\log\operatorname{L}}
+    \end{align*}
+    Viene cambiato il segno da $<$ a $>$ perchè il $\log$ di $\operatorname{L}$, ossia una quantità minore di $1$ da segno negativo.
+    Quindi $x^k$ è \textbf{successione di cauchy}, perchè se prendo un $k$ sufficientemente grande $\lim_{k\to\infty}\operatorname{L}^{k+1}=0$ e rispetta la
+    definizione di successione di \textbf{cauchy} dato che:
+    \[\left\|x^{k+l}-x^{k+m}\right\|\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon\quad\Rightarrow \left\|x^l-x^m\right\|<\epsilon\text{ (def. succ. cauchy)}\]
+    Sia $x^\ast$ il suo limite
 
 \end{document}
