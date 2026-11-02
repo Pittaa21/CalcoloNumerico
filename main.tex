@@ -1655,10 +1655,10 @@ Ci sono due metodi principali: quello \textbf{diretto} come la fattorizzazione $
 \end{itemize}
 
 Lo studio di questi aspetti avviene tramite il \underline{Lemma delle contrazioni}.
-\begin{defi}{Lemma delle contrazioni}{}
+\begin{defi}{Contrazione}{}
     Sia una funzione $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ se esiste $0\le\operatorname{L}<1$, tale che (per una data
     norma $\left\|\cdot\right\|$)
-    \[\left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|\le\operatorname{L}\left\|x-y\right\|\quad\forall x,y\in\mathbb R^n\]
+    \[\left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|\le\operatorname{L}\cdot\left\|x-y\right\|\quad\forall x,y\in\mathbb R^n\]
     Allora $\operatorname{F}$ è una \textbf{contrazione} di parametro $\operatorname L$ rispetto alla norma $\left\|\cdot\right\|$.
 \end{defi}
 \colorbox{yellow}{Osservazione}: Se $\operatorname{F}$ è contrazione, allora è anche continua.
@@ -1716,6 +1716,44 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
     Quindi $x^k$ è \textbf{successione di cauchy}, perchè se prendo un $k$ sufficientemente grande $\lim_{k\to\infty}\operatorname{L}^{k+1}=0$ e rispetta la
     definizione di successione di \textbf{cauchy} dato che:
     \[\left\|x^{k+l}-x^{k+m}\right\|\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon\quad\Rightarrow \left\|x^l-x^m\right\|<\epsilon\text{ (def. succ. cauchy)}\]
-    Sia $x^\ast$ il suo limite
+    Sia $x^\ast$ il suo limite. Dimostro che $x^\ast$ è unico punto fisso di $\operatorname{F}$:
+    \begin{align*}
+        &x^\ast\underset{\text{da def.}}{=}\lim_{k\to\infty}x^k=\lim_{k\to\infty}x^{k+1}\underset{\text{def. succ.}}{=}\lim_{k\to\infty}\operatorname{F}(x^k)\underset{\text{se }\operatorname{F}\text{ continua}}{=}\operatorname{F}\left(\lim_{k\to\infty}x^k\right)\\
+        &\text{So che $\operatorname{F}$ è continua dalla definizione.}\\
+        &=\operatorname{F}\left(x^\ast\right)=x^\ast\quad\checkmark
+    \end{align*}
+    Quindi $x^\ast$ è punto fisso.\\
+    Adesso devo dimostrare che è unico: Sia $y^\ast$ punto fisso di $\operatorname{F}$
+    \begin{align*}
+        &\underbrace{\left\|x^\ast-y^\ast\right\|}_{\text{distanza p. fissi}}=\left\|\operatorname{F}(x^\ast)-\operatorname{F}(y^\ast)\right\|\\
+        &\le\operatorname{L}\cdot\left\|x^\ast-y^\ast\right\|<\left\|x^\ast-y^\ast\right\|\quad\textbf{assurdo}
+    \end{align*}
+    Quindi $x^\ast=y^\ast$, ossia $x^\ast$ è unico punto fisso di $\operatorname{F}$.
+
+    Dimostro che l'errore di una qualsiasi iterazione rispetto al limite della successione decresce:
+    \begin{align*}
+        e^{(k)}&=\left\|x^k-x^\ast\right\|=\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^\ast)\right\|\\
+        &\le\operatorname{L}\left\|x^{k-1}-x^\ast\right\|=\operatorname{L}\left\|\operatorname{F}\left(x^{k-2}\right)-\operatorname{F}\left(x^\ast\right)\right\|\\
+        &\le\operatorname{L}^2\left\|x^{k-2}-x^\ast\right\|\le\dots\ \operatorname{L}^k\left\|x^0-x^\ast\right\|=\operatorname{L}^ke^{(0)}\quad\checkmark
+    \end{align*}
+
+    Io voglio approssimare la soluzione del sistema lineare $Ax=b$ con $A\in M_{n\times n}(\mathbb R)$ invertibile e $b\in\mathbb R^n$ dati.
+    Dal fatto che $A$ è invertibile ottengo che $x=A^{-1}b$ voglio scrivere $\operatorname{F}$ in modo che questo sia il suo punto fisso.\\
+    Quindi:
+    \begin{align*}
+        &Ex+q=x\\
+        &EA^{-1}b+q=A^{-1}b\Rightarrow \underset{\text{condizione per consistenza}}{\left(\mathbb 1-E\right)A^{-1}b=q}\\
+        &\text{Soluzione banale: $E=\mathbb 1-A\quad q=b\quad$(metodo di \textbf{Richardson}) consistenza verificata}
+    \end{align*}
+
+    Per la \textbf{convergenza}: Data una norma $\left\|\cdot\right\|$ su $\mathbb R^n$ e con $\operatorname{F}$ di Richardson
+    \begin{align*}
+        \left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|&=\left\|Ex+q-Ey-q\right\|=\left\|E(x-y)\right\|\\
+        &\le\left\|E\right\|_\ast\left\|x-y\right\|
+    \end{align*}
+    Esiste il caso sharp, quindi la miglior costante $\operatorname{L}$ è $\left\|E\right\|_\ast=\left\|\mathbb 1-A\right\|_\ast<1$.
+
+    Il lemma delle contrazioni mi dice che ho convergenza se $A$ non è troppo distante da $\mathbb 1$ (condizione molto stringente).
+
 
 \end{document}
