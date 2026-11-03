@@ -1069,7 +1069,7 @@ Come è condizionato il problema?
                & \Rightarrow\quad\left\|\delta x\right\|=\left\|A^{-1}\delta b\right\|\le\left\|A^{-1}\right\|_*\left\|\delta b\right\|\quad\circledast
           \end{align*}
 
-          \begin{note}{}{}
+          \begin{note}{Norma Indotta}{}
               Dato che
               \[\frac{\left\|Ax\right\|}{\left\|x\right\|}\le\sup_{y}\frac{\left\|Ay\right\|}{\left\|y\right\|}=\left\|A\right\|_*\quad \forall x\in\mathbb{R}^n\]
               Allora:
@@ -1161,7 +1161,7 @@ Chi è la \textbf{Norma indotta} su $M_{n\times n}(\mathbb R)$?
 \end{align*}
 \begin{note}{}{}
     $M$ è una matrice quadrata, \underline{se} è diagonalizzabile allora:$$M=P\Lambda P^{-1}$$
-    Dove $\lambda$ è la matrice diagonale con gli autovalori di $M$ e $P$ è una matrice invertibile le cui colonne sono autovettori di $M$.
+    Dove $\Lambda$ è la matrice diagonale con gli autovalori di $M$ e $P$ è una matrice invertibile le cui colonne sono autovettori di $M$.
 \end{note}
 
 \subsubsection{Teorema Spettrale}
@@ -1749,11 +1749,69 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
     Per la \textbf{convergenza}: Data una norma $\left\|\cdot\right\|$ su $\mathbb R^n$ e con $\operatorname{F}$ di Richardson
     \begin{align*}
         \left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|&=\left\|Ex+q-Ey-q\right\|=\left\|E(x-y)\right\|\\
-        &\le\left\|E\right\|_\ast\left\|x-y\right\|
+        &\underset{\text{prop. norma ind.}}{\le}\left\|E\right\|_\ast\left\|x-y\right\|
     \end{align*}
     Esiste il caso sharp, quindi la miglior costante $\operatorname{L}$ è $\left\|E\right\|_\ast=\left\|\mathbb 1-A\right\|_\ast<1$.
 
     Il lemma delle contrazioni mi dice che ho convergenza se $A$ non è troppo distante da $\mathbb 1$ (condizione molto stringente).
 
+    Usando \textbf{Richardson}, inoltre se $\left\|E\right\|_\ast<1\Rightarrow\forall x^0\in\mathbb R^n\quad x^{(k)}\to x^\ast$ con $x^{(k)}$ punto fisso
+    unico di $\operatorname{F}$:
+    \begin{align*}
+        x^\ast&=\operatorname{F}\left(x^\ast\right)=\left(\mathbb 1-A\right)x^\ast+b=x^\ast-Ax^\ast+b\\
+        &\underset{\text{sottr. } x^\ast}{\Rightarrow} -Ax^\ast+b=0\Rightarrow Ax^\ast=b
+    \end{align*}
+    
+    Quindi la successione è:
+    \begin{align*}
+        &x^{(0)}\\
+        &x^{(1)}=Ex^{(0)}+q\\
+        &x^{(2)}=Ex^{(1)}+q=E^2x^{(0)}+Eq+q\\
+        &\vdots\\
+        &x^{(k)}=E^kx^{(0)}+\sum_{j=0}^{k-1}E^jq
+    \end{align*}
+
+    Supponiamo che $E$ è \underline{diagonalizzabile}, per \textbf{nota 2}:
+    \[E=P^{-1}\Lambda P\quad\text{con}\quad\Lambda=\begin{pmatrix}
+        \lambda_1&\dots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\dots&\lambda_n
+    \end{pmatrix}\]
+    Di conseguenza la successione diventa:
+    \begin{align*}
+        x^{(k)}&=\left(P^{-1}\Lambda P\right)^kx^0+\sum_{j=0}^{k-1}\left(P^{-1}\Lambda P\right)^jq\\
+        E^2&=P^{-1}\Lambda \underbrace{P\cdot P^{-1}}_{\mathbb 1}\Lambda P=P^{-1}\Lambda^2 P=P^{-1}
+        \begin{pmatrix}
+            \lambda^2_1&\dots&0\\
+            &\vdots&\ddots&\vdots\\
+            0&\dots&\lambda^2_n
+        \end{pmatrix}P
+    \end{align*}
+    \begin{align*}
+        E^j&=\overbrace{P^{-1}\Lambda \underbrace{P\cdot P^{-1}}_{\mathbb 1}\Lambda P\dots P^{-1}\Lambda P}^{j\text{-volte}}=P^{-1}\overbrace{\Lambda\dots\Lambda}^{j\text{-volte}}P\\
+        &\text{Quindi}\\
+        x^{(k)}&=P^{-1}\Lambda^k Px^{(0)}+\sum_{j=0}^{k-1}P^{-1}\Lambda^j Pq\\
+        Px^{(k)}&=\Lambda^kPx^{(0)}+Pq\left(\sum_{j=0}^{k+1}\Lambda^j\right)\\
+        y^{(k)}&:=Px^{(k)}\quad s=Pq\\
+        y^{(k)}&=\Lambda^ky^{(0)}+\left(\sum_{j=0}^{k-1}\Lambda^j\right)s\\
+        \begin{pmatrix}
+            y_1^{(k)}\\
+            \vdots\\
+            y_n^{(k)}
+        \end{pmatrix}&=
+        \begin{pmatrix}
+            \lambda_1^{k}y_1^{(0)}\\
+            \vdots\\
+            \lambda_n^{k}y_n^{(0)}
+        \end{pmatrix}+\begin{pmatrix}
+            \sum_{j=0}^{k+1}\lambda_1^j\cdot s_1\\
+            \vdots\\
+            \sum_{j=0}^{k+1}\lambda_n^j\cdot s_n
+        \end{pmatrix}\\
+        &=\lambda_i^ky_i^{(0)}+\underset{\text{serie geom.}}{\boxed{\frac{1-\lambda_i^k}{1-\lambda_i}}}s_i
+    \end{align*}
+    Se $\left|\lambda_i\right|<1\ \forall i=1\dots n$, allora il limite di questa espressione per $+\infty$ è
+    $\quad 0\cdot y_i^{(0)}+\frac{1}{1-\lambda_i}s_i$. 
+    
 
 \end{document}
