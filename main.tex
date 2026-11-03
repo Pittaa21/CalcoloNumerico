@@ -993,7 +993,7 @@ Se vale:
 \colorbox{yellow}{Nota}: $\alpha<1\quad\left|\widetilde{d}-d\right|<<1\Rightarrow\left|\widetilde{d}-d\right|^\alpha >>\left|\widetilde{d}-d\right|$.
 
 
-\section{Algebra Lineare Numerica}
+\section{Sistemi Lineari}
 
 \subsection{Soluzione di Sistemi Quadrati}
 \colorbox{yellow}{Problema}:\(\qquad A\in M_{n\times n}(\mathbb{R}),b\in\mathbb{R}^n \quad\) con $A$ invertibile.\\
@@ -1810,8 +1810,19 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
         \end{pmatrix}\\
         &=\lambda_i^ky_i^{(0)}+\underset{\text{serie geom.}}{\boxed{\frac{1-\lambda_i^k}{1-\lambda_i}}}s_i
     \end{align*}
-    Se $\left|\lambda_i\right|<1\ \forall i=1\dots n$, allora il limite di questa espressione per $+\infty$ è
-    $\quad 0\cdot y_i^{(0)}+\frac{1}{1-\lambda_i}s_i$. 
+    Se $\left|\lambda_i\right|<1\ \forall i=1\dots n$, allora il limite di questa espressione per $k\to+\infty$ è
+    \[\quad 0\cdot y_i^{(0)}+\frac{1}{1-\lambda_i}s_i\]
+    Dimostriamo che $y^{(k)}$ tende a:
+    \[\begin{pmatrix}
+        \frac{1}{1-\lambda_1}s_1\\
+        \vdots\\
+        \frac{1}{1-\lambda_n}s_n
+    \end{pmatrix}=:y^\ast\]
     
+    \begin{align*}
+        \left\|y^{(k)}-y^\ast\right\|_\infty=&\max_{i}\underbrace{|\lambda_i^ky_i^{(0)}+\frac{1-\lambda_i^k}{1-\lambda_i}s_i}_{y^{(k)}}-\underbrace{\frac{1}{1-\lambda_i}s_i|}_{y^\ast}\\
+        =&\max_{i}\left|\lambda_i^ky_i^{(0)}-\frac{\lambda_i^k}{1-\lambda_i}s_i\right|\\
+        \le&\max_i \left(\left|\lambda_i^k\right|\cdot\left|y_i^{(0)}\right|+\frac{\left|\lambda_i^k\right|}{\left|1-\lambda_i\right|}\left|s_i\right|\right)\\
+    \end{align*}
 
 \end{document}
