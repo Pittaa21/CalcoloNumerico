@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1793714302.42307 "/home/pitta/Documents/latex/Calcolo Numerico/main.tex" "main.pdf" "main" 1793714305.35367 0
-  "/home/pitta/Documents/latex/Calcolo Numerico/main.tex" 1793714302.0989 94164 ba815caa8b3db51a9a88a80ae3e81056 ""
+["pdflatex"] 1793723658.9067 "/home/pitta/Documents/latex/Calcolo Numerico/main.tex" "main.pdf" "main" 1793723661.06099 0
+  "/home/pitta/Documents/latex/Calcolo Numerico/main.tex" 1793723658.67753 94177 918ded692f71ef9f7d98d6d23d3b620b ""
   "/usr/share/texmf-dist/fonts/enc/dvips/atkinson/atkinsn_bbsfwk.enc" 1775415801 2857 21ad4dc471fdf21b7b4c9b6eb60e24e4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/atkinson/atkinsn_ghg2ik.enc" 1775415801 3174 0c6c5ae77c2a5f9bf266d3937ce3634b ""
   "/usr/share/texmf-dist/fonts/enc/dvips/atkinson/atkinsnmono_bbsfwk.enc" 1775415801 2840 18f449c2a472ce7209545c314406be19 ""
@@ -274,10 +274,10 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1775415801 43569 fd570f2fa160877d211e859f687312ba ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1790683333 5385779 47c0c393a77fd4a098bacfd57d66b88a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1793027276 2328196 404fd8dcaa4578afdf165f66ef3d42dc ""
-  "main.aux" 1793714305.26971 5762 d2333f41f05f2d97bf744b3ce271a303 "pdflatex"
-  "main.out" 1793714305.27071 7743 f597c260216606715dde6f13db9aac0d "pdflatex"
-  "main.tex" 1793714302.0989 94164 ba815caa8b3db51a9a88a80ae3e81056 ""
-  "main.toc" 1793714305.27213 3877 ac32087516d64ec69d6110d901c58ec9 "pdflatex"
+  "main.aux" 1793723660.97595 5762 d2333f41f05f2d97bf744b3ce271a303 "pdflatex"
+  "main.out" 1793723660.97695 7743 f597c260216606715dde6f13db9aac0d "pdflatex"
+  "main.tex" 1793723658.67753 94177 918ded692f71ef9f7d98d6d23d3b620b ""
+  "main.toc" 1793723660.97739 3877 ac32087516d64ec69d6110d901c58ec9 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
