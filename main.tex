@@ -1847,11 +1847,73 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
     \end{pmatrix}\cdot s=\left(\mathbb 1-\Lambda\right)^{-1}s\]
     allora $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}s=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$.
 
-    Prediamo $\lambda_i$ \underline{autovalore} di $\mathbb 1-A$, quindi $v_i$ è il suo autovettore tale che:
+    Prediamo, quindi, $\lambda_i$ \underline{autovalore} di $E=\mathbb 1-A$, quindi $v_i$ è il suo autovettore tale che:
     \begin{align*}
         &\left(\mathbb 1-A\right)v_i=\lambda_iv_i\\
-        &v_i-Av_i=\lambda_iv_i\Rightarrow\quad Av_i=\left(\mathbb 1-\lambda_i\right)v_i
+        &v_i-Av_i=\lambda_iv_i\Rightarrow\quad Av_i=\left( 1-\lambda_i\right)v_i
     \end{align*}
-    In questo modo abbiamo dimostrato che $v_i$ è \underline{autovettore} di $A$ per definizione di autovettore.
+    In questo modo abbiamo dimostrato che $v_i$ è \underline{autovettore} di $A$ per la definizione di autovettore. Gli 
+    autovalori di $A$ sono $1-\lambda_i$ e definiamo $\lambda_i:=1-\sigma$.
 
+    Se $A$ è diagonalizzabile $Q^{-1}\Sigma Q$ con $\Sigma=\begin{smallmatrix}
+        \sigma_1\\
+        &\ddots\\
+        &&\sigma_n
+    \end{smallmatrix}$ allora:
+    \[\mathbb 1-A=Q^{-1}Q-Q^{-1}\Sigma Q=Q^{-1}\left(\mathbb 1-\Sigma\right)Q\]
+    Quindi abbiamo dimostrato che se $Q$ diagonalizza $A$, diagonalizza anche $E\Rightarrow P=Q$.
+
+    Dato che $\lambda_i=1-\sigma_i$ allora $\Lambda=\mathbb 1-\Sigma$.\\
+    Riprendiamo $\circledast$, ossia $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$:
+    \begin{align*}
+        &\circledast\Rightarrow x^\ast=P^{-1}\left(\mathbb 1-\underline{\left(\mathbb 1-\Sigma\right)}_{\Lambda}\right)^{-1}Pb=P^{-1}\Sigma^{-1}Pb\\
+        &=A^{-1}b\\
+        &\text{Se }A=P^{-1}\Sigma P\Rightarrow A^{-1}=P^{-1}\Sigma^{-1}P
+    \end{align*}
+
+    Questo dimostra per matrici:
+    \begin{itemize}
+        \item [A)] Diagonalizzabili
+        \item [B)] $\rho(E)<1\quad$ dove $\rho(E)$ è il \textbf{raggio spettrale} e $\rho(E)=\max\{\left|\lambda_i\right|,\lambda_i\text{ autovalore}\}$, ossia il massimo autovalore
+    \end{itemize}
+
+    \begin{defi}{Serie di Neumann}{}
+        È la serie\[\sum_{j=0}^{+\infty}E^j\overset{*}{=}\left(\mathbb 1-E\right)^{-1}\]
+        La serie è sempre convergente se $\rho(E)<1$.
+    \end{defi}
+    Significa che:\[\lim_{N\to+\infty}\left\|\sum_{j=0}^{N}E^j-\left(\mathbb 1-E\right)^{-1}\right\|=0\quad\forall\left\|\cdot\right\|\text{ Norma di matrici}\]
+
+    L'ipotesi A) è "inutile". Si può replicare la dimostrazione usando \[A=P^{-1}\begin{pmatrix}
+        J_1&&0\\
+        &\ddots\\
+        0&&J_n
+    \end{pmatrix}P\quad\text{con }J_i=\begin{pmatrix}
+        \lambda&1&&0\\
+        &\ddots&\ddots\\
+        0&&\lambda&1
+    \end{pmatrix}\]
+    Si calcola $J^k$ e $\left(\mathbb 1-J\right)^{-1}$ come sono fatti e si ripete la stessa dimostrazione fatta con le matrici Diagonalizzabili.
+
+    \colorbox{yellow}{Corollario}:\\
+    Se $\rho(E)<1$ prendo $\epsilon<1-\rho(E)\ \exists\left\|\cdot\right\|$ su $\mathbb R^n$ che induce
+    $\left\|\cdot\right\|_\ast$ con $\left\|E\right\|_\ast\le\rho(E)+\epsilon<\rho(E)+1-\rho(E)=1$.
+
+    \subsection{Splitting Classico}
+    Per risolvere i sistemi $Ax=b$, dato che è difficile fare in modo che la matrice di iterazione ottenuta da Richardson soddisfi $\rho(E)<1$, si usa quindi la notazione 
+    \[\boxed{A=L+D+U}\]
+    Dove $L$ è una matrice diagonale inferiore, $U$ una matrice diagonale superiore e $D$ la diagonale principale.\\
+    L'idea alla base dei metodi iterativi basati su questa scomposizione, è di scrivere $A$ come $A=P-N$ dove $P$ è la matrice \textbf{precondizionata} scelta dal metodo. Si deve calcolare
+    la matrice di \textbf{iterazione}$E$ e il vettore $q$. L'equazione iterativa sarà $x^{(k+1)}=Ex^{(k)}+q$.
+
+    \subsubsection{Metodo di Jacobi}
+    Si sceglie di isolare solo la diagonale. Se $D_{ii}\ne0\ \forall i=1,\dots,n$ (invertibile), $P=D$, $E=\left(\mathbb 1-D^{-1}A\right)$ e $q=D^{-1}b$.
+    Quindi la successione diventa:\[\begin{cases}
+        x^0\\
+        x^{k+1}=\underbrace{\left(\mathbb 1-D^{-1}A\right)}_Ex^k+\underbrace{D^{-1}b}_q
+    \end{cases}\]
+
+    Se gli elementi diagonali hanno ordini di grandezza molto diversi tra loro, il metodo può risultare instabile (problema di \textbf{scaling}).
+
+    \subsubsection{Metodo di Gauss-Seidel}
+    Si pone $P=D+L$, $E=\mathbb 1-\left(D+L\right)^{-1}\cdot A$ e $q=\left(D+L\right)^{-1}\cdot b$, solo se $D+L$ è invertibile
 \end{document}

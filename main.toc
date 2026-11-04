@@ -1,43 +1,46 @@
-\contentsline {section}{\numberline {1}Sistemi non decimali}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Conversione della parte intera}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Conversione della parte frazionaria}{3}{subsection.1.2}%
-\contentsline {section}{\numberline {2}Numeri macchina}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Interi macchina}{4}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Overflow}{5}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Floating point e standard IEEE 754}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Tabella riassuntiva IEEE 754}{6}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Arrotondamento e troncamento}{6}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Errore e norme}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Errore assoluto e relativo}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Norma euclidea}{7}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Norma $p$}{7}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Norma infinito}{8}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Equivalenza delle norme}{8}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Errore relativo}{8}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Floating point: successivo e precedente}{8}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Errore di rappresentazione}{9}{subsection.3.8}%
-\contentsline {subsubsection}{\numberline {3.8.1}Errore dovuto al troncamento}{9}{subsubsection.3.8.1}%
-\contentsline {subsubsection}{\numberline {3.8.2}Errore dovuto all'arrotondamento}{9}{subsubsection.3.8.2}%
-\contentsline {section}{\numberline {4}Precisione di macchina}{9}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Operazioni macchina}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Errore relativo della moltiplicazione}{10}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Errore relativo della somma}{10}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Stabilità degli algoritmi}{11}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Condizionamento dei problemi}{12}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Condizionamento di un problema ben posto}{13}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Condizionamento locale relativo}{13}{subsubsection.4.5.2}%
-\contentsline {subsubsection}{\numberline {4.5.3}Condizionamento globale di ordine $\alpha $}{14}{subsubsection.4.5.3}%
-\contentsline {section}{\numberline {5}Sistemi Lineari}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Soluzione di Sistemi Quadrati}{15}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Norma indotta}{16}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Teorema Spettrale}{19}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Decomposizione ai valori singolari (SVD)}{20}{subsubsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.3}Risoluzione pratica $Ax=b$}{21}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Caso inferiore}{21}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Caso superiore}{21}{subsubsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.4}Fattorizzazione}{22}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Algoritmo Instabile}{23}{subsubsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.5}Fattorizzazione con Pivoting}{26}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Complessità Fattorizzazione $LU$}{27}{subsubsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.6}Metodi per sistemi lineari}{28}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Convergenza metodo di Richardson}{30}{subsubsection.5.6.1}%
+\contentsline {section}{\numberline {1}Sistemi non decimali}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Conversione della parte intera}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Conversione della parte frazionaria}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Numeri macchina}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Interi macchina}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Overflow}{6}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Floating point e standard IEEE 754}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Tabella riassuntiva IEEE 754}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Arrotondamento e troncamento}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Errore e norme}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Errore assoluto e relativo}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Norma euclidea}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Norma $p$}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Norma infinito}{9}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Equivalenza delle norme}{9}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Errore relativo}{9}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Floating point: successivo e precedente}{9}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Errore di rappresentazione}{10}{subsection.3.8}%
+\contentsline {subsubsection}{\numberline {3.8.1}Errore dovuto al troncamento}{10}{subsubsection.3.8.1}%
+\contentsline {subsubsection}{\numberline {3.8.2}Errore dovuto all'arrotondamento}{10}{subsubsection.3.8.2}%
+\contentsline {section}{\numberline {4}Precisione di macchina}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Operazioni macchina}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Errore relativo della moltiplicazione}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Errore relativo della somma}{11}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Stabilità degli algoritmi}{12}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Condizionamento dei problemi}{13}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Condizionamento di un problema ben posto}{14}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Condizionamento locale relativo}{14}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Condizionamento globale di ordine $\alpha $}{15}{subsubsection.4.5.3}%
+\contentsline {section}{\numberline {5}Sistemi Lineari}{16}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Soluzione di Sistemi Quadrati}{16}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Norma indotta}{17}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Teorema Spettrale}{20}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Decomposizione ai valori singolari (SVD)}{21}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Risoluzione pratica $Ax=b$}{22}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Caso inferiore}{22}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Caso superiore}{22}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4}Fattorizzazione}{23}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Algoritmo Instabile}{24}{subsubsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.5}Fattorizzazione con Pivoting}{27}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Complessità Fattorizzazione $LU$}{28}{subsubsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.6}Metodi per sistemi lineari}{29}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Convergenza metodo di Richardson}{31}{subsubsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.7}Splitting Classico}{34}{subsection.5.7}%
+\contentsline {subsubsection}{\numberline {5.7.1}Metodo di Jacobi}{34}{subsubsection.5.7.1}%
+\contentsline {subsubsection}{\numberline {5.7.2}Metodo di Gauss-Seidel}{35}{subsubsection.5.7.2}%
