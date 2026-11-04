@@ -1746,6 +1746,7 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
         &\text{Soluzione banale: $E=\mathbb 1-A\quad q=b\quad$(metodo di \textbf{Richardson}) consistenza verificata}
     \end{align*}
 
+    \subsubsection{Convergenza metodo di Richardson}
     Per la \textbf{convergenza}: Data una norma $\left\|\cdot\right\|$ su $\mathbb R^n$ e con $\operatorname{F}$ di Richardson
     \begin{align*}
         \left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|&=\left\|Ex+q-Ey-q\right\|=\left\|E(x-y)\right\|\\
@@ -1823,7 +1824,34 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
         \left\|y^{(k)}-y^\ast\right\|_\infty=&\max_{i}\underbrace{|\lambda_i^ky_i^{(0)}+\frac{1-\lambda_i^k}{1-\lambda_i}s_i}_{y^{(k)}}-\underbrace{\frac{1}{1-\lambda_i}s_i|}_{y^\ast}\\
         =&\max_{i}\left|\lambda_i^ky_i^{(0)}-\frac{\lambda_i^k}{1-\lambda_i}s_i\right|\\
         \le&\max_i \left(\left|\lambda_i^k\right|\cdot\left|y_i^{(0)}\right|+\frac{\left|\lambda_i^k\right|}{\left|1-\lambda_i\right|}\left|s_i\right|\right)\\
-        \le&
+        \le&\left(\max_i \left|\lambda_i\right|\right)^k\cdot\underbrace{\left(\max_i \left|y_i^{(0)}\right|\right)}_{\text{costante }C}+\frac{\underset{i}{\max} \left|\lambda_i^k\right|}{\underset{i}{\min}\underbrace{\left|1-\lambda_i\right|}_{<\ 0}}\underbrace{\max_i\left|s_i\right|}_{\text{costante }C}\\
+        C:=&\left(\max_i \left|y_i^{(0)}\right|\right)+\frac{\underset{i}{\max}\left|s_i\right|}{\underset{i}{\min}\left|1-\lambda_i\right|}\\
+        \left\|y^{(k)}-y^\ast\right\|_\infty\le&\left(\max_i\left|\lambda_i\right|\right)^k\cdot C
     \end{align*}
+    
+    Dato che $\lambda_i<1\ \forall i$, allora $\underset{i}{\max}\left|\lambda_i\right|<1$ e se faccio il limite:
+    \[\lim_{k\to+\infty}\left\|y^{(k)}-y^\ast\right\|_\infty=\ \boxed{\lim_{k\to+\infty}\left(\max_i\left|\lambda_i^k\right|\right)\cdot C=0}\]
+    Ossia $y^{(k)}\to y^\ast$. Avevamo però fatto un cambio di variabile.
+
+    Ora dobbiamo ridefinire $x^\ast=:P^{-1}y^\ast$ perchè $y^{(k)}=Px^{(k)}$, così possiamo determinare il limite con le variabili iniziali. Quindi calcoliamo la distanza:
+    \begin{align*}
+        \left\|x^{(k)}-x^\ast\right\|=&\left\|P^{-1}y^{(k)}-P^{-1}y^\ast\right\|\le\left\|P^{-1}\right\|\cdot\underbrace{\left\|y^{(k)}-y^\ast\right\|}_{\text{$\Rightarrow0\ \ k\to+\infty$}}
+    \end{align*}
+    Quindi dato che $P^{-1}$ è una matrice fissa, allora la sua norma è una costante. Ciò implica che \[\lim_{k\to+\infty}\left\|x^{(k)}-x^\ast\right\|=0\quad\checkmark\]
+    Ho dimostrato che la successione iniziale \textbf{converge}.
+
+    \colorbox{yellow}{Osservazione}: \[y^\ast=\begin{pmatrix}
+        \frac{1}{1-\lambda_1}&\dots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\dots&\frac{1}{1-\lambda_n}
+    \end{pmatrix}\cdot s=\left(\mathbb 1-\Lambda\right)^{-1}s\]
+    allora $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}s=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$.
+
+    Prediamo $\lambda_i$ \underline{autovalore} di $\mathbb 1-A$, quindi $v_i$ è il suo autovettore tale che:
+    \begin{align*}
+        &\left(\mathbb 1-A\right)v_i=\lambda_iv_i\\
+        &v_i-Av_i=\lambda_iv_i\Rightarrow\quad Av_i=\left(\mathbb 1-\lambda_i\right)v_i
+    \end{align*}
+    In questo modo abbiamo dimostrato che $v_i$ è \underline{autovettore} di $A$ per definizione di autovettore.
 
 \end{document}
