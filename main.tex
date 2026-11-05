@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[most]{tcolorbox}
 \usepackage{array}
+\usepackage{tikz}
 \usepackage[table,dvipsnames]{xcolor}
 \usepackage{graphicx, float}
 \usepackage[T1]{fontenc}
@@ -1915,5 +1916,77 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
     Se gli elementi diagonali hanno ordini di grandezza molto diversi tra loro, il metodo può risultare instabile (problema di \textbf{scaling}).
 
     \subsubsection{Metodo di Gauss-Seidel}
-    Si pone $P=D+L$, $E=\mathbb 1-\left(D+L\right)^{-1}\cdot A$ e $q=\left(D+L\right)^{-1}\cdot b$, solo se $D+L$ è invertibile
+    Si pone $P=D+L$, $E=\mathbb 1-\left(D+L\right)^{-1}\cdot A$ e $q=\left(D+L\right)^{-1}\cdot b$, solo se $D+L$ è invertibile.\\
+    $\det(D+L) = \prod_{i}\ D_{ii}\neq 0$, come per Jacobi, tutti gli elementi della diagonale di $A$ devono essere $\ne0$.
+
+    L'iterazione diventa quindi:
+    \begin{align*}
+        x^{(k+1)}=&\underbrace{\left(\mathbb 1-\left(D+L\right)^{-1}A\right)}_Ex^{(k)}+\underbrace{\left(D+L\right)^{-1}b}_q\\
+        =&\left(\mathbb 1-\left(D+L\right)^{-1}\underbrace{\left(D+L+U\right)}_A\right)x^{(k)}+\left(D+L\right)^{-1}b\\
+        =&\left(\mathbb 1-\mathbb 1-\left(D+L\right)^{-1}U\right)x^{(k)}+\left(D+L\right)^{-1}b\\
+        =&\left(-\left(D+L\right)^{-1}U\right)x^{(k)}+\left(D+L\right)^{-1}b\\
+        =&\left(D+L\right)^{-1}\cdot\left(b-Ux^{(k)}\right)
+    \end{align*}
+    Quindi $x^{(k+1)}$ è soluzione di $\left(D+L\right)x^{(k+1)}=\left(b-Ux^{(k)}\right)$ e si calcola tramite la \textbf{sostituzione in avanti}.
+
+    \subsubsection{I Teoremi di Gershgorin}
+    \begin{defi}{Cerchio di Gershgorin}{}
+        Sia la matrice $A\in M_{n\times n}(\mathbb R)$, il cui spettro (l'insieme di tutti i suoi \underline{autovalori}) è l'unione della serie di cerchi:
+        \[\bigcup_{i=1}^{n} B\left( E_{ii}, \sum_{j \neq i} |E_{ij}| \right)\]
+        ossia il \textbf{cerchio di Gershgorin}.
+    \end{defi}
+    \colorbox{yellow}{Spiegazione}: Per ogni riga $i$ della matrice, si costruisce un cerchio. Dove $B(x,r)$ è l'insieme: $\{z\in\mathbb C:\ |z-x|<r\}$,
+        ossia l'intorno circolare con raggio $r=\overset{n}{\underset{j=1,j\ne i}{\sum}}\left|A_{ij}\right|$ e centro $x$, ossia l'elemento $i$-esimo della diagonale principale.
+
+    Si utilizza per localizzare gli autovalori di una matrice e garantire la convergenza di metodi iterativi (come Jacobi e Gauss).
+
+    \begin{ex}{Cerchio di Gershgorin}{}
+        Prendiamo la matrice: \[A=\begin{pmatrix}
+            2&-1&0\\
+            -1&2&-1\\
+            0&-1&2
+        \end{pmatrix}\]
+        Se $\lambda$ è nello spettro di $A$.
+    \end{ex}
+    Allora $\lambda\in B(\underset{A_{11}}{2},\underset{|-1|+|0|}{1})\ \cup\ B(2,2)\ \cup\ B(2,1)$
+\newpage
+\begin{center}
+    \colorbox{yellow}{Grafico}
+
+    \begin{tikzpicture}
+    % Assi cartesiani
+    \draw[thick, ->] (0,0) -- (5.5,0) node[right] {\(x\)};
+    \draw[thick, ->] (0,-3) -- (0,3) node[above] {\(y\)};
+
+    \draw[red, thick] (2,0) circle (2);
+    \draw[green, thick] (2,0) circle (1);
+    % Punto del centro
+    \filldraw (2,0) circle (1.5pt) node[below] {\(2\)};
+    \filldraw (0,0) circle (1pt) node[left] {\(0\)};
+    % Raggio
+    \draw[thick] (2,0) -- (3.3,1.5) node[midway, right] {\(2\)};
+    \draw[thick] (2,0) -- (2.85,-0.5) node[below, right] {\(1\)};
+\end{tikzpicture}
+\end{center}
+
+\begin{defi}{Matrice Strettamente dominante}{}
+    Una matrice si dice \underline{strettamente} diagonalmente \underline{dominante} per righe, se:
+    \[|A_{ii}|>\sum_{j\ne i}^n\left|A_{ij}\right|\quad\forall i=1,\dots,n\]
+    Per ogni riga, il valore assoluto dell'elemento sulla diagonale è strettamente maggiore della somma dei valori assoluti di tutti gli altri elementi della stessa riga.
+\end{defi}
+
+Per queste matrici possiamo stimare lo spettro di $E$ per il metodo di Jacobi, dato che sono sicuramente invertibili.
+\begin{align*}
+    E&=\mathbb 1-D^{-1}A\quad D_{ii}=A_{ii}\quad \delta_{ij}=0\text{ se }i\ne j\text{ altrimenti $1$}\\
+    E_{ij}&=\delta_{ij}-\sum_{k=1}^{n}\left(D^{-1}\right)_{ik}A_{kj}\\
+    &=\delta_{ij}-\sum_{k=1}^{n}\frac{\delta_{ik}}{A_{ii}}A_{kj}\\
+    &=\delta_{ij}-\frac{A_{ij}}{A_{ii}}\ \begin{cases}
+        &\text{se $i=j$ vale $0$}\\
+        &\text{se $i\ne j$ vale}-\frac{A_{ij}}{A_{ii}}
+    \end{cases}
+\end{align*}
+Ora applichiamo i \textbf{cerchi di Gershgorin}. Dato che la diagonale di $E$ è composta da soli zeri, il centro dei cerchi è sempre $0$.
+mentre il raggio $r =\underset{j \neq i}{\sum} \frac{\left|A_{ij}\right|}{\left|A_{ii}\right|}$. Quindi i cerchi sono:
+\[\lambda_E\in\ \bigcup_{i=1}^n\ B\left(0, \sum_{j\ne i}\frac{\left|A_{ij}\right|}{\left|A_{ii}\right|}\right)\]
+Se $A$ è strettamente diagonalmente dominante allora ogni cerchio ha raggio $<1$.
 \end{document}
