@@ -1988,5 +1988,34 @@ Per queste matrici possiamo stimare lo spettro di $E$ per il metodo di Jacobi, d
 Ora applichiamo i \textbf{cerchi di Gershgorin}. Dato che la diagonale di $E$ è composta da soli zeri, il centro dei cerchi è sempre $0$.
 mentre il raggio $r =\underset{j \neq i}{\sum} \frac{\left|A_{ij}\right|}{\left|A_{ii}\right|}$. Quindi i cerchi sono:
 \[\lambda_E\in\ \bigcup_{i=1}^n\ B\left(0, \sum_{j\ne i}\frac{\left|A_{ij}\right|}{\left|A_{ii}\right|}\right)\]
-Se $A$ è strettamente diagonalmente dominante allora ogni cerchio ha raggio $<1$.
+Se $A$ è strettamente diagonalmente dominante allora ogni cerchio ha raggio $<1$ perchè:
+\[\left|A_{ii}\right|>\sum_{j\ne i}^{n}\left|A_{ij}\right|\quad =\quad 1>\sum_{j\ne i}^{n}\frac{\left|A_{ij}\right|}{\left|A_{ii}\right|} \]
+Di conseguenza dato che gli autovalori $\lambda$ stanno dentro il cerchio di raggio $<1$ allora $\rho(E)<1$. \textbf{Jacobi converge}.
+
+\colorbox{yellow}{Proposizione}: Se $A\in M_{n\times n}(\mathbb R)$ è simmetrica e definita positiva allora il metodo Gauss-Seidel è convergente $\forall x^0\in\mathbb R^n$, ossia $\rho(E)<1$.
+
+\colorbox{yellow}{Dimostrazione}:
+\begin{align*}
+    E&=\mathbb 1-\left(L+D\right)^{-1}A\qquad\text{se $A$ è simmetrica $U=L^T$, se è definita positiva allora $A_{ii}>0$}\\
+    &=\mathbb 1-\left(L+D\right)^{-1}\left(L+D+L^T\right)\\
+    &=\mathbb 1-\mathbb 1-\left(L+D\right)^{-1}L^T
+\end{align*}
+Sia $v$ un \underline{autovettore} di $E$ con autovalore $\lambda\in\mathbb R$.
+\begin{align*}
+    &Ev=\lambda v\quad\Rightarrow\quad -\left(L+D\right)^{-1}L^T\cdot v=\lambda v\\
+    &-L^Tv=\lambda\left(L+D\right)v\\
+    &-v^HL^Tv=\lambda\left(v^HLv+v^HDv\right)\\
+    &v^HL^Tv=l\in\mathbb C\\
+    &v^HDv=r\in\mathbb R>0
+\end{align*}
+
+\colorbox{yellow}{Osservazione}: $v^HL^Tv\ne v^HLv$, oppure $v^HL^Tv=\overline{v^HLv}$.
+
+\begin{align*}
+    \lambda&=\frac{-l}{\overline{l}+r}\\
+    \left|\lambda\right|^2&=\frac{\left|l\right|^2}{\left|\overline{e}+r\right|^2}\quad \text{scriviamo }l=x+iy\\
+    &=\frac{x^2+y^2}{\left|x-iy+r\right|^2}=\frac{x^2+y^2}{\left(x+r\right)^2+y^2}<1
+\end{align*}
+Quindi Gauss-Seidel converge grazie al lemma delle contrazioni e all'esistenza di una norma $\left\|\cdot\right\|$ tale che:
+\[\left\|E\right\|_\ast\le\rho(E)+\epsilon<1\]
 \end{document}
