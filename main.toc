@@ -45,3 +45,5 @@
 \contentsline {subsubsection}{\numberline {5.7.1}Metodo di Jacobi}{34}{subsubsection.5.7.1}%
 \contentsline {subsubsection}{\numberline {5.7.2}Metodo di Gauss-Seidel}{35}{subsubsection.5.7.2}%
 \contentsline {subsubsection}{\numberline {5.7.3}I Teoremi di Gershgorin}{35}{subsubsection.5.7.3}%
+\contentsline {subsection}{\numberline {5.8}Prodotto Scalare}{37}{subsection.5.8}%
+\contentsline {subsubsection}{\numberline {5.8.1}Rapporto tra prodotti e matrici}{38}{subsubsection.5.8.1}%

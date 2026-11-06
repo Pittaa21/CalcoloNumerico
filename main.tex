@@ -2018,4 +2018,47 @@ Sia $v$ un \underline{autovettore} di $E$ con autovalore $\lambda\in\mathbb R$.
 \end{align*}
 Quindi Gauss-Seidel converge grazie al lemma delle contrazioni e all'esistenza di una norma $\left\|\cdot\right\|$ tale che:
 \[\left\|E\right\|_\ast\le\rho(E)+\epsilon<1\]
+
+\subsection{Prodotto Scalare}
+\begin{defi}{Prodotto Euclideo}{}
+    Dati due vettori $u,v$ su base canonica $e_i$:
+    \[u = \sum_{i=1}^n u_i e_i \quad \text{e} \quad v = \sum_{j=1}^n v_j e_j\]
+    allora
+    \[\left(u,v\right)=\sum_{i=1}^{n}u_iv_i\]
+\end{defi}
+\colorbox{yellow}{Linearità}: ossia proprietà distibutiva rispetto alla somma
+\[(u, v+w) = \sum u_i(v_i + w_i) = \sum u_i v_i + \sum u_i w_i\]
+
+Se uso una base generica qualsiasi $b$, allora i vettori hanno nuove componenti $\widetilde{u}_i,\widetilde{v}_i$:
+\begin{align*}
+    &u=\sum_{i=1}^{n}\widetilde{u}_ib_i\quad\text{e}\quad v=\sum_{j=1}^{n}\widetilde{v}_jb_j\quad b_1,\dots,b_n\text{ Base di }\mathbb R^n\\
+    &\left(u,v\right)\ne \sum_{i=1}^{n}\widetilde{u}_i\widetilde{v}_i
+\end{align*}
+
+\begin{defi}{Prodotto Scalare}{}
+    Sia la funzione $a\left(.\ ,\ .\right):\ \mathbb R^n\times\mathbb R^n\to\mathbb R$, si dice \textbf{prodotto scalare} se:\\
+    \begin{enumerate}
+        \item $a(u,v)=a(v,u)$ (\textbf{simmetrica})
+        \item $a(u,u)\ge0\quad$e$\quad a(u,u)=0\Rightarrow u=0$ (\textbf{definita positiva})
+        \item $a(\alpha u+\beta v,w)=\alpha a(u,w)+\beta a(v,w)\quad a(u,\alpha v+\beta w)=\alpha a(u,v)+\beta a(u,w)$ (\textbf{bilineare})
+    \end{enumerate}
+\end{defi}
+
+\colorbox{yellow}{Osservazione}: Se $a\left(.\ ,\ .\right)$ è un prodotto scalare, allora:
+\[\left\|u\right\|_a:=\sqrt{a(u,v)}\quad\forall u\in\mathbb R^n\]
+è una norma che si dice \textbf{indotta} da $a\left(.\ ,\ .\right)$.\\
+Non tutte le norme derivano da un prodotto.
+
+\subsubsection{Rapporto tra prodotti e matrici}
+Se hai una funzione bilineare $a(\ .,\ .)$ che prende due vettori e restituisce un numero reale, 
+e scegli una base di riferimento per lo spazio vettoriale $b_1,\dots,b_n$, esiste sempre una e una sola matrice che rappresenta completamente questa funzione.
+
+Sia $a$ funzione bilineare $\mathbb R^n\times\mathbb R^n\to\mathbb R$, fisso la base $b_1,\dots,b_n$ in $\mathbb{R}^n$. Allora:
+\begin{align*}
+    &u=\sum_{i=1}^{n}u_ib_i\quad v=\sum_{j=1}^{n}v_jb_j\\
+    &a(u,v)=a\left(\sum_{i=1}^{n}u_ib_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $1°$ termine}}{=}\\
+    &=\sum_{i=1}^{n}u_i\ a\left(b_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $2°$ termine}}{=}\sum_{i=1}^{n}u_i\ \sum_{j=1}^{n}v_j\ a\left(b_i,b_j\right)\\
+    &=\sum_{i=1}^{n}\sum_{j=1}^{n}u_iv_j\ a\left(b_i,b_j\right)\\
+    &A:=\left(a\left(b_i,b_j\right)\right)_{i,j=1,\dots,n}
+\end{align*}
 \end{document}
