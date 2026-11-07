@@ -2171,6 +2171,16 @@ Aggiungo quindi a $\widehat{x}$ una perturbazione in modo da vedere cosa succede
     &=\left(A\left(\widehat{x}+tv\right)-b\right)^T\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
     &=\left[\left(\widehat{x}+tv\right)^TA^T-b^T\right]\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
     &=\left(\widehat{x}+tv\right)^TA^TA\left(\widehat{x}+tv\right)+b^Tb-\left(\widehat{x}+tv\right)^TA^Tb-b^TA\left(\widehat{x}+tv\right)\\
-    &=tv^TA^TAtv+\underbrace{tv^TA^TA\widehat{x}+\widehat{x}^TA^TAtv}_{\text{uno il trasposto dell'altro}}-
+    &=tv^TA^TAtv+\widehat{x}^TA^TA\widehat{x}+\underbrace{tv^TA^TA\widehat{x}+\widehat{x}^TA^TAtv}_{\text{uno il trasposto dell'altro}}+b^Tb\\
+    &\underbrace{-\widehat{x}^TA^Tb-b^TA\widehat{x}}_{\text{uno il trasposto dell'altro}}\underbrace{-tv^TA^Tb-b^TAtv}_{\text{uno il trasposto dell'altro}}\\
+    &\text{Quelli evidenziati si possono quindi sommare tra loro, dato che sono numeri e sono equivalenti}\\
+    &=t^2v^TA^TAv+\widehat{x}^TA^TA\widehat{x}+t\left(2v^TA^TA\widehat{x}-2v^TA^Tb\right)-2\widehat{x}A^Tb+b^Tb\\
+    &=t^2v^TA^TAv+2t\cdot v^T\cdot\left(A^TA\widehat{x}-A^Tb\right)-2\widehat{x}A^Tb+b^Tb\\
+    &f_{\widehat{x},v}'(t)=2tv^TA^TAv+2v^T\cdot\underbrace{\left(A^TA\widehat{x}-A^Tb\right)}_{\text{$0$ se $\widehat{x}$ è sol eq norm}}+0\quad\text{Derivato rispetto $t$}\\
+    &f_{\widehat{x},v}'(t)=2t\left(v^TA^TAv\right)=0
 \end{align*}
+Siamo giunti ad avere $v^TA^TAv$ che corrisponde a $\left\|Av\right\|^2$ e dato che per essere uguale a $0$ dovremmo avere o $A=0$ ma è impossibile dato che ha rango pieno oppure $v=0$, ma come condizione
+iniziale abbiamo posto il contrario, quindi quel pezzo è $\ne0$.\\
+Quindi per trovare il minimo ossia $f_{\widehat{x},v}'(t)=0$ l'unico modo è porre $t=0$. Ciò significa che la parabola generata dalla funzione,
+tocca il punto di minimo una sola volta, esattamente nel punto $\widehat{x}$ che corrisponde a $\operatorname{F}(\widehat{x})$
 \end{document}
