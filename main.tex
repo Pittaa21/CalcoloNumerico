@@ -2042,6 +2042,8 @@ Se uso una base generica qualsiasi $b$, allora i vettori hanno nuove componenti 
         \item $a(u,u)\ge0\quad$e$\quad a(u,u)=0\Rightarrow u=0$ (\textbf{definita positiva})
         \item $a(\alpha u+\beta v,w)=\alpha a(u,w)+\beta a(v,w)\quad a(u,\alpha v+\beta w)=\alpha a(u,v)+\beta a(u,w)$ (\textbf{bilineare})
     \end{enumerate}
+
+    Si può scrivere anche come $u^T\mathbb 1v=u^Tv$.
 \end{defi}
 
 \colorbox{yellow}{Osservazione}: Se $a\left(.\ ,\ .\right)$ è un prodotto scalare, allora:
@@ -2051,7 +2053,7 @@ Non tutte le norme derivano da un prodotto.
 
 \subsubsection{Rapporto tra prodotti e matrici}
 Se hai una funzione bilineare $a(\ .,\ .)$ che prende due vettori e restituisce un numero reale, 
-e scegli una base di riferimento per lo spazio vettoriale $b_1,\dots,b_n$, esiste sempre una e una sola matrice che rappresenta completamente questa funzione.
+e scegli una base $(b_1,\dots,b_n)$ di riferimento per lo spazio vettoriale, esiste sempre una e una sola matrice che rappresenta completamente questa funzione.
 
 Sia $a$ funzione bilineare $\mathbb R^n\times\mathbb R^n\to\mathbb R$, fisso la base $b_1,\dots,b_n$ in $\mathbb{R}^n$. Allora:
 \begin{align*}
@@ -2059,6 +2061,116 @@ Sia $a$ funzione bilineare $\mathbb R^n\times\mathbb R^n\to\mathbb R$, fisso la 
     &a(u,v)=a\left(\sum_{i=1}^{n}u_ib_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $1°$ termine}}{=}\\
     &=\sum_{i=1}^{n}u_i\ a\left(b_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $2°$ termine}}{=}\sum_{i=1}^{n}u_i\ \sum_{j=1}^{n}v_j\ a\left(b_i,b_j\right)\\
     &=\sum_{i=1}^{n}\sum_{j=1}^{n}u_iv_j\ a\left(b_i,b_j\right)\\
-    &A:=\left(a\left(b_i,b_j\right)\right)_{i,j=1,\dots,n}
+    &A:=\left(a\left(b_i,b_j\right)\right)_{i,j=1,\dots,n}\in M_{n\times n}\quad u:=\begin{pmatrix}
+        u_1\\
+        \vdots\\
+        u_n
+    \end{pmatrix}\quad v:=\begin{pmatrix}
+        v_1\\
+        \vdots\\
+        v_n
+    \end{pmatrix}\\
+    &\underset{\text{vett riga}}{u^T}Av=u^T\begin{pmatrix}
+        \sum A_{1,j}v_j\\
+        \vdots\\
+        \sum A_{n,j}v_j
+    \end{pmatrix}=u_1\cdot\sum A_{1,j}v_j+\dots+u_n\cdot\sum A_{n,j}v_j=\sum_{i=1}^n \sum_{j=1}^{n} u_iA_{i,j}v_j=a(u,v)
+\end{align*}
+
+Si arriva, quindi, alla conclusione che:\[\boxed{u^TAv=a(u,v)}\]
+Se $a(\ .,\ .)$ è \textbf{simmetrica}, allora: \[a(u,v)=u^TAv=a(v,u)=v^TAu\]
+Implica che $A$ è simmetrica.
+
+Nello stesso modo se $a(\ .,\ .)$ è \textbf{definita positiva} allora anche $A$ lo è.
+\colorbox{yellow}{Nota}: tutti questi sono se e solo se, indipendentemente dalla base.
+%----------
+\newpage
+\subsection{Sistemi Lineari Sovradeterminati}
+\colorbox{yellow}{Problema}: Trovare $x^\ast\in\mathbb R^n:\ Ax^\ast=b$ con $A\in M_{m\times n}(\mathbb R) b\in\mathbb R^m$ con $\boxed{m>n}$.
+\begin{itemize}
+    \item Se $b\in \operatorname{Im} A$, ossia appartiene allo spazio generato dalle colonne di $A$, allora $\exists x^\ast$ tale che $Ax^\ast=b$.
+    \item Se $\operatorname{rk}(A)$ è massimo ossia $n$, allora se $\exists x^\ast$ è \textbf{unico}.
+\end{itemize}
+Supponiamo che $b\in \operatorname{Im} A$ e $\operatorname{rk}(A)=n$, allora l'unica soluzione $x^\ast$ tale che $Ax^\ast=b$ è anche l'unico minimo di
+$\operatorname{F}:\ \mathbb R^n\to\mathbb R$ definita come $\operatorname{F}(x)=\left\|Ax-b\right\|^2$.
+
+\subsubsection{Soluzione ai minimi quadrati}
+L'obiettivo è quindi trovare $x^\ast\in\mathbb R^n$ tale che \[\left\|Ax^\ast-b\right\|^2=\min_{x\in\mathbb R^n}\left\|Ax-b\right\|^2\]
+
+\begin{ex}{Considero il caso}{}
+    $m=2,n=1$ quindi $A\in M_{2,1}(\mathbb R)$ e ottengo:
+    \[A=\begin{pmatrix}
+        a_1\\a_2
+    \end{pmatrix}
+    \quad b=\begin{pmatrix}
+        b_1\\b_2
+    \end{pmatrix}
+    \] 
+\end{ex}
+
+\colorbox{yellow}{Svolgimento}:
+\begin{align*}
+    &\min_{x\in\mathbb R}\left\|Ax-b\right\|^2=\min_{x\in\mathbb R}\left\|\begin{pmatrix}
+        a_1x-b_1\\a_2x-b_2
+    \end{pmatrix}\right\|^2\\
+    &=\min_{x\in\mathbb R}\left(\sqrt{\left(a_1x-b_1\right)^2+\left(a_2x-b_2\right)^2}\right)^2\\
+    &=\min_{x\in\mathbb R} \left(a_1+a_2\right)x^2-2\left(a_1b_1+a_2b_2\right)x+b_1^2+b_2^2=\min_{x\in\mathbb R}\operatorname{F}(x)
+\end{align*}
+La funzione è quindi una parabola \textbf{convessa} (il coefficiente di $x^2$ è positivo) \textbf{strettamente} (esiste un minimo unico).
+Di conseguenza $x^\ast$ soddisfa $\operatorname{F}'(x^\ast)=0$, ossia:
+\begin{align*}
+    &2a_1(a_1x-b_1)+2a_2(a_2x-b_2)=0\\
+    &2a_1^2x-2a_1b_1+2a_2^2x-2a_2b_2\\
+    &2\left(a_1^2+a_2^2\right)x-2\left(a_1b_1+a_2b_2\right)\\
+    &\left(a_1^2+a_2^2\right)x=a_1b_1+a_2b_2
+\end{align*}
+
+Se trasformiamo questo risultato in forma di matrice abbiamo:\[\begin{pmatrix}
+    a_1&a_2
+\end{pmatrix}\cdot\begin{pmatrix}
+    a_1\\
+    a_2
+\end{pmatrix}x=\begin{pmatrix}
+    a_1&a_2
+\end{pmatrix}\cdot\begin{pmatrix}
+    b_1\\b_2
+\end{pmatrix}
+\]
+Questo è esattamente $A^TAx=A^Tb$ (\textbf{equazioni normali}) ossia:\[\boxed{A^T\left(Ax^\ast-b\right)=0}\]
+e si verifica quando $Ax^\ast-b$ è ortogonale ad $A$.
+
+\subsubsection{Teorema delle Proiezioni Ortogonali}
+È un teorema utilizzato per dimostrare l'esistenza e l'unicità della soluzione ai minimi quadrati di un sistema sovradeterminato, ossia con più equazioni che incognite.
+
+\begin{theo}{Proiezioni Ortogonali}{}
+    Sia $A\in M_{m,n}(\mathbb R)\quad b\in\mathbb R^n\quad m>n\quad \operatorname{rk}(A)=n$ ed esiste $x^\ast\in\mathbb R$ tale che:
+    \[\left\|Ax^\ast-b\right\|^2=\min_{x\in\mathbb R^n}\operatorname{F}(x):=\min_{x\in\mathbb R^n}\left\|Ax-b\right\|^2\]
+    Inoltre $x^\ast$ è l'unica soluzione delle \underline{equazioni normali} $A^TAx^\ast=A^Tb$, ossia il residuo
+    $Ax^\ast-b$ è ortogonale allo spazio generato dalle colonne di A.
+\end{theo}
+
+\colorbox{yellow}{Dimostrazione}: per farlo bisogna dimostrare due aspetti principale, ossia che esiste una e una sola soluzione per il sistema ed essa è il minimo assoluto della funzione.
+
+Le equazioni normali sono $n\times n$ perchè $A$ è $m\times n$ e $A^T\ n\times m$, quindi $A^TA$ è $n\times n$. Perchè il
+sistema abbia soluzione unica $A^TA$ deve essere invertibile.\\
+Ipotizzo $\operatorname{rk}(A)=n$ e considero l'equazione $A^TAx=0$:
+\begin{align*}
+    &0=x^T\underbrace{A^TA}_Gx\underset{\text{prod scalare}}{=}\left(Ax,Ax\right)=\left\|Ax\right\|^2=0\\
+    &\Rightarrow Ax=0\ \Rightarrow\ x=0\text{ perchè le colonne di $A$ sono lin. ind. (rango pieno)}\\
+    &\Rightarrow G=A^TA\text{ è invertibile}
+\end{align*}
+Quindi esiste una sola $\widehat{x}$ tale che $A^TA\widehat{x}=A^\ast b$, cioè $\widehat{x}=G^{-1}A^Tb$.
+
+Per la seconda parte voglio mostrare che $\widehat{x}$ è minimo per $\operatorname{F}$ ed è anche l'unico minimo, quindi corrisponde a $x^\ast$.
+
+Prendiamo $v\in \mathbb R^n\setminus\{0\}$ e definisco $f_{\widehat{x},v}:\ \mathbb R\to\mathbb R$
+\[f_{\widehat{x},v}(t):=\operatorname{F}(\widehat{x}+tv)\]
+Aggiungo quindi a $\widehat{x}$ una perturbazione in modo da vedere cosa succede alla funzione:
+\begin{align*}
+    &f_{\widehat{x},v}(t)=\underbrace{\left(A\left(\widehat{x}+tv\right)-b, A\left(\widehat{x}+tv\right)-b\right)}_{\text{Prodotto scalare tra vettori}}=\\
+    &=\left(A\left(\widehat{x}+tv\right)-b\right)^T\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
+    &=\left[\left(\widehat{x}+tv\right)^TA^T-b^T\right]\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
+    &=\left(\widehat{x}+tv\right)^TA^TA\left(\widehat{x}+tv\right)+b^Tb-\left(\widehat{x}+tv\right)^TA^Tb-b^TA\left(\widehat{x}+tv\right)\\
+    &=tv^TA^TAtv+\underbrace{tv^TA^TA\widehat{x}+\widehat{x}^TA^TAtv}_{\text{uno il trasposto dell'altro}}-
 \end{align*}
 \end{document}
