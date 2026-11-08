@@ -1128,13 +1128,15 @@ Come è condizionato il problema?
                & \text{$\left\|\delta A\right\|_*$ è un errore assoluto, noi stiamo usando solo errori relativi, quindi divido e moltiplico per $\left\|A\right\|_*$}                                                                                                                                                                                               \\
                & \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\right)\quad\circledast
           \end{align*}
+    \end{itemize}
           \begin{defi}{Numero di condizionamento}{}
               La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
-              si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$
+              si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$.\\
+
+              Serve a misurare quanto i piccoli errori di input vengono amplificati nell'output.
           \end{defi}
 
           La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
-\end{itemize}
 
 Tipicamente per matrici grandi $\begin{cases}
          & \text{Piene}\quad n>10^4  \\
@@ -2165,7 +2167,7 @@ Per la seconda parte voglio mostrare che $\widehat{x}$ è minimo per $\operatorn
 
 Prendiamo $v\in \mathbb R^n\setminus\{0\}$ e definisco $f_{\widehat{x},v}:\ \mathbb R\to\mathbb R$
 \[f_{\widehat{x},v}(t):=\operatorname{F}(\widehat{x}+tv)\]
-Aggiungo quindi a $\widehat{x}$ una perturbazione in modo da vedere cosa succede alla funzione:
+Aggiungo quindi a $\widehat{x}$ una perturbazione, data da un vettore direzione $v$ e una distanza $t$, in modo da vedere cosa succede alla funzione:
 \begin{align*}
     &f_{\widehat{x},v}(t)=\underbrace{\left(A\left(\widehat{x}+tv\right)-b, A\left(\widehat{x}+tv\right)-b\right)}_{\text{Prodotto scalare tra vettori}}=\\
     &=\left(A\left(\widehat{x}+tv\right)-b\right)^T\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
@@ -2182,5 +2184,27 @@ Aggiungo quindi a $\widehat{x}$ una perturbazione in modo da vedere cosa succede
 Siamo giunti ad avere $v^TA^TAv$ che corrisponde a $\left\|Av\right\|^2$ e dato che per essere uguale a $0$ dovremmo avere o $A=0$ ma è impossibile dato che ha rango pieno oppure $v=0$, ma come condizione
 iniziale abbiamo posto il contrario, quindi quel pezzo è $\ne0$.\\
 Quindi per trovare il minimo ossia $f_{\widehat{x},v}'(t)=0$ l'unico modo è porre $t=0$. Ciò significa che la parabola generata dalla funzione,
-tocca il punto di minimo una sola volta, esattamente nel punto $\widehat{x}$ che corrisponde a $\operatorname{F}(\widehat{x})$
+tocca il punto di minimo una sola volta, esattamente nel punto $\widehat{x}$ che corrisponde a $f_{\widehat{x},v}(0)=\operatorname{F}(\widehat{x})<\operatorname{F}(\widehat{x}+vt)=f_{\widehat{x},v}(t)\quad\checkmark$\\
+
+Supponiamo che esista un altro $x^\ast$ che è minimo globale ($\operatorname{F}(x^\ast)\le\operatorname{F}(\widehat{x})$):
+\begin{align*}
+    &x^* = \widehat{x} + (x^* - \widehat{x})\quad v=\frac{x^\ast-\widehat{x}}{\left\|x^\ast-\widehat{x}\right\|}\quad t=\left\|x^\ast-\widehat{x}\right\|\\
+    &x^*=\widehat{x}+\underbrace{(x^* - \widehat{x})}_{v\cdot t}=\widehat{x}+vt
+\end{align*}
+Dato che prima abbiamo dimostrato che la funzione per $t\ne0$ è strettamente maggiore di quella con $t=0$,  abbiamo:
+\[\operatorname{F}(x^*)=f_{\widehat{x},v}(t)>f_{\widehat{x},v}(0)=\operatorname{F}(\widehat{x})\]
+\textbf{Assurdo}: ho supposto che $x^*$ è punto di minimo.
+
+Ho quindi dimostrato che il punto di minimo è unico $\checkmark$
+
+\subsubsection{Equazioni normali}
+Le equazioni normali hanno il vantaggio di avere un costo computazionale conveniente, specie se $m>>n$ ($m$ molto più grande di $n$).
+Hanno però lo svantaggio dell'\underline{instabilità geometrica}: 
+\[\operatorname{Cond}\left(A^TA,\left\|\cdot\right\|_2\right)=\left\|A^TA\right\|_2\cdot\left\|\left(A^TA\right)^{-1}\right\|_2>>1\]
+
+\begin{defi}{Equazioni normali}{}
+    Dato il sistema lineare $Ax=b$ (con $A\in M_{m\times n},\ m>n $ e $\operatorname{rk}(A)=n$), l'Equazione Normale è il sistema:
+    \[A^TAx^\ast=A^Tb\]
+    dove $x^*$ è il vettore incognito (soluzione)
+\end{defi}
 \end{document}
