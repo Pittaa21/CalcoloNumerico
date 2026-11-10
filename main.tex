@@ -1128,15 +1128,15 @@ Come è condizionato il problema?
                & \text{$\left\|\delta A\right\|_*$ è un errore assoluto, noi stiamo usando solo errori relativi, quindi divido e moltiplico per $\left\|A\right\|_*$}                                                                                                                                                                                               \\
                & \frac{\left\|\delta x\right\|}{\left\|x\right\|}\le\left\|\left(\mathbb 1+A^{-1}\delta A\right)^{-1}\right\|_*\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\left(\frac{\left\|\delta b\right\|}{\left\|b\right\|}+\boxed{\left\|A^{-1}\right\|_*\left\|A\right\|_*}\frac{\left\|\delta A\right\|_*}{\left\|A\right\|_*}\right)\quad\circledast
           \end{align*}
-    \end{itemize}
-          \begin{defi}{Numero di condizionamento}{}
-              La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
-              si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$.\\
+\end{itemize}
+\begin{defi}{Numero di condizionamento}{}
+    La quantità $\left\|A^{-1}\right\|_*\left\|A\right\|_*$ è detta \underline{numero di condizionamento} della matrice $A$ rispetto alla norma $\left\|\cdot\right\|$
+    si denota con $k(A,\left\|\cdot\right\|)$ o $\operatorname{Cond}(A,\left\|\cdot\right\|)$.\\
 
-              Serve a misurare quanto i piccoli errori di input vengono amplificati nell'output.
-          \end{defi}
+    Serve a misurare quanto i piccoli errori di input vengono amplificati nell'output.
+\end{defi}
 
-          La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
+La stima $\circledast$ è una stima di condizionamento \textbf{relativo locale}.\\
 
 Tipicamente per matrici grandi $\begin{cases}
          & \text{Piene}\quad n>10^4  \\
@@ -1556,19 +1556,19 @@ Equivale a prendere $\mathbb 1$ ed effettuare lo scambio o su righe o su colonne
 
 Se si aggiunge nel vecchio algoritmo la possibilità di scambiare le righe, ossia il \textbf{pivoting parziale} $\times$ righe; si passa da:
 \begin{align*}
-    &A^1=A\\
-    &A^k=\widetilde{\operatorname{L}}^{(k-1)}A^{(k-1)}\quad k=2\dots n\\
+     & A^1=A                                                             \\
+     & A^k=\widetilde{\operatorname{L}}^{(k-1)}A^{(k-1)}\quad k=2\dots n \\
 \end{align*}
 e diventa:
 \begin{align*}
-    &\widetilde{A}^1=A\\
-    &A^1=P^1A\\
-    &\widetilde{A}^k=\widetilde{L}^{(k-1)}A^{k-1}\\
-    &A^k=P^k\widetilde{A}^k
+     & \widetilde{A}^1=A                            \\
+     & A^1=P^1A                                     \\
+     & \widetilde{A}^k=\widetilde{L}^{(k-1)}A^{k-1} \\
+     & A^k=P^k\widetilde{A}^k
 \end{align*}
 Ossia ad ogni passo permuto e mi calcolo i moltiplicatori. Successivamente calcolo $\widetilde{L}^{(k-1)}$, poi moltiplico.
 
-Lo scambio permette di avere la possibilità di calcolo. La strategia di scelta del \textbf{pivot} ci consente di non averne uno troppo piccolo, che nel caso non andrebbe bene 
+Lo scambio permette di avere la possibilità di calcolo. La strategia di scelta del \textbf{pivot} ci consente di non averne uno troppo piccolo, che nel caso non andrebbe bene
 dato che ci uscirebbe un moltiplicatore grande e avremmo una sottrazione tra due numeri grandi.
 
 Scelgo, quindi, $l>k\ :\ \left|A(l,k)\right|=\max_{p>k}\left|A(p,k)\right|$, ossia scelgo la riga in modo che il suo elemento nella posizione $k$ sia massimo in modulo rispetto agli elementi
@@ -1576,34 +1576,34 @@ sotto la diagonale in una certa colonna.
 
 $P^k$ è una matrice che scambia la riga $k$ con una sucessiva, e sarà fatta nel seguente modo:
 \[P^k=\begin{pmatrix}
-    \mathbb 1_{k-1}& \mathbb 0_{k-1,n-(k-1)}\\
-    \mathbb 0_{n-(k-1),k-1}& \widetilde{P}^{(k)}_{n-(k-1)}
-\end{pmatrix}\]
+        \mathbb 1_{k-1}         & \mathbb 0_{k-1,n-(k-1)}       \\
+        \mathbb 0_{n-(k-1),k-1} & \widetilde{P}^{(k)}_{n-(k-1)}
+    \end{pmatrix}\]
 ossia le prime $k-1$ righe/colonne restano identiche si ha quindi $\mathbb 1_{k-1}$ e il restante della riga è $0$.
 Ad una determinata riga $l$ alla posizione $k$ avrò un $1$ (lo stesso vale per riga $k$ elemento $l$), mentre sulla stessa riga nella diagonale invece che $1$ ci sarà uno $0$.
 E il resto continua con la matrice diagonale.\\
-La \underline{matrice di scambio}, opera soltanto sulla parte inferiore della colonna dei moltiplicatori, 
+La \underline{matrice di scambio}, opera soltanto sulla parte inferiore della colonna dei moltiplicatori,
 permettendo di permutare i coefficienti di Gauss senza rovinare la struttura inferiore triangolare dell'algoritmo.
 
 Moltiplicandolo con $\widetilde{\operatorname{L}}^{k-1}$ che ha elementi non nulli sono nella colonna $k-1$, ossia:
 \[\begin{pmatrix}
-    \mathbb 1_{k-1}&\mathbb 0_{k-1,n-(k-1)}\\
-    M^{(k-1)}&\mathbb 1_{n-(k-1)}
-\end{pmatrix}\]
+        \mathbb 1_{k-1} & \mathbb 0_{k-1,n-(k-1)} \\
+        M^{(k-1)}       & \mathbb 1_{n-(k-1)}
+    \end{pmatrix}\]
 Ossia nella colonna $k-1$ sotto la diagonale, ci saranno i moltiplicatori $m$, ovviamente sulle colonne a sinistra dei moltiplicatori, cè $0$.
 
 Quindi
 \begin{align*}
     P^k\cdot \widetilde{\operatorname{L}}^{k-1}=\begin{pmatrix}
-        \mathbb 1_{k-1}&\mathbb 0_{k-1,n-(k-1)}\\
-        d&\mathbb 1_{n-(k-1)}
-    \end{pmatrix}
+                                                    \mathbb 1_{k-1} & \mathbb 0_{k-1,n-(k-1)} \\
+                                                    d               & \mathbb 1_{n-(k-1)}
+                                                \end{pmatrix}
 \end{align*}
 Il termine sotto diagonale alla colonna $k$ è $m$ con la permutazione dell'elemento $1$ con $l-k$.
 
 \begin{align*}
-    A^n&=\widetilde{\operatorname{L}}^{(n-1)}\operatorname{P}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\operatorname{P}^{(n-2)}\dots\widetilde{\operatorname{L}}^{(1)}\operatorname{P}^{(1)}A\\    
-    P^2\widetilde{\operatorname{L}}^1\operatorname{P}^1&=\operatorname{P}^2\widetilde{\mathcal{L}}(m^1)\operatorname{P}^1=\widetilde{\mathcal{L}}(\widetilde m^1)\operatorname{P}^2\operatorname{P}^1
+    A^n                                                 & =\widetilde{\operatorname{L}}^{(n-1)}\operatorname{P}^{(n-1)}\widetilde{\operatorname{L}}^{(n-2)}\operatorname{P}^{(n-2)}\dots\widetilde{\operatorname{L}}^{(1)}\operatorname{P}^{(1)}A \\
+    P^2\widetilde{\operatorname{L}}^1\operatorname{P}^1 & =\operatorname{P}^2\widetilde{\mathcal{L}}(m^1)\operatorname{P}^1=\widetilde{\mathcal{L}}(\widetilde m^1)\operatorname{P}^2\operatorname{P}^1
 \end{align*}
 In questo passaggio $\widetilde{\mathcal{L}}(m^1)=\widetilde{\mathcal{L}}(\widetilde m^1)$ ho fatto la permutazione degli elementi diagonali come descritto prima.
 
@@ -1620,7 +1620,7 @@ Abbiamo ottenuto quindi:
 \begin{defi}{Pivoting}{}
     Fattorizzazione $LU$ con \underline{pivoting} parziale per righe del tipo:
     \[\boxed{LU=PA}\]
-    Quindi 
+    Quindi
     \[Ax=b\Leftrightarrow PAx=Pb \text{ e }LUx=Pb\]
 \end{defi}
 
@@ -1641,7 +1641,7 @@ Ci sono due metodi principali: quello \textbf{diretto} come la fattorizzazione $
 
 \colorbox{yellow}{Idea} dei metodi iterativi per la soluzione dei sistemi lineari:
 \begin{itemize}
-    \item[] Creare una successione di approssimazioni della soluzione in modo iterativo con basso costo computazionale della singola iterazione.    
+    \item[] Creare una successione di approssimazioni della soluzione in modo iterativo con basso costo computazionale della singola iterazione.
 \end{itemize}
 
 \begin{defi}{Metodo iterativo lineare stazionario}{}
@@ -1652,8 +1652,8 @@ Ci sono due metodi principali: quello \textbf{diretto} come la fattorizzazione $
 \end{defi}
 \begin{itemize}
     \item $\exists\ x^\ast\in\mathbb R^n:\ x^{(k)}\to x^\ast$ se $k\to +\infty$ per qualche norma $\left\|\cdot\right\|$ si ha che:
-    \[\lim_{k\to +\infty}\left\|x^{(k)}-x^\ast\right\|=0\]
-    Se vale la convergenza in una norma allora vale per \underline{tutte} perchè siamo in uno spazio vettoriale finito.
+          \[\lim_{k\to +\infty}\left\|x^{(k)}-x^\ast\right\|=0\]
+          Se vale la convergenza in una norma allora vale per \underline{tutte} perchè siamo in uno spazio vettoriale finito.
     \item Vogliamo che $Ax^\ast=b$ (\textbf{consistenza})
 \end{itemize}
 
@@ -1667,18 +1667,18 @@ Lo studio di questi aspetti avviene tramite il \underline{Lemma delle contrazion
 \colorbox{yellow}{Osservazione}: Se $\operatorname{F}$ è contrazione, allora è anche continua.
 
 \begin{theo}{Lemma delle contrazioni}{}
-Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ contrazione rispetto alla norma $\left\|\cdot\right\|$ della costante $0\le\operatorname{L}<1$. Allora vale:
+    Sia $\operatorname{F}:\ \mathbb R^n\to\mathbb R^n$ contrazione rispetto alla norma $\left\|\cdot\right\|$ della costante $0\le\operatorname{L}<1$. Allora vale:
 
-\begin{enumerate}
-    \item Esiste $x^\ast\in\mathbb R^n$ ed è l'unico \underline{punto fisso} di $\operatorname{F}$, ossia \(\operatorname{F}(x^\ast)=x^\ast\)
-    \item $\forall x^{(0)}\in\mathbb R^n$ la successione $\begin{cases}
-        &x^{(0)}\quad\text{Dato}\\
-        &x^{(k+1)}=\operatorname{F}(x^k)
-    \end{cases}$ converge a $x^\ast$
-    \item Se $e^{(k)}=\left\|x^{(k)}-x^\ast\right\|$ vale 
-    \[e^{(k)}\le\operatorname{L}e^{k-1}\le\operatorname{L}^2e^{(k-2)}\dots\le\operatorname{L}^ke^{(0)}\]
-    E si chiama \textbf{convergenza geometrica lineare}, ossia ad ogni passo l'errore viene dimezzato.
-\end{enumerate}
+    \begin{enumerate}
+        \item Esiste $x^\ast\in\mathbb R^n$ ed è l'unico \underline{punto fisso} di $\operatorname{F}$, ossia \(\operatorname{F}(x^\ast)=x^\ast\)
+        \item $\forall x^{(0)}\in\mathbb R^n$ la successione $\begin{cases}
+                       & x^{(0)}\quad\text{Dato}         \\
+                       & x^{(k+1)}=\operatorname{F}(x^k)
+                  \end{cases}$ converge a $x^\ast$
+        \item Se $e^{(k)}=\left\|x^{(k)}-x^\ast\right\|$ vale
+              \[e^{(k)}\le\operatorname{L}e^{k-1}\le\operatorname{L}^2e^{(k-2)}\dots\le\operatorname{L}^ke^{(0)}\]
+              E si chiama \textbf{convergenza geometrica lineare}, ossia ad ogni passo l'errore viene dimezzato.
+    \end{enumerate}
 \end{theo}
 
 \colorbox{yellow}{Richiami}:
@@ -1689,286 +1689,286 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
 
 \colorbox{yellow}{Dimostrazione}: Siano $l,m>0$ con $l>m$ interi. Studio:
 \begin{align*}
-    \left\|x^{k+l}-x^{k+m}\right\|&=\left\|x^{k+l}-x^{k+l-1}+x^{k+l-1}\dots x^{k+m+1}-x^{k+m}\right\|\\
-    &\le\left\|x^{k+l}-x^{k+l-1}\right\|+\left\|x^{k+l-1}-x^{k+l-2}\right\|+\dots+\left\|x^{k+m+1}-x^{k+m}\right\|\\
-    x^{k+1}-x^k&:=S^k\quad\text{scarto}
+    \left\|x^{k+l}-x^{k+m}\right\| & =\left\|x^{k+l}-x^{k+l-1}+x^{k+l-1}\dots x^{k+m+1}-x^{k+m}\right\|                                            \\
+                                   & \le\left\|x^{k+l}-x^{k+l-1}\right\|+\left\|x^{k+l-1}-x^{k+l-2}\right\|+\dots+\left\|x^{k+m+1}-x^{k+m}\right\| \\
+    x^{k+1}-x^k                    & :=S^k\quad\text{scarto}
 \end{align*}
-    Usando questa notazione, si può maggiorare la distanza tra due elementi della successione $x^{k+l},x^{k+m}$, sommando gli scarti intermedi:
-    \[\boxed{\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\left\|S^{k+m+j}\right\|}\quad\circledast\]
-    Come posso stimare $\left\|S^k\right\|$?
-    \begin{align*}
-        \left\|S^k\right\|&=\left\|x^{k+1}-x^k\right\|\underset{\text{p.2 lemma}}{=}\left\|\operatorname{F}(x^k)-\operatorname{F}(x^{k-1})\right\|\\
-        \text{da def. contrazione}&\le\operatorname{L}\left\|x^k-x^{k-1}\right\|\underset{\text{p.2 lemma}}{=}\operatorname{L}\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^{k-2})\right\|\\
-        \text{da def. contrazione}&\le\underbrace{\operatorname{L}\cdot\operatorname{L}\left\|x^{k-1}-x^{k-2}\right\|\dots}_{k\text{-volte}}\le\boxed{\operatorname{L}^k\cdot\left\|S_0\right\|}\quad\blacktriangle\\
-        \circledast\text{ unito a }\blacktriangle&=\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\operatorname{L}^{k+m+j}\cdot\left\|S_0\right\|\\
-        &=\operatorname{L}^{k+m}\left\|S_0\right\|\sum_{j=0}^{l-m-1}L^j
-    \end{align*}
-        Quest'ultima sommatoria è una serie geometrica che converge a $\frac{1}{1-\operatorname{L}}$ dato che la ragione è: $0\le\operatorname{L}<1$.\\
-        Inoltre dato che $m$ può essere come minimo $1$, posso porre $\operatorname{L}^{k+m}\le\operatorname{L}^{k+1}$:
-    \begin{align*}
-        &<\operatorname{L}^{k+m}\left\|S_0\right\|\frac{1}{1-\operatorname{L}}\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}\quad\text{è $<$ di $\epsilon$? Per un certo $k$ grande}
-    \end{align*}
-    Adesso risolvo la disuguaglianza $\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon$
-    \begin{align*}
-        &\operatorname{L}^{k+1}<\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\\
-        &\text{uso i logaritmi}\\
-        &(k+1)\cdot\log\operatorname{L}<\log\left(\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\right)\\
-        &\Rightarrow\ k+1>\frac{\log\left(\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\right)}{\log\operatorname{L}}
-    \end{align*}
-    Viene cambiato il segno da $<$ a $>$ perchè il $\log$ di $\operatorname{L}$, ossia una quantità minore di $1$ da segno negativo.
-    Quindi $x^k$ è \textbf{successione di cauchy}, perchè se prendo un $k$ sufficientemente grande $\lim_{k\to\infty}\operatorname{L}^{k+1}=0$ e rispetta la
-    definizione di successione di \textbf{cauchy} dato che:
-    \[\left\|x^{k+l}-x^{k+m}\right\|\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon\quad\Rightarrow \left\|x^l-x^m\right\|<\epsilon\text{ (def. succ. cauchy)}\]
-    Sia $x^\ast$ il suo limite. Dimostro che $x^\ast$ è unico punto fisso di $\operatorname{F}$:
-    \begin{align*}
-        &x^\ast\underset{\text{da def.}}{=}\lim_{k\to\infty}x^k=\lim_{k\to\infty}x^{k+1}\underset{\text{def. succ.}}{=}\lim_{k\to\infty}\operatorname{F}(x^k)\underset{\text{se }\operatorname{F}\text{ continua}}{=}\operatorname{F}\left(\lim_{k\to\infty}x^k\right)\\
-        &\text{So che $\operatorname{F}$ è continua dalla definizione.}\\
-        &=\operatorname{F}\left(x^\ast\right)=x^\ast\quad\checkmark
-    \end{align*}
-    Quindi $x^\ast$ è punto fisso.\\
-    Adesso devo dimostrare che è unico: Sia $y^\ast$ punto fisso di $\operatorname{F}$
-    \begin{align*}
-        &\underbrace{\left\|x^\ast-y^\ast\right\|}_{\text{distanza p. fissi}}=\left\|\operatorname{F}(x^\ast)-\operatorname{F}(y^\ast)\right\|\\
-        &\le\operatorname{L}\cdot\left\|x^\ast-y^\ast\right\|<\left\|x^\ast-y^\ast\right\|\quad\textbf{assurdo}
-    \end{align*}
-    Quindi $x^\ast=y^\ast$, ossia $x^\ast$ è unico punto fisso di $\operatorname{F}$.
+Usando questa notazione, si può maggiorare la distanza tra due elementi della successione $x^{k+l},x^{k+m}$, sommando gli scarti intermedi:
+\[\boxed{\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\left\|S^{k+m+j}\right\|}\quad\circledast\]
+Come posso stimare $\left\|S^k\right\|$?
+\begin{align*}
+    \left\|S^k\right\|                        & =\left\|x^{k+1}-x^k\right\|\underset{\text{p.2 lemma}}{=}\left\|\operatorname{F}(x^k)-\operatorname{F}(x^{k-1})\right\|                                                          \\
+    \text{da def. contrazione}                & \le\operatorname{L}\left\|x^k-x^{k-1}\right\|\underset{\text{p.2 lemma}}{=}\operatorname{L}\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^{k-2})\right\|                    \\
+    \text{da def. contrazione}                & \le\underbrace{\operatorname{L}\cdot\operatorname{L}\left\|x^{k-1}-x^{k-2}\right\|\dots}_{k\text{-volte}}\le\boxed{\operatorname{L}^k\cdot\left\|S_0\right\|}\quad\blacktriangle \\
+    \circledast\text{ unito a }\blacktriangle & =\left\|x^{k+l}-x^{k+m}\right\|\le\sum_{j=0}^{l-m-1}\operatorname{L}^{k+m+j}\cdot\left\|S_0\right\|                                                                              \\
+                                              & =\operatorname{L}^{k+m}\left\|S_0\right\|\sum_{j=0}^{l-m-1}L^j
+\end{align*}
+Quest'ultima sommatoria è una serie geometrica che converge a $\frac{1}{1-\operatorname{L}}$ dato che la ragione è: $0\le\operatorname{L}<1$.\\
+Inoltre dato che $m$ può essere come minimo $1$, posso porre $\operatorname{L}^{k+m}\le\operatorname{L}^{k+1}$:
+\begin{align*}
+     & <\operatorname{L}^{k+m}\left\|S_0\right\|\frac{1}{1-\operatorname{L}}\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}\quad\text{è $<$ di $\epsilon$? Per un certo $k$ grande}
+\end{align*}
+Adesso risolvo la disuguaglianza $\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon$
+\begin{align*}
+     & \operatorname{L}^{k+1}<\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}                                         \\
+     & \text{uso i logaritmi}                                                                                                 \\
+     & (k+1)\cdot\log\operatorname{L}<\log\left(\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\right)                \\
+     & \Rightarrow\ k+1>\frac{\log\left(\frac{\epsilon(1-\operatorname{L})}{\left\|S_0\right\|}\right)}{\log\operatorname{L}}
+\end{align*}
+Viene cambiato il segno da $<$ a $>$ perchè il $\log$ di $\operatorname{L}$, ossia una quantità minore di $1$ da segno negativo.
+Quindi $x^k$ è \textbf{successione di cauchy}, perchè se prendo un $k$ sufficientemente grande $\lim_{k\to\infty}\operatorname{L}^{k+1}=0$ e rispetta la
+definizione di successione di \textbf{cauchy} dato che:
+\[\left\|x^{k+l}-x^{k+m}\right\|\le\operatorname{L}^{k+1}\frac{\left\|S_0\right\|}{1-\operatorname{L}}<\epsilon\quad\Rightarrow \left\|x^l-x^m\right\|<\epsilon\text{ (def. succ. cauchy)}\]
+Sia $x^\ast$ il suo limite. Dimostro che $x^\ast$ è unico punto fisso di $\operatorname{F}$:
+\begin{align*}
+     & x^\ast\underset{\text{da def.}}{=}\lim_{k\to\infty}x^k=\lim_{k\to\infty}x^{k+1}\underset{\text{def. succ.}}{=}\lim_{k\to\infty}\operatorname{F}(x^k)\underset{\text{se }\operatorname{F}\text{ continua}}{=}\operatorname{F}\left(\lim_{k\to\infty}x^k\right) \\
+     & \text{So che $\operatorname{F}$ è continua dalla definizione.}                                                                                                                                                                                                \\
+     & =\operatorname{F}\left(x^\ast\right)=x^\ast\quad\checkmark
+\end{align*}
+Quindi $x^\ast$ è punto fisso.\\
+Adesso devo dimostrare che è unico: Sia $y^\ast$ punto fisso di $\operatorname{F}$
+\begin{align*}
+     & \underbrace{\left\|x^\ast-y^\ast\right\|}_{\text{distanza p. fissi}}=\left\|\operatorname{F}(x^\ast)-\operatorname{F}(y^\ast)\right\| \\
+     & \le\operatorname{L}\cdot\left\|x^\ast-y^\ast\right\|<\left\|x^\ast-y^\ast\right\|\quad\textbf{assurdo}
+\end{align*}
+Quindi $x^\ast=y^\ast$, ossia $x^\ast$ è unico punto fisso di $\operatorname{F}$.
 
-    Dimostro che l'errore di una qualsiasi iterazione rispetto al limite della successione decresce:
-    \begin{align*}
-        e^{(k)}&=\left\|x^k-x^\ast\right\|=\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^\ast)\right\|\\
-        &\le\operatorname{L}\left\|x^{k-1}-x^\ast\right\|=\operatorname{L}\left\|\operatorname{F}\left(x^{k-2}\right)-\operatorname{F}\left(x^\ast\right)\right\|\\
-        &\le\operatorname{L}^2\left\|x^{k-2}-x^\ast\right\|\le\dots\ \operatorname{L}^k\left\|x^0-x^\ast\right\|=\operatorname{L}^ke^{(0)}\quad\checkmark
-    \end{align*}
+Dimostro che l'errore di una qualsiasi iterazione rispetto al limite della successione decresce:
+\begin{align*}
+    e^{(k)} & =\left\|x^k-x^\ast\right\|=\left\|\operatorname{F}(x^{k-1})-\operatorname{F}(x^\ast)\right\|                                                             \\
+            & \le\operatorname{L}\left\|x^{k-1}-x^\ast\right\|=\operatorname{L}\left\|\operatorname{F}\left(x^{k-2}\right)-\operatorname{F}\left(x^\ast\right)\right\| \\
+            & \le\operatorname{L}^2\left\|x^{k-2}-x^\ast\right\|\le\dots\ \operatorname{L}^k\left\|x^0-x^\ast\right\|=\operatorname{L}^ke^{(0)}\quad\checkmark
+\end{align*}
 
-    Io voglio approssimare la soluzione del sistema lineare $Ax=b$ con $A\in M_{n\times n}(\mathbb R)$ invertibile e $b\in\mathbb R^n$ dati.
-    Dal fatto che $A$ è invertibile ottengo che $x=A^{-1}b$ voglio scrivere $\operatorname{F}$ in modo che questo sia il suo punto fisso.\\
-    Quindi:
-    \begin{align*}
-        &Ex+q=x\\
-        &EA^{-1}b+q=A^{-1}b\Rightarrow \underset{\text{condizione per consistenza}}{\left(\mathbb 1-E\right)A^{-1}b=q}\\
-        &\text{Soluzione banale: $E=\mathbb 1-A\quad q=b\quad$(metodo di \textbf{Richardson}) consistenza verificata}
-    \end{align*}
+Io voglio approssimare la soluzione del sistema lineare $Ax=b$ con $A\in M_{n\times n}(\mathbb R)$ invertibile e $b\in\mathbb R^n$ dati.
+Dal fatto che $A$ è invertibile ottengo che $x=A^{-1}b$ voglio scrivere $\operatorname{F}$ in modo che questo sia il suo punto fisso.\\
+Quindi:
+\begin{align*}
+     & Ex+q=x                                                                                                        \\
+     & EA^{-1}b+q=A^{-1}b\Rightarrow \underset{\text{condizione per consistenza}}{\left(\mathbb 1-E\right)A^{-1}b=q} \\
+     & \text{Soluzione banale: $E=\mathbb 1-A\quad q=b\quad$(metodo di \textbf{Richardson}) consistenza verificata}
+\end{align*}
 
-    \subsubsection{Convergenza metodo di Richardson}
-    Per la \textbf{convergenza}: Data una norma $\left\|\cdot\right\|$ su $\mathbb R^n$ e con $\operatorname{F}$ di Richardson
-    \begin{align*}
-        \left\|\operatorname{F}(x)-\operatorname{F}(y)\right\|&=\left\|Ex+q-Ey-q\right\|=\left\|E(x-y)\right\|\\
-        &\underset{\text{prop. norma ind.}}{\le}\left\|E\right\|_\ast\left\|x-y\right\|
-    \end{align*}
-    Esiste il caso sharp, quindi la miglior costante $\operatorname{L}$ è $\left\|E\right\|_\ast=\left\|\mathbb 1-A\right\|_\ast<1$.
+\subsubsection{Convergenza metodo di Richardson}
+Per la \textbf{convergenza}: Data una norma $\left\|\cdot\right\|$ su $\mathbb R^n$ e con $\operatorname{F}$ di Richardson
+\begin{align*}
+    \left\|\operatorname{F}(x)-\operatorname{F}(y)\right\| & =\left\|Ex+q-Ey-q\right\|=\left\|E(x-y)\right\|                                \\
+                                                           & \underset{\text{prop. norma ind.}}{\le}\left\|E\right\|_\ast\left\|x-y\right\|
+\end{align*}
+Esiste il caso sharp, quindi la miglior costante $\operatorname{L}$ è $\left\|E\right\|_\ast=\left\|\mathbb 1-A\right\|_\ast<1$.
 
-    Il lemma delle contrazioni mi dice che ho convergenza se $A$ non è troppo distante da $\mathbb 1$ (condizione molto stringente).
+Il lemma delle contrazioni mi dice che ho convergenza se $A$ non è troppo distante da $\mathbb 1$ (condizione molto stringente).
 
-    Usando \textbf{Richardson}, inoltre se $\left\|E\right\|_\ast<1\Rightarrow\forall x^0\in\mathbb R^n\quad x^{(k)}\to x^\ast$ con $x^{(k)}$ punto fisso
-    unico di $\operatorname{F}$:
-    \begin{align*}
-        x^\ast&=\operatorname{F}\left(x^\ast\right)=\left(\mathbb 1-A\right)x^\ast+b=x^\ast-Ax^\ast+b\\
-        &\underset{\text{sottr. } x^\ast}{\Rightarrow} -Ax^\ast+b=0\Rightarrow Ax^\ast=b
-    \end{align*}
-    
-    Quindi la successione è:
-    \begin{align*}
-        &x^{(0)}\\
-        &x^{(1)}=Ex^{(0)}+q\\
-        &x^{(2)}=Ex^{(1)}+q=E^2x^{(0)}+Eq+q\\
-        &\vdots\\
-        &x^{(k)}=E^kx^{(0)}+\sum_{j=0}^{k-1}E^jq
-    \end{align*}
+Usando \textbf{Richardson}, inoltre se $\left\|E\right\|_\ast<1\Rightarrow\forall x^0\in\mathbb R^n\quad x^{(k)}\to x^\ast$ con $x^{(k)}$ punto fisso
+unico di $\operatorname{F}$:
+\begin{align*}
+    x^\ast & =\operatorname{F}\left(x^\ast\right)=\left(\mathbb 1-A\right)x^\ast+b=x^\ast-Ax^\ast+b \\
+           & \underset{\text{sottr. } x^\ast}{\Rightarrow} -Ax^\ast+b=0\Rightarrow Ax^\ast=b
+\end{align*}
 
-    Supponiamo che $E$ è \underline{diagonalizzabile}, per \textbf{nota 2}:
-    \[E=P^{-1}\Lambda P\quad\text{con}\quad\Lambda=\begin{pmatrix}
-        \lambda_1&\dots&0\\
-        \vdots&\ddots&\vdots\\
-        0&\dots&\lambda_n
+Quindi la successione è:
+\begin{align*}
+     & x^{(0)}                                 \\
+     & x^{(1)}=Ex^{(0)}+q                      \\
+     & x^{(2)}=Ex^{(1)}+q=E^2x^{(0)}+Eq+q      \\
+     & \vdots                                  \\
+     & x^{(k)}=E^kx^{(0)}+\sum_{j=0}^{k-1}E^jq
+\end{align*}
+
+Supponiamo che $E$ è \underline{diagonalizzabile}, per \textbf{nota 2}:
+\[E=P^{-1}\Lambda P\quad\text{con}\quad\Lambda=\begin{pmatrix}
+        \lambda_1 & \dots  & 0         \\
+        \vdots    & \ddots & \vdots    \\
+        0         & \dots  & \lambda_n
     \end{pmatrix}\]
-    Di conseguenza la successione diventa:
-    \begin{align*}
-        x^{(k)}&=\left(P^{-1}\Lambda P\right)^kx^0+\sum_{j=0}^{k-1}\left(P^{-1}\Lambda P\right)^jq\\
-        E^2&=P^{-1}\Lambda \underbrace{P\cdot P^{-1}}_{\mathbb 1}\Lambda P=P^{-1}\Lambda^2 P=P^{-1}
-        \begin{pmatrix}
-            \lambda^2_1&\dots&0\\
-            &\vdots&\ddots&\vdots\\
-            0&\dots&\lambda^2_n
-        \end{pmatrix}P
-    \end{align*}
-    \begin{align*}
-        E^j&=\overbrace{P^{-1}\Lambda \underbrace{P\cdot P^{-1}}_{\mathbb 1}\Lambda P\dots P^{-1}\Lambda P}^{j\text{-volte}}=P^{-1}\overbrace{\Lambda\dots\Lambda}^{j\text{-volte}}P\\
-        &\text{Quindi}\\
-        x^{(k)}&=P^{-1}\Lambda^k Px^{(0)}+\sum_{j=0}^{k-1}P^{-1}\Lambda^j Pq\\
-        Px^{(k)}&=\Lambda^kPx^{(0)}+Pq\left(\sum_{j=0}^{k+1}\Lambda^j\right)\\
-        y^{(k)}&:=Px^{(k)}\quad s=Pq\\
-        y^{(k)}&=\Lambda^ky^{(0)}+\left(\sum_{j=0}^{k-1}\Lambda^j\right)s\\
-        \begin{pmatrix}
-            y_1^{(k)}\\
-            \vdots\\
-            y_n^{(k)}
-        \end{pmatrix}&=
-        \begin{pmatrix}
-            \lambda_1^{k}y_1^{(0)}\\
-            \vdots\\
-            \lambda_n^{k}y_n^{(0)}
-        \end{pmatrix}+\begin{pmatrix}
-            \sum_{j=0}^{k+1}\lambda_1^j\cdot s_1\\
-            \vdots\\
-            \sum_{j=0}^{k+1}\lambda_n^j\cdot s_n
-        \end{pmatrix}\\
-        &=\lambda_i^ky_i^{(0)}+\underset{\text{serie geom.}}{\boxed{\frac{1-\lambda_i^k}{1-\lambda_i}}}s_i
-    \end{align*}
-    Se $\left|\lambda_i\right|<1\ \forall i=1\dots n$, allora il limite di questa espressione per $k\to+\infty$ è
-    \[\quad 0\cdot y_i^{(0)}+\frac{1}{1-\lambda_i}s_i\]
-    Dimostriamo che $y^{(k)}$ tende a:
-    \[\begin{pmatrix}
-        \frac{1}{1-\lambda_1}s_1\\
-        \vdots\\
+Di conseguenza la successione diventa:
+\begin{align*}
+    x^{(k)} & =\left(P^{-1}\Lambda P\right)^kx^0+\sum_{j=0}^{k-1}\left(P^{-1}\Lambda P\right)^jq      \\
+    E^2     & =P^{-1}\Lambda \underbrace{P\cdot P^{-1}}_{\mathbb 1}\Lambda P=P^{-1}\Lambda^2 P=P^{-1}
+    \begin{pmatrix}
+        \lambda^2_1 & \dots  & 0                    \\
+                    & \vdots & \ddots      & \vdots \\
+        0           & \dots  & \lambda^2_n
+    \end{pmatrix}P
+\end{align*}
+\begin{align*}
+    E^j             & =\overbrace{P^{-1}\Lambda \underbrace{P\cdot P^{-1}}_{\mathbb 1}\Lambda P\dots P^{-1}\Lambda P}^{j\text{-volte}}=P^{-1}\overbrace{\Lambda\dots\Lambda}^{j\text{-volte}}P \\
+                    & \text{Quindi}                                                                                                                                                            \\
+    x^{(k)}         & =P^{-1}\Lambda^k Px^{(0)}+\sum_{j=0}^{k-1}P^{-1}\Lambda^j Pq                                                                                                             \\
+    Px^{(k)}        & =\Lambda^kPx^{(0)}+Pq\left(\sum_{j=0}^{k+1}\Lambda^j\right)                                                                                                              \\
+    y^{(k)}         & :=Px^{(k)}\quad s=Pq                                                                                                                                                     \\
+    y^{(k)}         & =\Lambda^ky^{(0)}+\left(\sum_{j=0}^{k-1}\Lambda^j\right)s                                                                                                                \\
+    \begin{pmatrix}
+        y_1^{(k)} \\
+        \vdots    \\
+        y_n^{(k)}
+    \end{pmatrix} & =
+    \begin{pmatrix}
+        \lambda_1^{k}y_1^{(0)} \\
+        \vdots                 \\
+        \lambda_n^{k}y_n^{(0)}
+    \end{pmatrix}+\begin{pmatrix}
+                      \sum_{j=0}^{k+1}\lambda_1^j\cdot s_1 \\
+                      \vdots                               \\
+                      \sum_{j=0}^{k+1}\lambda_n^j\cdot s_n
+                  \end{pmatrix}                                                                                                                                         \\
+                    & =\lambda_i^ky_i^{(0)}+\underset{\text{serie geom.}}{\boxed{\frac{1-\lambda_i^k}{1-\lambda_i}}}s_i
+\end{align*}
+Se $\left|\lambda_i\right|<1\ \forall i=1\dots n$, allora il limite di questa espressione per $k\to+\infty$ è
+\[\quad 0\cdot y_i^{(0)}+\frac{1}{1-\lambda_i}s_i\]
+Dimostriamo che $y^{(k)}$ tende a:
+\[\begin{pmatrix}
+        \frac{1}{1-\lambda_1}s_1 \\
+        \vdots                   \\
         \frac{1}{1-\lambda_n}s_n
     \end{pmatrix}=:y^\ast\]
-    
-    \begin{align*}
-        \left\|y^{(k)}-y^\ast\right\|_\infty=&\max_{i}\underbrace{|\lambda_i^ky_i^{(0)}+\frac{1-\lambda_i^k}{1-\lambda_i}s_i}_{y^{(k)}}-\underbrace{\frac{1}{1-\lambda_i}s_i|}_{y^\ast}\\
-        =&\max_{i}\left|\lambda_i^ky_i^{(0)}-\frac{\lambda_i^k}{1-\lambda_i}s_i\right|\\
-        \le&\max_i \left(\left|\lambda_i^k\right|\cdot\left|y_i^{(0)}\right|+\frac{\left|\lambda_i^k\right|}{\left|1-\lambda_i\right|}\left|s_i\right|\right)\\
-        \le&\left(\max_i \left|\lambda_i\right|\right)^k\cdot\underbrace{\left(\max_i \left|y_i^{(0)}\right|\right)}_{\text{costante }C}+\frac{\underset{i}{\max} \left|\lambda_i^k\right|}{\underset{i}{\min}\underbrace{\left|1-\lambda_i\right|}_{<\ 0}}\underbrace{\max_i\left|s_i\right|}_{\text{costante }C}\\
-        C:=&\left(\max_i \left|y_i^{(0)}\right|\right)+\frac{\underset{i}{\max}\left|s_i\right|}{\underset{i}{\min}\left|1-\lambda_i\right|}\\
-        \left\|y^{(k)}-y^\ast\right\|_\infty\le&\left(\max_i\left|\lambda_i\right|\right)^k\cdot C
-    \end{align*}
-    
-    Dato che $\lambda_i<1\ \forall i$, allora $\underset{i}{\max}\left|\lambda_i\right|<1$ e se faccio il limite:
-    \[\lim_{k\to+\infty}\left\|y^{(k)}-y^\ast\right\|_\infty=\ \boxed{\lim_{k\to+\infty}\left(\max_i\left|\lambda_i^k\right|\right)\cdot C=0}\]
-    Ossia $y^{(k)}\to y^\ast$. Avevamo però fatto un cambio di variabile.
 
-    Ora dobbiamo ridefinire $x^\ast=:P^{-1}y^\ast$ perchè $y^{(k)}=Px^{(k)}$, così possiamo determinare il limite con le variabili iniziali. Quindi calcoliamo la distanza:
-    \begin{align*}
-        \left\|x^{(k)}-x^\ast\right\|=&\left\|P^{-1}y^{(k)}-P^{-1}y^\ast\right\|\le\left\|P^{-1}\right\|\cdot\underbrace{\left\|y^{(k)}-y^\ast\right\|}_{\text{$\Rightarrow0\ \ k\to+\infty$}}
-    \end{align*}
-    Quindi dato che $P^{-1}$ è una matrice fissa, allora la sua norma è una costante. Ciò implica che \[\lim_{k\to+\infty}\left\|x^{(k)}-x^\ast\right\|=0\quad\checkmark\]
-    Ho dimostrato che la successione iniziale \textbf{converge}.
+\begin{align*}
+    \left\|y^{(k)}-y^\ast\right\|_\infty=   & \max_{i}\underbrace{|\lambda_i^ky_i^{(0)}+\frac{1-\lambda_i^k}{1-\lambda_i}s_i}_{y^{(k)}}-\underbrace{\frac{1}{1-\lambda_i}s_i|}_{y^\ast}                                                                                                                                                              \\
+    =                                       & \max_{i}\left|\lambda_i^ky_i^{(0)}-\frac{\lambda_i^k}{1-\lambda_i}s_i\right|                                                                                                                                                                                                                           \\
+    \le                                     & \max_i \left(\left|\lambda_i^k\right|\cdot\left|y_i^{(0)}\right|+\frac{\left|\lambda_i^k\right|}{\left|1-\lambda_i\right|}\left|s_i\right|\right)                                                                                                                                                      \\
+    \le                                     & \left(\max_i \left|\lambda_i\right|\right)^k\cdot\underbrace{\left(\max_i \left|y_i^{(0)}\right|\right)}_{\text{costante }C}+\frac{\underset{i}{\max} \left|\lambda_i^k\right|}{\underset{i}{\min}\underbrace{\left|1-\lambda_i\right|}_{<\ 0}}\underbrace{\max_i\left|s_i\right|}_{\text{costante }C} \\
+    C:=                                     & \left(\max_i \left|y_i^{(0)}\right|\right)+\frac{\underset{i}{\max}\left|s_i\right|}{\underset{i}{\min}\left|1-\lambda_i\right|}                                                                                                                                                                       \\
+    \left\|y^{(k)}-y^\ast\right\|_\infty\le & \left(\max_i\left|\lambda_i\right|\right)^k\cdot C
+\end{align*}
 
-    \colorbox{yellow}{Osservazione}: \[y^\ast=\begin{pmatrix}
-        \frac{1}{1-\lambda_1}&\dots&0\\
-        \vdots&\ddots&\vdots\\
-        0&\dots&\frac{1}{1-\lambda_n}
+Dato che $\lambda_i<1\ \forall i$, allora $\underset{i}{\max}\left|\lambda_i\right|<1$ e se faccio il limite:
+\[\lim_{k\to+\infty}\left\|y^{(k)}-y^\ast\right\|_\infty=\ \boxed{\lim_{k\to+\infty}\left(\max_i\left|\lambda_i^k\right|\right)\cdot C=0}\]
+Ossia $y^{(k)}\to y^\ast$. Avevamo però fatto un cambio di variabile.
+
+Ora dobbiamo ridefinire $x^\ast=:P^{-1}y^\ast$ perchè $y^{(k)}=Px^{(k)}$, così possiamo determinare il limite con le variabili iniziali. Quindi calcoliamo la distanza:
+\begin{align*}
+    \left\|x^{(k)}-x^\ast\right\|= & \left\|P^{-1}y^{(k)}-P^{-1}y^\ast\right\|\le\left\|P^{-1}\right\|\cdot\underbrace{\left\|y^{(k)}-y^\ast\right\|}_{\text{$\Rightarrow0\ \ k\to+\infty$}}
+\end{align*}
+Quindi dato che $P^{-1}$ è una matrice fissa, allora la sua norma è una costante. Ciò implica che \[\lim_{k\to+\infty}\left\|x^{(k)}-x^\ast\right\|=0\quad\checkmark\]
+Ho dimostrato che la successione iniziale \textbf{converge}.
+
+\colorbox{yellow}{Osservazione}: \[y^\ast=\begin{pmatrix}
+        \frac{1}{1-\lambda_1} & \dots  & 0                     \\
+        \vdots                & \ddots & \vdots                \\
+        0                     & \dots  & \frac{1}{1-\lambda_n}
     \end{pmatrix}\cdot s=\left(\mathbb 1-\Lambda\right)^{-1}s\]
-    allora $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}s=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$.
+allora $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}s=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$.
 
-    Prediamo, quindi, $\lambda_i$ \underline{autovalore} di $E=\mathbb 1-A$, quindi $v_i$ è il suo autovettore tale che:
-    \begin{align*}
-        &\left(\mathbb 1-A\right)v_i=\lambda_iv_i\\
-        &v_i-Av_i=\lambda_iv_i\Rightarrow\quad Av_i=\left( 1-\lambda_i\right)v_i
-    \end{align*}
-    In questo modo abbiamo dimostrato che $v_i$ è \underline{autovettore} di $A$ per la definizione di autovettore. Gli 
-    autovalori di $A$ sono $1-\lambda_i$ e definiamo $\lambda_i:=1-\sigma$.
+Prediamo, quindi, $\lambda_i$ \underline{autovalore} di $E=\mathbb 1-A$, quindi $v_i$ è il suo autovettore tale che:
+\begin{align*}
+     & \left(\mathbb 1-A\right)v_i=\lambda_iv_i                                \\
+     & v_i-Av_i=\lambda_iv_i\Rightarrow\quad Av_i=\left( 1-\lambda_i\right)v_i
+\end{align*}
+In questo modo abbiamo dimostrato che $v_i$ è \underline{autovettore} di $A$ per la definizione di autovettore. Gli
+autovalori di $A$ sono $1-\lambda_i$ e definiamo $\lambda_i:=1-\sigma$.
 
-    Se $A$ è diagonalizzabile $Q^{-1}\Sigma Q$ con $\Sigma=\begin{smallmatrix}
+Se $A$ è diagonalizzabile $Q^{-1}\Sigma Q$ con $\Sigma=\begin{smallmatrix}
         \sigma_1\\
         &\ddots\\
         &&\sigma_n
     \end{smallmatrix}$ allora:
-    \[\mathbb 1-A=Q^{-1}Q-Q^{-1}\Sigma Q=Q^{-1}\left(\mathbb 1-\Sigma\right)Q\]
-    Quindi abbiamo dimostrato che se $Q$ diagonalizza $A$, diagonalizza anche $E\Rightarrow P=Q$.
+\[\mathbb 1-A=Q^{-1}Q-Q^{-1}\Sigma Q=Q^{-1}\left(\mathbb 1-\Sigma\right)Q\]
+Quindi abbiamo dimostrato che se $Q$ diagonalizza $A$, diagonalizza anche $E\Rightarrow P=Q$.
 
-    Dato che $\lambda_i=1-\sigma_i$ allora $\Lambda=\mathbb 1-\Sigma$.\\
-    Riprendiamo $\circledast$, ossia $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$:
-    \begin{align*}
-        &\circledast\Rightarrow x^\ast=P^{-1}\left(\mathbb 1-\underline{\left(\mathbb 1-\Sigma\right)}_{\Lambda}\right)^{-1}Pb=P^{-1}\Sigma^{-1}Pb\\
-        &=A^{-1}b\\
-        &\text{Se }A=P^{-1}\Sigma P\Rightarrow A^{-1}=P^{-1}\Sigma^{-1}P
-    \end{align*}
+Dato che $\lambda_i=1-\sigma_i$ allora $\Lambda=\mathbb 1-\Sigma$.\\
+Riprendiamo $\circledast$, ossia $x^\ast=P^{-1}\left(\mathbb 1-\Lambda\right)^{-1}Pq\quad\circledast$:
+\begin{align*}
+     & \circledast\Rightarrow x^\ast=P^{-1}\left(\mathbb 1-\underline{\left(\mathbb 1-\Sigma\right)}_{\Lambda}\right)^{-1}Pb=P^{-1}\Sigma^{-1}Pb \\
+     & =A^{-1}b                                                                                                                                  \\
+     & \text{Se }A=P^{-1}\Sigma P\Rightarrow A^{-1}=P^{-1}\Sigma^{-1}P
+\end{align*}
 
-    Questo dimostra per matrici:
-    \begin{itemize}
-        \item [A)] Diagonalizzabili
-        \item [B)] $\rho(E)<1\quad$ dove $\rho(E)$ è il \textbf{raggio spettrale} e $\rho(E)=\max\{\left|\lambda_i\right|,\lambda_i\text{ autovalore}\}$, ossia il massimo autovalore
-    \end{itemize}
+Questo dimostra per matrici:
+\begin{itemize}
+    \item [A)] Diagonalizzabili
+    \item [B)] $\rho(E)<1\quad$ dove $\rho(E)$ è il \textbf{raggio spettrale} e $\rho(E)=\max\{\left|\lambda_i\right|,\lambda_i\text{ autovalore}\}$, ossia il massimo autovalore
+\end{itemize}
 
-    \begin{defi}{Serie di Neumann}{}
-        È la serie\[\sum_{j=0}^{+\infty}E^j\overset{*}{=}\left(\mathbb 1-E\right)^{-1}\]
-        La serie è sempre convergente se $\rho(E)<1$.
-    \end{defi}
-    Significa che:\[\lim_{N\to+\infty}\left\|\sum_{j=0}^{N}E^j-\left(\mathbb 1-E\right)^{-1}\right\|=0\quad\forall\left\|\cdot\right\|\text{ Norma di matrici}\]
+\begin{defi}{Serie di Neumann}{}
+    È la serie\[\sum_{j=0}^{+\infty}E^j\overset{*}{=}\left(\mathbb 1-E\right)^{-1}\]
+    La serie è sempre convergente se $\rho(E)<1$.
+\end{defi}
+Significa che:\[\lim_{N\to+\infty}\left\|\sum_{j=0}^{N}E^j-\left(\mathbb 1-E\right)^{-1}\right\|=0\quad\forall\left\|\cdot\right\|\text{ Norma di matrici}\]
 
-    L'ipotesi A) è "inutile". Si può replicare la dimostrazione usando \[A=P^{-1}\begin{pmatrix}
-        J_1&&0\\
-        &\ddots\\
-        0&&J_n
+L'ipotesi A) è "inutile". Si può replicare la dimostrazione usando \[A=P^{-1}\begin{pmatrix}
+        J_1 &        & 0   \\
+            & \ddots       \\
+        0   &        & J_n
     \end{pmatrix}P\quad\text{con }J_i=\begin{pmatrix}
-        \lambda&1&&0\\
-        &\ddots&\ddots\\
-        0&&\lambda&1
+        \lambda & 1      &         & 0 \\
+                & \ddots & \ddots      \\
+        0       &        & \lambda & 1
     \end{pmatrix}\]
-    Si calcola $J^k$ e $\left(\mathbb 1-J\right)^{-1}$ come sono fatti e si ripete la stessa dimostrazione fatta con le matrici Diagonalizzabili.
+Si calcola $J^k$ e $\left(\mathbb 1-J\right)^{-1}$ come sono fatti e si ripete la stessa dimostrazione fatta con le matrici Diagonalizzabili.
 
-    \colorbox{yellow}{Corollario}:\\
-    Se $\rho(E)<1$ prendo $\epsilon<1-\rho(E)\ \exists\left\|\cdot\right\|$ su $\mathbb R^n$ che induce
-    $\left\|\cdot\right\|_\ast$ con $\left\|E\right\|_\ast\le\rho(E)+\epsilon<\rho(E)+1-\rho(E)=1$.
+\colorbox{yellow}{Corollario}:\\
+Se $\rho(E)<1$ prendo $\epsilon<1-\rho(E)\ \exists\left\|\cdot\right\|$ su $\mathbb R^n$ che induce
+$\left\|\cdot\right\|_\ast$ con $\left\|E\right\|_\ast\le\rho(E)+\epsilon<\rho(E)+1-\rho(E)=1$.
 
-    \subsection{Splitting Classico}
-    Per risolvere i sistemi $Ax=b$, dato che è difficile fare in modo che la matrice di iterazione ottenuta da Richardson soddisfi $\rho(E)<1$, si usa quindi la notazione 
-    \[\boxed{A=L+D+U}\]
-    Dove $L$ è una matrice diagonale inferiore, $U$ una matrice diagonale superiore e $D$ la diagonale principale.\\
-    L'idea alla base dei metodi iterativi basati su questa scomposizione, è di scrivere $A$ come $A=P-N$ dove $P$ è la matrice \textbf{precondizionata} scelta dal metodo. Si deve calcolare
-    la matrice di \textbf{iterazione}$E$ e il vettore $q$. L'equazione iterativa sarà $x^{(k+1)}=Ex^{(k)}+q$.
+\subsection{Splitting Classico}
+Per risolvere i sistemi $Ax=b$, dato che è difficile fare in modo che la matrice di iterazione ottenuta da Richardson soddisfi $\rho(E)<1$, si usa quindi la notazione
+\[\boxed{A=L+D+U}\]
+Dove $L$ è una matrice diagonale inferiore, $U$ una matrice diagonale superiore e $D$ la diagonale principale.\\
+L'idea alla base dei metodi iterativi basati su questa scomposizione, è di scrivere $A$ come $A=P-N$ dove $P$ è la matrice \textbf{precondizionata} scelta dal metodo. Si deve calcolare
+la matrice di \textbf{iterazione}$E$ e il vettore $q$. L'equazione iterativa sarà $x^{(k+1)}=Ex^{(k)}+q$.
 
-    \subsubsection{Metodo di Jacobi}
-    Si sceglie di isolare solo la diagonale. Se $D_{ii}\ne0\ \forall i=1,\dots,n$ (invertibile), $P=D$, $E=\left(\mathbb 1-D^{-1}A\right)$ e $q=D^{-1}b$.
-    Quindi la successione diventa:\[\begin{cases}
-        x^0\\
+\subsubsection{Metodo di Jacobi}
+Si sceglie di isolare solo la diagonale. Se $D_{ii}\ne0\ \forall i=1,\dots,n$ (invertibile), $P=D$, $E=\left(\mathbb 1-D^{-1}A\right)$ e $q=D^{-1}b$.
+Quindi la successione diventa:\[\begin{cases}
+        x^0 \\
         x^{k+1}=\underbrace{\left(\mathbb 1-D^{-1}A\right)}_Ex^k+\underbrace{D^{-1}b}_q
     \end{cases}\]
 
-    Se gli elementi diagonali hanno ordini di grandezza molto diversi tra loro, il metodo può risultare instabile (problema di \textbf{scaling}).
+Se gli elementi diagonali hanno ordini di grandezza molto diversi tra loro, il metodo può risultare instabile (problema di \textbf{scaling}).
 
-    \subsubsection{Metodo di Gauss-Seidel}
-    Si pone $P=D+L$, $E=\mathbb 1-\left(D+L\right)^{-1}\cdot A$ e $q=\left(D+L\right)^{-1}\cdot b$, solo se $D+L$ è invertibile.\\
-    $\det(D+L) = \prod_{i}\ D_{ii}\neq 0$, come per Jacobi, tutti gli elementi della diagonale di $A$ devono essere $\ne0$.
+\subsubsection{Metodo di Gauss-Seidel}
+Si pone $P=D+L$, $E=\mathbb 1-\left(D+L\right)^{-1}\cdot A$ e $q=\left(D+L\right)^{-1}\cdot b$, solo se $D+L$ è invertibile.\\
+$\det(D+L) = \prod_{i}\ D_{ii}\neq 0$, come per Jacobi, tutti gli elementi della diagonale di $A$ devono essere $\ne0$.
 
-    L'iterazione diventa quindi:
-    \begin{align*}
-        x^{(k+1)}=&\underbrace{\left(\mathbb 1-\left(D+L\right)^{-1}A\right)}_Ex^{(k)}+\underbrace{\left(D+L\right)^{-1}b}_q\\
-        =&\left(\mathbb 1-\left(D+L\right)^{-1}\underbrace{\left(D+L+U\right)}_A\right)x^{(k)}+\left(D+L\right)^{-1}b\\
-        =&\left(\mathbb 1-\mathbb 1-\left(D+L\right)^{-1}U\right)x^{(k)}+\left(D+L\right)^{-1}b\\
-        =&\left(-\left(D+L\right)^{-1}U\right)x^{(k)}+\left(D+L\right)^{-1}b\\
-        =&\left(D+L\right)^{-1}\cdot\left(b-Ux^{(k)}\right)
-    \end{align*}
-    Quindi $x^{(k+1)}$ è soluzione di $\left(D+L\right)x^{(k+1)}=\left(b-Ux^{(k)}\right)$ e si calcola tramite la \textbf{sostituzione in avanti}.
+L'iterazione diventa quindi:
+\begin{align*}
+    x^{(k+1)}= & \underbrace{\left(\mathbb 1-\left(D+L\right)^{-1}A\right)}_Ex^{(k)}+\underbrace{\left(D+L\right)^{-1}b}_q   \\
+    =          & \left(\mathbb 1-\left(D+L\right)^{-1}\underbrace{\left(D+L+U\right)}_A\right)x^{(k)}+\left(D+L\right)^{-1}b \\
+    =          & \left(\mathbb 1-\mathbb 1-\left(D+L\right)^{-1}U\right)x^{(k)}+\left(D+L\right)^{-1}b                       \\
+    =          & \left(-\left(D+L\right)^{-1}U\right)x^{(k)}+\left(D+L\right)^{-1}b                                          \\
+    =          & \left(D+L\right)^{-1}\cdot\left(b-Ux^{(k)}\right)
+\end{align*}
+Quindi $x^{(k+1)}$ è soluzione di $\left(D+L\right)x^{(k+1)}=\left(b-Ux^{(k)}\right)$ e si calcola tramite la \textbf{sostituzione in avanti}.
 
-    \subsubsection{I Teoremi di Gershgorin}
-    \begin{defi}{Cerchio di Gershgorin}{}
-        Sia la matrice $A\in M_{n\times n}(\mathbb R)$, il cui spettro (l'insieme di tutti i suoi \underline{autovalori}) è l'unione della serie di cerchi:
-        \[\bigcup_{i=1}^{n} B\left( E_{ii}, \sum_{j \neq i} |E_{ij}| \right)\]
-        ossia il \textbf{cerchio di Gershgorin}.
-    \end{defi}
-    \colorbox{yellow}{Spiegazione}: Per ogni riga $i$ della matrice, si costruisce un cerchio. Dove $B(x,r)$ è l'insieme: $\{z\in\mathbb C:\ |z-x|<r\}$,
-        ossia l'intorno circolare con raggio $r=\overset{n}{\underset{j=1,j\ne i}{\sum}}\left|A_{ij}\right|$ e centro $x$, ossia l'elemento $i$-esimo della diagonale principale.
+\subsubsection{I Teoremi di Gershgorin}
+\begin{defi}{Cerchio di Gershgorin}{}
+    Sia la matrice $A\in M_{n\times n}(\mathbb R)$, il cui spettro (l'insieme di tutti i suoi \underline{autovalori}) è l'unione della serie di cerchi:
+    \[\bigcup_{i=1}^{n} B\left( E_{ii}, \sum_{j \neq i} |E_{ij}| \right)\]
+    ossia il \textbf{cerchio di Gershgorin}.
+\end{defi}
+\colorbox{yellow}{Spiegazione}: Per ogni riga $i$ della matrice, si costruisce un cerchio. Dove $B(x,r)$ è l'insieme: $\{z\in\mathbb C:\ |z-x|<r\}$,
+ossia l'intorno circolare con raggio $r=\overset{n}{\underset{j=1,j\ne i}{\sum}}\left|A_{ij}\right|$ e centro $x$, ossia l'elemento $i$-esimo della diagonale principale.
 
-    Si utilizza per localizzare gli autovalori di una matrice e garantire la convergenza di metodi iterativi (come Jacobi e Gauss).
+Si utilizza per localizzare gli autovalori di una matrice e garantire la convergenza di metodi iterativi (come Jacobi e Gauss).
 
-    \begin{ex}{Cerchio di Gershgorin}{}
-        Prendiamo la matrice: \[A=\begin{pmatrix}
-            2&-1&0\\
-            -1&2&-1\\
-            0&-1&2
+\begin{ex}{Cerchio di Gershgorin}{}
+    Prendiamo la matrice: \[A=\begin{pmatrix}
+            2  & -1 & 0  \\
+            -1 & 2  & -1 \\
+            0  & -1 & 2
         \end{pmatrix}\]
-        Se $\lambda$ è nello spettro di $A$.
-    \end{ex}
-    Allora $\lambda\in B(\underset{A_{11}}{2},\underset{|-1|+|0|}{1})\ \cup\ B(2,2)\ \cup\ B(2,1)$
+    Se $\lambda$ è nello spettro di $A$.
+\end{ex}
+Allora $\lambda\in B(\underset{A_{11}}{2},\underset{|-1|+|0|}{1})\ \cup\ B(2,2)\ \cup\ B(2,1)$
 \newpage
 \begin{center}
     \colorbox{yellow}{Grafico}
 
     \begin{tikzpicture}
-    % Assi cartesiani
-    \draw[thick, ->] (0,0) -- (5.5,0) node[right] {\(x\)};
-    \draw[thick, ->] (0,-3) -- (0,3) node[above] {\(y\)};
+        % Assi cartesiani
+        \draw[thick, ->] (0,0) -- (5.5,0) node[right] {\(x\)};
+        \draw[thick, ->] (0,-3) -- (0,3) node[above] {\(y\)};
 
-    \draw[red, thick] (2,0) circle (2);
-    \draw[green, thick] (2,0) circle (1);
-    % Punto del centro
-    \filldraw (2,0) circle (1.5pt) node[below] {\(2\)};
-    \filldraw (0,0) circle (1pt) node[left] {\(0\)};
-    % Raggio
-    \draw[thick] (2,0) -- (3.3,1.5) node[midway, right] {\(2\)};
-    \draw[thick] (2,0) -- (2.85,-0.5) node[below, right] {\(1\)};
-\end{tikzpicture}
+        \draw[red, thick] (2,0) circle (2);
+        \draw[green, thick] (2,0) circle (1);
+        % Punto del centro
+        \filldraw (2,0) circle (1.5pt) node[below] {\(2\)};
+        \filldraw (0,0) circle (1pt) node[left] {\(0\)};
+        % Raggio
+        \draw[thick] (2,0) -- (3.3,1.5) node[midway, right] {\(2\)};
+        \draw[thick] (2,0) -- (2.85,-0.5) node[below, right] {\(1\)};
+    \end{tikzpicture}
 \end{center}
 
 \begin{defi}{Matrice Strettamente dominante}{}
@@ -1979,13 +1979,13 @@ avanzando con l'indice della successione la differenza tra gli elementi, diminui
 
 Per queste matrici possiamo stimare lo spettro di $E$ per il metodo di Jacobi, dato che sono sicuramente invertibili.
 \begin{align*}
-    E&=\mathbb 1-D^{-1}A\quad D_{ii}=A_{ii}\quad \delta_{ij}=0\text{ se }i\ne j\text{ altrimenti $1$}\\
-    E_{ij}&=\delta_{ij}-\sum_{k=1}^{n}\left(D^{-1}\right)_{ik}A_{kj}\\
-    &=\delta_{ij}-\sum_{k=1}^{n}\frac{\delta_{ik}}{A_{ii}}A_{kj}\\
-    &=\delta_{ij}-\frac{A_{ij}}{A_{ii}}\ \begin{cases}
-        &\text{se $i=j$ vale $0$}\\
-        &\text{se $i\ne j$ vale}-\frac{A_{ij}}{A_{ii}}
-    \end{cases}
+    E      & =\mathbb 1-D^{-1}A\quad D_{ii}=A_{ii}\quad \delta_{ij}=0\text{ se }i\ne j\text{ altrimenti $1$}                                      \\
+    E_{ij} & =\delta_{ij}-\sum_{k=1}^{n}\left(D^{-1}\right)_{ik}A_{kj}                                                                            \\
+           & =\delta_{ij}-\sum_{k=1}^{n}\frac{\delta_{ik}}{A_{ii}}A_{kj}                                                                          \\
+           & =\delta_{ij}-\frac{A_{ij}}{A_{ii}}\ \begin{cases}
+                                                      & \text{se $i=j$ vale $0$}                      \\
+                                                      & \text{se $i\ne j$ vale}-\frac{A_{ij}}{A_{ii}}
+                                                 \end{cases}
 \end{align*}
 Ora applichiamo i \textbf{cerchi di Gershgorin}. Dato che la diagonale di $E$ è composta da soli zeri, il centro dei cerchi è sempre $0$.
 mentre il raggio $r =\underset{j \neq i}{\sum} \frac{\left|A_{ij}\right|}{\left|A_{ii}\right|}$. Quindi i cerchi sono:
@@ -1998,25 +1998,25 @@ Di conseguenza dato che gli autovalori $\lambda$ stanno dentro il cerchio di rag
 
 \colorbox{yellow}{Dimostrazione}:
 \begin{align*}
-    E&=\mathbb 1-\left(L+D\right)^{-1}A\qquad\text{se $A$ è simmetrica $U=L^T$, se è definita positiva allora $A_{ii}>0$}\\
-    &=\mathbb 1-\left(L+D\right)^{-1}\left(L+D+L^T\right)\\
-    &=\mathbb 1-\mathbb 1-\left(L+D\right)^{-1}L^T
+    E & =\mathbb 1-\left(L+D\right)^{-1}A\qquad\text{se $A$ è simmetrica $U=L^T$, se è definita positiva allora $A_{ii}>0$} \\
+      & =\mathbb 1-\left(L+D\right)^{-1}\left(L+D+L^T\right)                                                                \\
+      & =\mathbb 1-\mathbb 1-\left(L+D\right)^{-1}L^T
 \end{align*}
 Sia $v$ un \underline{autovettore} di $E$ con autovalore $\lambda\in\mathbb R$.
 \begin{align*}
-    &Ev=\lambda v\quad\Rightarrow\quad -\left(L+D\right)^{-1}L^T\cdot v=\lambda v\\
-    &-L^Tv=\lambda\left(L+D\right)v\\
-    &-v^HL^Tv=\lambda\left(v^HLv+v^HDv\right)\\
-    &v^HL^Tv=l\in\mathbb C\\
-    &v^HDv=r\in\mathbb R>0
+     & Ev=\lambda v\quad\Rightarrow\quad -\left(L+D\right)^{-1}L^T\cdot v=\lambda v \\
+     & -L^Tv=\lambda\left(L+D\right)v                                               \\
+     & -v^HL^Tv=\lambda\left(v^HLv+v^HDv\right)                                     \\
+     & v^HL^Tv=l\in\mathbb C                                                        \\
+     & v^HDv=r\in\mathbb R>0
 \end{align*}
 
 \colorbox{yellow}{Osservazione}: $v^HL^Tv\ne v^HLv$, oppure $v^HL^Tv=\overline{v^HLv}$.
 
 \begin{align*}
-    \lambda&=\frac{-l}{\overline{l}+r}\\
-    \left|\lambda\right|^2&=\frac{\left|l\right|^2}{\left|\overline{e}+r\right|^2}\quad \text{scriviamo }l=x+iy\\
-    &=\frac{x^2+y^2}{\left|x-iy+r\right|^2}=\frac{x^2+y^2}{\left(x+r\right)^2+y^2}<1
+    \lambda                & =\frac{-l}{\overline{l}+r}                                                           \\
+    \left|\lambda\right|^2 & =\frac{\left|l\right|^2}{\left|\overline{e}+r\right|^2}\quad \text{scriviamo }l=x+iy \\
+                           & =\frac{x^2+y^2}{\left|x-iy+r\right|^2}=\frac{x^2+y^2}{\left(x+r\right)^2+y^2}<1
 \end{align*}
 Quindi Gauss-Seidel converge grazie al lemma delle contrazioni e all'esistenza di una norma $\left\|\cdot\right\|$ tale che:
 \[\left\|E\right\|_\ast\le\rho(E)+\epsilon<1\]
@@ -2033,8 +2033,8 @@ Quindi Gauss-Seidel converge grazie al lemma delle contrazioni e all'esistenza d
 
 Se uso una base generica qualsiasi $b$, allora i vettori hanno nuove componenti $\widetilde{u}_i,\widetilde{v}_i$:
 \begin{align*}
-    &u=\sum_{i=1}^{n}\widetilde{u}_ib_i\quad\text{e}\quad v=\sum_{j=1}^{n}\widetilde{v}_jb_j\quad b_1,\dots,b_n\text{ Base di }\mathbb R^n\\
-    &\left(u,v\right)\ne \sum_{i=1}^{n}\widetilde{u}_i\widetilde{v}_i
+     & u=\sum_{i=1}^{n}\widetilde{u}_ib_i\quad\text{e}\quad v=\sum_{j=1}^{n}\widetilde{v}_jb_j\quad b_1,\dots,b_n\text{ Base di }\mathbb R^n \\
+     & \left(u,v\right)\ne \sum_{i=1}^{n}\widetilde{u}_i\widetilde{v}_i
 \end{align*}
 
 \begin{defi}{Prodotto Scalare}{}
@@ -2054,29 +2054,29 @@ Se uso una base generica qualsiasi $b$, allora i vettori hanno nuove componenti 
 Non tutte le norme derivano da un prodotto.
 
 \subsubsection{Rapporto tra prodotti e matrici}
-Se hai una funzione bilineare $a(\ .,\ .)$ che prende due vettori e restituisce un numero reale, 
+Se hai una funzione bilineare $a(\ .,\ .)$ che prende due vettori e restituisce un numero reale,
 e scegli una base $(b_1,\dots,b_n)$ di riferimento per lo spazio vettoriale, esiste sempre una e una sola matrice che rappresenta completamente questa funzione.
 
 Sia $a$ funzione bilineare $\mathbb R^n\times\mathbb R^n\to\mathbb R$, fisso la base $b_1,\dots,b_n$ in $\mathbb{R}^n$. Allora:
 \begin{align*}
-    &u=\sum_{i=1}^{n}u_ib_i\quad v=\sum_{j=1}^{n}v_jb_j\\
-    &a(u,v)=a\left(\sum_{i=1}^{n}u_ib_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $1°$ termine}}{=}\\
-    &=\sum_{i=1}^{n}u_i\ a\left(b_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $2°$ termine}}{=}\sum_{i=1}^{n}u_i\ \sum_{j=1}^{n}v_j\ a\left(b_i,b_j\right)\\
-    &=\sum_{i=1}^{n}\sum_{j=1}^{n}u_iv_j\ a\left(b_i,b_j\right)\\
-    &A:=\left(a\left(b_i,b_j\right)\right)_{i,j=1,\dots,n}\in M_{n\times n}\quad u:=\begin{pmatrix}
-        u_1\\
-        \vdots\\
-        u_n
-    \end{pmatrix}\quad v:=\begin{pmatrix}
-        v_1\\
-        \vdots\\
-        v_n
-    \end{pmatrix}\\
-    &\underset{\text{vett riga}}{u^T}Av=u^T\begin{pmatrix}
-        \sum A_{1,j}v_j\\
-        \vdots\\
-        \sum A_{n,j}v_j
-    \end{pmatrix}=u_1\cdot\sum A_{1,j}v_j+\dots+u_n\cdot\sum A_{n,j}v_j=\sum_{i=1}^n \sum_{j=1}^{n} u_iA_{i,j}v_j=a(u,v)
+     & u=\sum_{i=1}^{n}u_ib_i\quad v=\sum_{j=1}^{n}v_jb_j                                                                                                               \\
+     & a(u,v)=a\left(\sum_{i=1}^{n}u_ib_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $1°$ termine}}{=}                                                        \\
+     & =\sum_{i=1}^{n}u_i\ a\left(b_i,\sum_{j=1}^{n}v_jb_j\right)\underset{\text{linearità $2°$ termine}}{=}\sum_{i=1}^{n}u_i\ \sum_{j=1}^{n}v_j\ a\left(b_i,b_j\right) \\
+     & =\sum_{i=1}^{n}\sum_{j=1}^{n}u_iv_j\ a\left(b_i,b_j\right)                                                                                                       \\
+     & A:=\left(a\left(b_i,b_j\right)\right)_{i,j=1,\dots,n}\in M_{n\times n}\quad u:=\begin{pmatrix}
+                                                                                          u_1    \\
+                                                                                          \vdots \\
+                                                                                          u_n
+                                                                                      \end{pmatrix}\quad v:=\begin{pmatrix}
+                                                                                                                v_1    \\
+                                                                                                                \vdots \\
+                                                                                                                v_n
+                                                                                                            \end{pmatrix}                                              \\
+     & \underset{\text{vett riga}}{u^T}Av=u^T\begin{pmatrix}
+                                                 \sum A_{1,j}v_j \\
+                                                 \vdots          \\
+                                                 \sum A_{n,j}v_j
+                                             \end{pmatrix}=u_1\cdot\sum A_{1,j}v_j+\dots+u_n\cdot\sum A_{n,j}v_j=\sum_{i=1}^n \sum_{j=1}^{n} u_iA_{i,j}v_j=a(u,v)
 \end{align*}
 
 Si arriva, quindi, alla conclusione che:\[\boxed{u^TAv=a(u,v)}\]
@@ -2102,41 +2102,41 @@ L'obiettivo è quindi trovare $x^\ast\in\mathbb R^n$ tale che \[\left\|Ax^\ast-b
 \begin{ex}{Considero il caso}{}
     $m=2,n=1$ quindi $A\in M_{2,1}(\mathbb R)$ e ottengo:
     \[A=\begin{pmatrix}
-        a_1\\a_2
-    \end{pmatrix}
-    \quad b=\begin{pmatrix}
-        b_1\\b_2
-    \end{pmatrix}
-    \] 
+            a_1 \\a_2
+        \end{pmatrix}
+        \quad b=\begin{pmatrix}
+            b_1 \\b_2
+        \end{pmatrix}
+    \]
 \end{ex}
 
 \colorbox{yellow}{Svolgimento}:
 \begin{align*}
-    &\min_{x\in\mathbb R}\left\|Ax-b\right\|^2=\min_{x\in\mathbb R}\left\|\begin{pmatrix}
-        a_1x-b_1\\a_2x-b_2
-    \end{pmatrix}\right\|^2\\
-    &=\min_{x\in\mathbb R}\left(\sqrt{\left(a_1x-b_1\right)^2+\left(a_2x-b_2\right)^2}\right)^2\\
-    &=\min_{x\in\mathbb R} \left(a_1+a_2\right)x^2-2\left(a_1b_1+a_2b_2\right)x+b_1^2+b_2^2=\min_{x\in\mathbb R}\operatorname{F}(x)
+     & \min_{x\in\mathbb R}\left\|Ax-b\right\|^2=\min_{x\in\mathbb R}\left\|\begin{pmatrix}
+                                                                                a_1x-b_1 \\a_2x-b_2
+                                                                            \end{pmatrix}\right\|^2                                   \\
+     & =\min_{x\in\mathbb R}\left(\sqrt{\left(a_1x-b_1\right)^2+\left(a_2x-b_2\right)^2}\right)^2                                     \\
+     & =\min_{x\in\mathbb R} \left(a_1+a_2\right)x^2-2\left(a_1b_1+a_2b_2\right)x+b_1^2+b_2^2=\min_{x\in\mathbb R}\operatorname{F}(x)
 \end{align*}
 La funzione è quindi una parabola \textbf{convessa} (il coefficiente di $x^2$ è positivo) \textbf{strettamente} (esiste un minimo unico).
 Di conseguenza $x^\ast$ soddisfa $\operatorname{F}'(x^\ast)=0$, ossia:
 \begin{align*}
-    &2a_1(a_1x-b_1)+2a_2(a_2x-b_2)=0\\
-    &2a_1^2x-2a_1b_1+2a_2^2x-2a_2b_2\\
-    &2\left(a_1^2+a_2^2\right)x-2\left(a_1b_1+a_2b_2\right)\\
-    &\left(a_1^2+a_2^2\right)x=a_1b_1+a_2b_2
+     & 2a_1(a_1x-b_1)+2a_2(a_2x-b_2)=0                        \\
+     & 2a_1^2x-2a_1b_1+2a_2^2x-2a_2b_2                        \\
+     & 2\left(a_1^2+a_2^2\right)x-2\left(a_1b_1+a_2b_2\right) \\
+     & \left(a_1^2+a_2^2\right)x=a_1b_1+a_2b_2
 \end{align*}
 
 Se trasformiamo questo risultato in forma di matrice abbiamo:\[\begin{pmatrix}
-    a_1&a_2
-\end{pmatrix}\cdot\begin{pmatrix}
-    a_1\\
-    a_2
-\end{pmatrix}x=\begin{pmatrix}
-    a_1&a_2
-\end{pmatrix}\cdot\begin{pmatrix}
-    b_1\\b_2
-\end{pmatrix}
+        a_1 & a_2
+    \end{pmatrix}\cdot\begin{pmatrix}
+        a_1 \\
+        a_2
+    \end{pmatrix}x=\begin{pmatrix}
+        a_1 & a_2
+    \end{pmatrix}\cdot\begin{pmatrix}
+        b_1 \\b_2
+    \end{pmatrix}
 \]
 Questo è esattamente $A^TAx=A^Tb$ (\textbf{equazioni normali}) ossia:\[\boxed{A^T\left(Ax^\ast-b\right)=0}\]
 e si verifica quando $Ax^\ast-b$ è ortogonale ad $A$.
@@ -2157,9 +2157,9 @@ Le equazioni normali sono $n\times n$ perchè $A$ è $m\times n$ e $A^T\ n\times
 sistema abbia soluzione unica $A^TA$ deve essere invertibile.\\
 Ipotizzo $\operatorname{rk}(A)=n$ e considero l'equazione $A^TAx=0$:
 \begin{align*}
-    &0=x^T\underbrace{A^TA}_Gx\underset{\text{prod scalare}}{=}\left(Ax,Ax\right)=\left\|Ax\right\|^2=0\\
-    &\Rightarrow Ax=0\ \Rightarrow\ x=0\text{ perchè le colonne di $A$ sono lin. ind. (rango pieno)}\\
-    &\Rightarrow G=A^TA\text{ è invertibile}
+     & 0=x^T\underbrace{A^TA}_Gx\underset{\text{prod scalare}}{=}\left(Ax,Ax\right)=\left\|Ax\right\|^2=0 \\
+     & \Rightarrow Ax=0\ \Rightarrow\ x=0\text{ perchè le colonne di $A$ sono lin. ind. (rango pieno)}    \\
+     & \Rightarrow G=A^TA\text{ è invertibile}
 \end{align*}
 Quindi esiste una sola $\widehat{x}$ tale che $A^TA\widehat{x}=A^\ast b$, cioè $\widehat{x}=G^{-1}A^Tb$.
 
@@ -2169,17 +2169,17 @@ Prendiamo $v\in \mathbb R^n\setminus\{0\}$ e definisco $f_{\widehat{x},v}:\ \mat
 \[f_{\widehat{x},v}(t):=\operatorname{F}(\widehat{x}+tv)\]
 Aggiungo quindi a $\widehat{x}$ una perturbazione, data da un vettore direzione $v$ e una distanza $t$, in modo da vedere cosa succede alla funzione:
 \begin{align*}
-    &f_{\widehat{x},v}(t)=\underbrace{\left(A\left(\widehat{x}+tv\right)-b, A\left(\widehat{x}+tv\right)-b\right)}_{\text{Prodotto scalare tra vettori}}=\\
-    &=\left(A\left(\widehat{x}+tv\right)-b\right)^T\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
-    &=\left[\left(\widehat{x}+tv\right)^TA^T-b^T\right]\cdot\left(A\left(\widehat{x}+tv\right)-b\right)\\
-    &=\left(\widehat{x}+tv\right)^TA^TA\left(\widehat{x}+tv\right)+b^Tb-\left(\widehat{x}+tv\right)^TA^Tb-b^TA\left(\widehat{x}+tv\right)\\
-    &=tv^TA^TAtv+\widehat{x}^TA^TA\widehat{x}+\underbrace{tv^TA^TA\widehat{x}+\widehat{x}^TA^TAtv}_{\text{uno il trasposto dell'altro}}+b^Tb\\
-    &\underbrace{-\widehat{x}^TA^Tb-b^TA\widehat{x}}_{\text{uno il trasposto dell'altro}}\underbrace{-tv^TA^Tb-b^TAtv}_{\text{uno il trasposto dell'altro}}\\
-    &\text{Quelli evidenziati si possono quindi sommare tra loro, dato che sono numeri e sono equivalenti}\\
-    &=t^2v^TA^TAv+\widehat{x}^TA^TA\widehat{x}+t\left(2v^TA^TA\widehat{x}-2v^TA^Tb\right)-2\widehat{x}A^Tb+b^Tb\\
-    &=t^2v^TA^TAv+2t\cdot v^T\cdot\left(A^TA\widehat{x}-A^Tb\right)-2\widehat{x}A^Tb+b^Tb\\
-    &f_{\widehat{x},v}'(t)=2tv^TA^TAv+2v^T\cdot\underbrace{\left(A^TA\widehat{x}-A^Tb\right)}_{\text{$0$ se $\widehat{x}$ è sol eq norm}}+0\quad\text{Derivato rispetto $t$}\\
-    &f_{\widehat{x},v}'(t)=2t\left(v^TA^TAv\right)=0
+     & f_{\widehat{x},v}(t)=\underbrace{\left(A\left(\widehat{x}+tv\right)-b, A\left(\widehat{x}+tv\right)-b\right)}_{\text{Prodotto scalare tra vettori}}=                    \\
+     & =\left(A\left(\widehat{x}+tv\right)-b\right)^T\cdot\left(A\left(\widehat{x}+tv\right)-b\right)                                                                          \\
+     & =\left[\left(\widehat{x}+tv\right)^TA^T-b^T\right]\cdot\left(A\left(\widehat{x}+tv\right)-b\right)                                                                      \\
+     & =\left(\widehat{x}+tv\right)^TA^TA\left(\widehat{x}+tv\right)+b^Tb-\left(\widehat{x}+tv\right)^TA^Tb-b^TA\left(\widehat{x}+tv\right)                                    \\
+     & =tv^TA^TAtv+\widehat{x}^TA^TA\widehat{x}+\underbrace{tv^TA^TA\widehat{x}+\widehat{x}^TA^TAtv}_{\text{uno il trasposto dell'altro}}+b^Tb                                 \\
+     & \underbrace{-\widehat{x}^TA^Tb-b^TA\widehat{x}}_{\text{uno il trasposto dell'altro}}\underbrace{-tv^TA^Tb-b^TAtv}_{\text{uno il trasposto dell'altro}}                  \\
+     & \text{Quelli evidenziati si possono quindi sommare tra loro, dato che sono numeri e sono equivalenti}                                                                   \\
+     & =t^2v^TA^TAv+\widehat{x}^TA^TA\widehat{x}+t\left(2v^TA^TA\widehat{x}-2v^TA^Tb\right)-2\widehat{x}A^Tb+b^Tb                                                              \\
+     & =t^2v^TA^TAv+2t\cdot v^T\cdot\left(A^TA\widehat{x}-A^Tb\right)-2\widehat{x}A^Tb+b^Tb                                                                                    \\
+     & f_{\widehat{x},v}'(t)=2tv^TA^TAv+2v^T\cdot\underbrace{\left(A^TA\widehat{x}-A^Tb\right)}_{\text{$0$ se $\widehat{x}$ è sol eq norm}}+0\quad\text{Derivato rispetto $t$} \\
+     & f_{\widehat{x},v}'(t)=2t\left(v^TA^TAv\right)=0
 \end{align*}
 Siamo giunti ad avere $v^TA^TAv$ che corrisponde a $\left\|Av\right\|^2$ e dato che per essere uguale a $0$ dovremmo avere o $A=0$ ma è impossibile dato che ha rango pieno oppure $v=0$, ma come condizione
 iniziale abbiamo posto il contrario, quindi quel pezzo è $\ne0$.\\
@@ -2188,8 +2188,8 @@ tocca il punto di minimo una sola volta, esattamente nel punto $\widehat{x}$ che
 
 Supponiamo che esista un altro $x^\ast$ che è minimo globale ($\operatorname{F}(x^\ast)\le\operatorname{F}(\widehat{x})$):
 \begin{align*}
-    &x^* = \widehat{x} + (x^* - \widehat{x})\quad v=\frac{x^\ast-\widehat{x}}{\left\|x^\ast-\widehat{x}\right\|}\quad t=\left\|x^\ast-\widehat{x}\right\|\\
-    &x^*=\widehat{x}+\underbrace{(x^* - \widehat{x})}_{v\cdot t}=\widehat{x}+vt
+     & x^* = \widehat{x} + (x^* - \widehat{x})\quad v=\frac{x^\ast-\widehat{x}}{\left\|x^\ast-\widehat{x}\right\|}\quad t=\left\|x^\ast-\widehat{x}\right\| \\
+     & x^*=\widehat{x}+\underbrace{(x^* - \widehat{x})}_{v\cdot t}=\widehat{x}+vt
 \end{align*}
 Dato che prima abbiamo dimostrato che la funzione per $t\ne0$ è strettamente maggiore di quella con $t=0$,  abbiamo:
 \[\operatorname{F}(x^*)=f_{\widehat{x},v}(t)>f_{\widehat{x},v}(0)=\operatorname{F}(\widehat{x})\]
@@ -2199,7 +2199,7 @@ Ho quindi dimostrato che il punto di minimo è unico $\checkmark$
 
 \subsubsection{Equazioni normali}
 Le equazioni normali hanno il vantaggio di avere un costo computazionale conveniente, specie se $m>>n$ ($m$ molto più grande di $n$).
-Hanno però lo svantaggio dell'\underline{instabilità geometrica}: 
+Hanno però lo svantaggio dell'\underline{instabilità geometrica}:
 \[\operatorname{Cond}\left(A^TA,\left\|\cdot\right\|_2\right)=\left\|A^TA\right\|_2\cdot\left\|\left(A^TA\right)^{-1}\right\|_2>>1\]
 
 \begin{defi}{Equazioni normali}{}
@@ -2207,4 +2207,42 @@ Hanno però lo svantaggio dell'\underline{instabilità geometrica}:
     \[A^TAx^\ast=A^Tb\]
     dove $x^*$ è il vettore incognito (soluzione)
 \end{defi}
+
+\subsection{Zeri di una funzione}
+
+\colorbox{yellow}{Problema}: Trovare $x^\ast\in[a,b]$, data $f:[a,b]\to\mathbb R$, tale che $f(x^*)=0$.\\
+Ci chiediamo se:
+\begin{enumerate}
+    \item Esiste $x^*$
+          \begin{theo}{Teorema esistenza degli zeri}{}
+              Se esistono $a_1,b_1\in[a,b]$ tali che $f(a_1)\cdot f(b_1)<0$ allora esiste $x^*$ tale che $f(x^*)=0$.
+          \end{theo}
+    \item $x^*$ è unica, se $f$ è monotona 
+\end{enumerate}
+
+Per dimostrare il teorema di esistenza degli zeri, si può usare il \textbf{metodo di bisezione}.
+\begin{align*}
+    &a_0=a\quad b_0=b\quad a_{k+1}=\begin{cases}
+        &a_k\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)\le0\\
+        &\frac{a_k+b_k}{2}\quad\text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)>0
+    \end{cases}\\
+    &b_{k+1}=\begin{cases}
+        &\frac{a_k+b_k}{2}\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)\le0\\
+        &b_k\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)>0\\
+    \end{cases}
+\end{align*}
+deduciamo che $a_k$ è crescente limitata da sopra $a_k<b$, mentre $b_k$ è decrescente, limitata da sotto.
+Quindi $\{a_k\}_{k\in\mathbb N}$ ha limite $x_1$ e $\{b_k\}_{k\in\mathbb N}$ ha limite $x_2$:
+\[\left|a^{k+1}-b^{k+1}\right|=\frac{1}{2}\left|a^k-b^k\right|=2^{-k}\left|a-b\right|\to 0\]
+
+Quindi $x_1=x_2=x^*$:
+\begin{align*}
+    &f(x^*)=lim_{k\to\infty}(a_k)\quad\text{e}\quad f(x^*)=\lim_{k\to\infty}f(b_k)\\
+    \text{Perciò }&0\le\left(f(x^*)\right)^2=\lim_{k\to+\infty} f(a_k)\cdot f(b_k)\le 0\Rightarrow f(x^*)=0
+\end{align*}
+
+Come conseguenze è dimostrata l'esistenza della radice, viene fornito un metodo di calcolo con stima dell'errore $e_k\le\frac{1}{2^k}e_0$. Il vantaggio è 
+che viene richiesto solo che la funzione sia continua; c'è però lo svantaggio che è richiesto $f(a)\cdot f(b)<0$.
+
+
 \end{document}
