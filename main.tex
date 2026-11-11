@@ -2217,19 +2217,19 @@ Ci chiediamo se:
           \begin{theo}{Teorema esistenza degli zeri}{}
               Se esistono $a_1,b_1\in[a,b]$ tali che $f(a_1)\cdot f(b_1)<0$ allora esiste $x^*$ tale che $f(x^*)=0$.
           \end{theo}
-    \item $x^*$ è unica, se $f$ è monotona 
+    \item $x^*$ è unica, se $f$ è monotona
 \end{enumerate}
 
 Per dimostrare il teorema di esistenza degli zeri, si può usare il \textbf{metodo di bisezione}.
 \begin{align*}
-    &a_0=a\quad b_0=b\quad a_{k+1}=\begin{cases}
-        &a_k\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)\le0\\
-        &\frac{a_k+b_k}{2}\quad\text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)>0
-    \end{cases}\\
-    &b_{k+1}=\begin{cases}
-        &\frac{a_k+b_k}{2}\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)\le0\\
-        &b_k\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)>0\\
-    \end{cases}
+     & a_0=a\quad b_0=b\quad a_{k+1}=\begin{cases}
+                                          & a_k\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)\le0            \\
+                                          & \frac{a_k+b_k}{2}\quad\text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)>0
+                                     \end{cases} \\
+     & b_{k+1}=\begin{cases}
+                    & \frac{a_k+b_k}{2}\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)\le0 \\
+                    & b_k\quad \text{se }f(a_k)\cdot f\left(\frac{a_k+b_k}{2}\right)>0                 \\
+               \end{cases}
 \end{align*}
 deduciamo che $a_k$ è crescente limitata da sopra $a_k<b$, mentre $b_k$ è decrescente, limitata da sotto.
 Quindi $\{a_k\}_{k\in\mathbb N}$ ha limite $x_1$ e $\{b_k\}_{k\in\mathbb N}$ ha limite $x_2$:
@@ -2237,12 +2237,30 @@ Quindi $\{a_k\}_{k\in\mathbb N}$ ha limite $x_1$ e $\{b_k\}_{k\in\mathbb N}$ ha 
 
 Quindi $x_1=x_2=x^*$:
 \begin{align*}
-    &f(x^*)=lim_{k\to\infty}(a_k)\quad\text{e}\quad f(x^*)=\lim_{k\to\infty}f(b_k)\\
-    \text{Perciò }&0\le\left(f(x^*)\right)^2=\lim_{k\to+\infty} f(a_k)\cdot f(b_k)\le 0\Rightarrow f(x^*)=0
+                   & f(x^*)=lim_{k\to\infty}(a_k)\quad\text{e}\quad f(x^*)=\lim_{k\to\infty}f(b_k)            \\
+    \text{Perciò } & 0\le\left(f(x^*)\right)^2=\lim_{k\to+\infty} f(a_k)\cdot f(b_k)\le 0\Rightarrow f(x^*)=0
 \end{align*}
 
-Come conseguenze è dimostrata l'esistenza della radice, viene fornito un metodo di calcolo con stima dell'errore $e_k\le\frac{1}{2^k}e_0$. Il vantaggio è 
+Come conseguenze è dimostrata l'esistenza della radice, viene fornito un metodo di calcolo con stima dell'errore $e_k\le\frac{1}{2^k}e_0$. Il vantaggio è
 che viene richiesto solo che la funzione sia continua; c'è però lo svantaggio che è richiesto $f(a)\cdot f(b)<0$.
 
+\begin{defi}{Convergenza uniforme}{}
+    Se $\underset{n\to+\infty}{\lim} \left\|f_n-f\right\|_n$ allora:
+    $f_n\in \mathcal{C}\left([a,b]\right)\quad \forall n\in\mathbb N$ e $f\in\mathcal{C}\left([a,b]\right)$. Quindi:
+    \[f_n \text{\textbf{ converge uniformemente} a }  f\ \left(f_n\rightrightarrows f\right)\]
+
+    Inoltre, lo spazio $\left(\mathcal{C}\left([a,b]\right),\left\|\cdot\right\|_n\right)$ è \textbf{completo}.
+
+\end{defi}
+
+Studiamo il condizionamento delle radici di $f$.\\
+Si pone $\widetilde{f}:\ [a,b]\to\mathbb R$ e $\left\|f-\widetilde{f}\right\|_u<\epsilon$, inoltre poniamo
+$x^*\in[a,b]:\ f(x^*)=0$ e $\widetilde{x}\in[a,b]:\ \widetilde{f}(\widetilde{x})=0$
+\begin{align*}
+    &\left|f(\widetilde{x})\right|=\left|f(\widetilde{x})-\widetilde{f}(\widetilde{x})\right|\le\sup_{x\in[a,b]}\left|f(n)-\widetilde{f}(x)\right|=\underbrace{\left\|f-\widetilde{f}\right\|_u}_{\text{norma uniforme}}<\epsilon\\
+    &\text{se suppongo } f\in\mathcal{C}'\left([a,b]\right)\text{ derivabile una volta e continua}\\
+    &f(\widetilde{x})=\overbrace{f(\widetilde{x})+f'(\xi)(\widetilde{x}-x^*)}^{\text{Taylor + resto di Lagrange}} \quad\text{dove $\xi\in \overline{x^*\widetilde{x}}$ segmento che unisce $x^*$ e $\widetilde{x}$}\\
+    &\left|f(\widetilde{x})\right|=\left|f'(\xi)\right|\cdot\left|\widetilde{x}-x^*\right|\le\left\|f-\widetilde{f}\right\|_u
+\end{align*}
 
 \end{document}
