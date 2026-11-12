@@ -2208,7 +2208,7 @@ Hanno però lo svantaggio dell'\underline{instabilità geometrica}:
     dove $x^*$ è il vettore incognito (soluzione)
 \end{defi}
 
-\subsection{Zeri di una funzione}
+\section{Zeri di una funzione}
 
 \colorbox{yellow}{Problema}: Trovare $x^\ast\in[a,b]$, data $f:[a,b]\to\mathbb R$, tale che $f(x^*)=0$.\\
 Ci chiediamo se:
@@ -2253,14 +2253,13 @@ che viene richiesto solo che la funzione sia continua; c'è però lo svantaggio 
 
 \end{defi}
 
-Studiamo il condizionamento delle radici di $f$.\\
-Si pone $\widetilde{f}:\ [a,b]\to\mathbb R$ e $\left\|f-\widetilde{f}\right\|_u<\epsilon$, inoltre poniamo
-$x^*\in[a,b]:\ f(x^*)=0$ e $\widetilde{x}\in[a,b]:\ \widetilde{f}(\widetilde{x})=0$
-\begin{align*}
-    &\left|f(\widetilde{x})\right|=\left|f(\widetilde{x})-\widetilde{f}(\widetilde{x})\right|\le\sup_{x\in[a,b]}\left|f(n)-\widetilde{f}(x)\right|=\underbrace{\left\|f-\widetilde{f}\right\|_u}_{\text{norma uniforme}}<\epsilon\\
-    &\text{se suppongo } f\in\mathcal{C}'\left([a,b]\right)\text{ derivabile una volta e continua}\\
-    &f(\widetilde{x})=\overbrace{f(\widetilde{x})+f'(\xi)(\widetilde{x}-x^*)}^{\text{Taylor + resto di Lagrange}} \quad\text{dove $\xi\in \overline{x^*\widetilde{x}}$ segmento che unisce $x^*$ e $\widetilde{x}$}\\
-    &\left|f(\widetilde{x})\right|=\left|f'(\xi)\right|\cdot\left|\widetilde{x}-x^*\right|\le\left\|f-\widetilde{f}\right\|_u
-\end{align*}
+Studiamo quanto è sensibile la radice $x^*$ a piccole perturbazioni della funzione $f$.\\
+Suppongo di perturbare $f$ in $\widetilde{f}=f+\delta f$ e di trovare la nuova radice $\widetilde{x}^*$.
+Tramite lo sviluppo di Taylor si trova:
+\[f(\widetilde{x}^*) = f(\widetilde{x}^*) - f(x^) = f'(\xi)(\widetilde{x}^* - x^*)\quad\text{con }\xi\in[\widetilde{x},x^*]\]
+Dato che $\widetilde{f}\left(\widetilde{x^*}\right)=0$, si ha $\widetilde{f}\left(\widetilde{x^*}\right)+\delta f\left(\widetilde{x^*}\right)=0$ da cui $\widetilde{f}\left(\widetilde{x^*}\right)=-\delta f\left(\widetilde{x^*}\right)$.
 
+Si ottiene infine $|\widetilde{x}^* - x^*| \approx \frac{|f(\widetilde{x}^*)|}{|f'(\xi)|}$. Inoltre 
+\[\boxed{\frac{1}{\left|f'(x^*)\right|}}\]
+È il numero di condizionamento. Piccoli errori sul dato causono grandi errori sulla radice.
 \end{document}
