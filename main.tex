@@ -2259,10 +2259,97 @@ Tramite lo sviluppo di Taylor si trova:
 \[f(\widetilde{x}^*) = f(\widetilde{x}^*) - f(x^) = f'(\xi)(\widetilde{x}^* - x^*)\quad\text{con }\xi\in[\widetilde{x},x^*]\]
 Dato che $\widetilde{f}\left(\widetilde{x^*}\right)=0$, si ha $\widetilde{f}\left(\widetilde{x^*}\right)+\delta f\left(\widetilde{x^*}\right)=0$ da cui $\widetilde{f}\left(\widetilde{x^*}\right)=-\delta f\left(\widetilde{x^*}\right)$.
 
-Si ottiene infine $|\widetilde{x}^* - x^*| \approx \frac{|f(\widetilde{x}^*)|}{|f'(\xi)|}$. Inoltre 
+Si ottiene infine $|\widetilde{x}^* - x^*| \approx \frac{|f(\widetilde{x}^*)|}{|f'(\xi)|}$. Inoltre
 \[\boxed{\frac{1}{\left|f'(x^*)\right|}}\]
 È il numero di condizionamento. Piccoli errori sul dato causono grandi errori sulla radice.
 
 Il \textbf{metodo di Newton} è un altro modo per trovare gli zeri di una funzione, è pratico per per la
-risoluzione di equazioni
+risoluzione di equazioni non lineari. Viene usato in alternativa al \textbf{metodo di bisezione}.
+
+\begin{theo}{Convergenza locale per radici semplici}{}
+    Suppongo che $f\in\mathcal{C}^2\left([a,b]\right),\ x^*\in]a,b[$ \textbf{radice semplice}. Allora
+    $\exists\delta>0$ tale che $\forall x_0\in[x^*-\delta, x^*+\delta]$:
+    \begin{itemize}
+        \item Il \underline{metodo di Newton} è ben definito
+        \item \large$x^{(k)}\to x^*$\normalsize
+        \item \large$\underset{k\to+\infty}{\lim}\frac{e_{k+1}}{e_k^2}=\frac{f''(x^*)}{2f'(x^*)}$\normalsize
+    \end{itemize}
+    Dove $e_k=\left|x^*-x^{(k)}\right|$, ossia $e_{k+1}\approx Ce_k^2$
+\end{theo}
+\begin{defi}{Metodo di Newton}{}
+    \[\begin{cases}
+             & x^{(0)}                                                                \\
+             & x^{(k+1)}=x^{(k)}-\frac{f\left(x^{(k)}\right)}{f'\left(x^{(x)}\right)}
+        \end{cases}\]
+    Se esiste la derivata di $f$.
+\end{defi}
+
+\colorbox{yellow}{Dimostrazione}: Iniziamo facendo lo \textbf{sviluppo di Taylor} fino al secondo grado, attorno al punto $x^k$
+\begin{align*}
+     & 0= f\left(x^*\right)=f(x^k)+f'(x^k)(x^*-x^k)+\frac{f''\left(\xi_k\right)}{2}\left(x^*-x^k\right)^2\quad\text{con }\xi_k\in\overline{x^*\ x^k} \\
+     & \text{Raccolgo }f'(x^k)                                                                                                                       \\
+     & 0=\underbrace{\frac{f(x^k)}{f'(x^k)}-x^k}_{\text{def metodo}=x^{k+1}}+x^*+\frac{f''\left(\xi_k\right)}{2}\left(x^*-x^k\right)^2               \\
+     & x^{k+1}-x^*=\boxed{\frac{f''\left(\xi_k\right)}{2}\left(x^*-x^k\right)^2}\ \circledast
+\end{align*}
+Posso se $x^k$ è sufficientemente vicino a $x^*$ tale che $f'(x^*)\ne0$ (ipotesi radice semplice) allora prendo
+$\delta$ piccolo a sufficienza affinchè si abbia $f'\ne0\in[x^*-\delta,x^*+\delta]$.
+
+\begin{align*}
+     & \left|\circledast\right|\ e_{k+1}=\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'\left(x^{(k)}\right)\right|}e_k^2                                                                                                                                                    \\
+     & \left|\circledast\right|=e_{k+1}=\underbrace{\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'\left(x^{(k)}\right)\right|}e_k}_{\text{voglio dim. che è }<1}\cdot e_k                                                                                                   \\
+     & \max_{x^k,\xi_k\in[x^*-\delta, x^*+\delta]}\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'(x^k)\right|}\left|x^*-x^k\right|\le\frac{\max_{x\in[x^*-\delta, x^*+\delta]}\left|f''(x)\right|}{2\min_{y\in[x^*-\delta, x^*+\delta]}\left|f'(y)\right|}\delta< 1          \\
+     & \max_{x^k,\xi_k\in[x^*-\delta, x^*+\delta]}\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'(x^k)\right|}\left|x^*-x^k\right|\le\frac{\max_{x\in[x^*-\delta, x^*+\delta]}\left|f''(x)\right|}{2\min_{y\in[x^*-\delta, x^*+\delta]}\left|f'(y)\right|}< \frac{1}{\delta}
+\end{align*}
+Se $\delta$ tende a $0^+$ allora la disequazione era $<+\infty$, dunque valida per $\delta$ sufficientemente piccolo.
+
+Se $x^k\in[x^*-\delta,x^*+\delta]$, allora deduco che $\left|x^{k+1}-x^*\right|\le L\left|x^k-x^*\right|\ L<1$ quindi posso iterare.
+\[\lim_{k\to+\infty}\left|x^k-x^*\right|\le\lim_{k\to+\infty}L^k\left|x^0-x^*\right|=0\]
+Ho quindi dimostrato la convergenza $x^k\to x^*$. Adesso posso scrivere:
+\[\lim_{k\to+\infty}\frac{e_{k+1}}{e_k}=\lim_{k\to+\infty}\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'(x^k)\right|}\]
+Se $\xi_k\in\overline{x^k\ x^*}$ allora anche:
+\[
+    \lim_{k\to+\infty}\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'(x^k)\right|}=\frac{\left|f''(x^*)\right|}{2\left|f'(x^*)\right|}\Leftarrow\begin{cases}
+         & \xi_k\to x^*                                                              \\
+         & f\in\mathcal{C}^2\Rightarrow f''\left(\xi_k\right)\to f''\left(x^*\right) \\
+         & f\in\mathcal{C}^1\Rightarrow f'\left(\xi_k\right)\to f'\left(x^*\right)
+    \end{cases}\]
+    Questa convergenza è detta \textbf{quadratica}
+
+\subsection{Criteri di arresto}
+Un algoritmo come quello di Newton non può continuare all'infinito, serve quindi un \textbf{criterio di arresto}.
+
+\begin{theo}{Criterio del residuo}{}
+    Ci si ferma quando il valore della funzione in un punto è molto vicino a $0$, ossia è minore di una tolleranza:
+    \[\boxed{\left|f(x^k)\right|<toll}\]
+\end{theo}
+Il criterio funziona bene nel caso $f$ ha una pendenza elevata, dato che la differenza tra $x^*$ e $x$ è molto piccola.
+Se invece, per esempio, $f$ è quasi orrizionatale all'asse delle $x$, allora la differenza tra $x$ e la radice $x^*$, potrebbe essere elevata.
+
+Il criterio da solo non è \textbf{affidabile}.
+\begin{theo}{Criterio residuo pesato}{}
+    \[\frac{\left|f(x^k)\right|}{\left|f'(x^k)\right|}<toll\]
+    In questo modo il residuo è pesato in base alla pendenza.
+\end{theo}
+Nel caso di Newton questo criterio corrisponde al "passo":
+\begin{align*}
+    &x^{k+1}=x^k-\frac{f(x^k)}{f'(x^k)}\\
+    &\left|x^{k+1}-x^k\right|=\frac{\left|f(x^k)\right|}{\left|f'(x^k)\right|}=\left|S_k\right|\quad\text{step o scarto}
+\end{align*}
+
+\begin{theo}{Criterio dello Step}{}
+    \[\left|x^{k+1}-x^k\right|<toll\]
+\end{theo}
+
+\colorbox{yellow}{Nota}: Nel caso del metodo di Newton corrisponde al residuo pesato.
+
+Stimiamo l'errore:
+\begin{align*}
+    &e_k=\left|x^k-x^*\right|=C\left|x^k-x^{k-1}\right|^2=CS^2_{k-1}\quad e_k\approx S^2_{k-1}
+\end{align*}
+
+Il criterio dello step è quindo ottimo per il metodo di Newton, perchè se lo step è piccolo, l'errore lo è ancora di più.
+
+\begin{theo}{Lemma delle contrazioni versione 2}{}
+    Sia $x\in[a,b]\quad f(x^*)=0=f'(x^*)\quad f''(x^*)\ne0$, radice di ordine $m=2$     
+\end{theo}
 \end{document}

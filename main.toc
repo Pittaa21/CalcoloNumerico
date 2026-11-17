@@ -52,3 +52,4 @@
 \contentsline {subsubsection}{\numberline {5.9.2}Teorema delle Proiezioni Ortogonali}{40}{subsubsection.5.9.2}%
 \contentsline {subsubsection}{\numberline {5.9.3}Equazioni normali}{41}{subsubsection.5.9.3}%
 \contentsline {section}{\numberline {6}Zeri di una funzione}{41}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Criteri di arresto}{43}{subsection.6.1}%
