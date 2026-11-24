@@ -2246,10 +2246,10 @@ che viene richiesto solo che la funzione sia continua; c'è però lo svantaggio 
 
 \begin{defi}{Convergenza uniforme}{}
     Se $\underset{n\to+\infty}{\lim} \left\|f_n-f\right\|_n$ allora:
-    $f_n\in \mathcal{F}\left([a,b]\right)\quad \forall n\in\mathbb N$ e $f\in\mathcal{F}\left([a,b]\right)$. Quindi:
+    $f_n\in \mathcal{C}\left([a,b]\right)\quad \forall n\in\mathbb N$ e $f\in\mathcal{C}\left([a,b]\right)$. Quindi:
     \[f_n \text{\textbf{ converge uniformemente} a }  f\ \left(f_n\rightrightarrows f\right)\]
 
-    Inoltre, lo spazio $\left(\mathcal{F}\left([a,b]\right),\left\|\cdot\right\|_n\right)$ è \textbf{completo}.
+    Inoltre, lo spazio $\left(\mathcal{C}\left([a,b]\right),\left\|\cdot\right\|_n\right)$ è \textbf{completo}.
 
 \end{defi}
 
@@ -2266,16 +2266,18 @@ Si ottiene infine $|\widetilde{x}^* - x^*| \approx \frac{|f(\widetilde{x}^*)|}{|
 Il \textbf{metodo di Newton} è un altro modo per trovare gli zeri di una funzione, è pratico per per la
 risoluzione di equazioni non lineari. Viene usato in alternativa al \textbf{metodo di bisezione}.
 
-\begin{theo}{Convergenza locale per radici semplici}{}
-    Suppongo che $f\in\mathcal{F}^2\left([a,b]\right),\ x^*\in]a,b[$ \textbf{radice semplice}. Allora
-    $\exists\delta>0$ tale che $\forall x_0\in[x^*-\delta, x^*+\delta]$:
+\begin{theo}{Convergenza quadratica locale per radici semplici}{}
+    Suppongo che $f\in\mathcal{C}^2\left([a,b]\right),\ x^*\in]a,b[$ \textbf{radice semplice}. Allora
+    $\exists\delta>0$ tale che $\forall x_0\in[x^*-\delta, x^*+\delta]$, intorno $I$ di $x^*$ per cui, per ogni $x^{(0)}\in I$ vale:\\
     \begin{itemize}
-        \item Il \underline{metodo di Newton} è ben definito
-        \item \large$x^{(k)}\to x^*$\normalsize
-        \item \large$\underset{k\to+\infty}{\lim}\frac{e_{k+1}}{e_k^2}=\frac{f''(x^*)}{2f'(x^*)}$\normalsize
+        \item Il metodo di Newton è ben definito per qualsiasi $k\in\mathbb N$ 
+        \item Il metodo è convergente, \large$\lim_kx^{(k)}= x^*$\normalsize
+        \item La convergenza è quadratica, vale:
+        \[\underset{k\to+\infty}{\lim}\frac{\left|x^{(k+1)}-x^*\right|}{\left|x^{(k)}-x^*\right|^2}=\frac{f''(x^*)}{2f'(x^*)}\]
     \end{itemize}
-    Dove $e_k=\left|x^*-x^{(k)}\right|$, ossia $e_{k+1}\approx Ce_k^2$
+    Dove $e_k=\left|x^{(k)}-x^*\right|$, ossia $e_{k+1}\approx Ce_k^2$
 \end{theo}
+
 \begin{defi}{Metodo di Newton}{}
     \[\begin{cases}
              & x^{(0)}                                                                \\
@@ -2289,6 +2291,7 @@ risoluzione di equazioni non lineari. Viene usato in alternativa al \textbf{meto
      & 0= f\left(x^*\right)=f(x^k)+f'(x^k)(x^*-x^k)+\frac{f''\left(\xi_k\right)}{2}\left(x^*-x^k\right)^2\quad\text{con }\xi_k\in\overline{x^*\ x^k} \\
      & \text{Raccolgo }f'(x^k)                                                                                                                       \\
      & 0=\underbrace{\frac{f(x^k)}{f'(x^k)}-x^k}_{\text{def metodo}=x^{k+1}}+x^*+\frac{f''\left(\xi_k\right)}{2}\left(x^*-x^k\right)^2               \\
+     & \text{Usando la definizione del metodo di Newton ottengo:}\\
      & x^{k+1}-x^*=\boxed{\frac{f''\left(\xi_k\right)}{2}\left(x^*-x^k\right)^2}\ \circledast
 \end{align*}
 Posso se $x^k$ è sufficientemente vicino a $x^*$ tale che $f'(x^*)\ne0$ (ipotesi radice semplice) allora prendo
@@ -2310,8 +2313,8 @@ Se $\xi_k\in\overline{x^k\ x^*}$ allora anche:
 \[
     \lim_{k\to+\infty}\frac{\left|f''\left(\xi_k\right)\right|}{2\left|f'(x^k)\right|}=\frac{\left|f''(x^*)\right|}{2\left|f'(x^*)\right|}\Leftarrow\begin{cases}
          & \xi_k\to x^*                                                              \\
-         & f\in\mathcal{F}^2\Rightarrow f''\left(\xi_k\right)\to f''\left(x^*\right) \\
-         & f\in\mathcal{F}^1\Rightarrow f'\left(\xi_k\right)\to f'\left(x^*\right)
+         & f\in\mathcal{C}^2\Rightarrow f''\left(\xi_k\right)\to f''\left(x^*\right) \\
+         & f\in\mathcal{C}^1\Rightarrow f'\left(\xi_k\right)\to f'\left(x^*\right)
     \end{cases}\]
     Questa convergenza è detta \textbf{quadratica}
 
@@ -2346,10 +2349,12 @@ Stimiamo l'errore:
 \begin{align*}
     &e_k=\left|x^k-x^*\right|=C\left|x^k-x^{k-1}\right|^2=CS^2_{k-1}\quad e_k\approx S^2_{k-1}
 \end{align*}
+Dove $C$ è una costante che corrisponde a: \large$\frac{\left|f''(\eta_k)\right|}{2\left|f'(\xi_k)\right|}$\normalsize
 
-Il criterio dello step è quindo ottimo per il metodo di Newton, perchè se lo step è piccolo, l'errore lo è ancora di più.
+Otteniamo che il quadrato dello step $k-1$-esimo è uno stimatore dell'errore $k$-esimo.\\
+Il criterio dello step è, quindi, ottimo per il metodo di Newton.
 
-Consideriamo il caso in cui abbiamo: $x^*\in[a,b]\quad f(x^*)=0=f'(x^*)\quad f''(x^*)\ne0$
+Consideriamo il caso in cui abbiamo: $x^*\in[a,b]\quad f(x^*)=0=f'(x^*)\quad f''(x^*)\ne0$ e la radice di ordine $n=2$.
 \begin{theo}{Lemma delle contrazioni versione 2}{}
     Sia $g:\ [a,b]\to\mathbb R,\ x^*\in[a,b],\ f(x^*)=0=f'(x^*),\ f''(x^*)\ne0$ tali che:
     \begin{itemize}
@@ -2364,7 +2369,7 @@ Consideriamo il caso in cui abbiamo: $x^*\in[a,b]\quad f(x^*)=0=f'(x^*)\quad f''
         \item $\left|x^{(k)}-x^*\right|\le L^k\left|x^{(0)}-x^*\right|$
     \end{itemize}
 \end{theo}
-\colorbox{yellow}{Osservazione}: supponiamo che $g\in\mathcal{F}^l\left([a,b]\right)\quad l>1$:
+\colorbox{yellow}{Osservazione}: supponiamo che $g\in\mathcal{C}^l\left([a,b]\right)\quad l>1$:
 
 \[x^{k+1}-x^*=g\left(x^k\right)-x^*=\underbrace{g\left(x^*\right)+g'(x^*)\left(x^k-x^*\right)+\frac{g''\left(\xi_k\right)}{2}\left(x^k-x^*\right)^2}_{\text{sviluppo Taylor centrato in } x^*}-x^*\]
 Dato che $g'(x^*)=0$, allora si ha che:
@@ -2380,6 +2385,14 @@ Generalizzando:
     &\lim_{k\to+\infty}\frac{\left|e^{k+1}\right|}{\left|e^k\right|^l=\frac{\left|g^{(l)}(x^*)\right|}{e!}}
 \end{align*}
 
-Possiamo perciò, riscrivere Newton
+Possiamo perciò, riscrivere Newton come:
+\[g(x):=x-\frac{f(x)}{f'(x)}\qquad\begin{cases}
+    &x^{(0)}\quad\text{dato}\\
+    &x^{(k+1)}=g(x^{(k)})
+\end{cases}\]
+
+Di conseguenza:
+\[g'(x)=1-\frac{f'(x)f'(x)-f(x)f''(x)}{\left(f'(x)\right)^2}=\frac{ff''}{\left(f'\right)^2}(x)\]
+Se $x^*$ è una radice semplice, allora $g'(x^*)=0$
 
 \end{document}
