@@ -2395,10 +2395,21 @@ Di conseguenza:
 \[g'(x)=1-\frac{f'(x)f'(x)-f(x)f''(x)}{\left(f'(x)\right)^2}=\frac{ff''}{\left(f'\right)^2}(x)\]
 Se $x^*$ è una radice semplice, allora $g'(x^*)=0$
 
+La prima parte della dimostrazione del metodo di Newton permette di notare che: $\exists\ \delta>0$ tale che $g\left([x_0-\delta,x_0+\delta]\right)\subseteq[x_0-\delta,x_0+\delta]$
+
 \colorbox{yellow}{Osservazione}: Se $x^*$ è \textbf{punto fisso} di $g:\ [a,b]\to\mathbb R$ con $^*\in]a_0,b_0[$ e $\left|g'(x^*)\right|<1$ allora:
 \begin{itemize}
     \item $\exists\ [a,b]\subseteq[a_0,b_0]$ con $x^*\in[a,b]$ e $g([a,b])\subseteq[a,b]$.
     \item $\exists\ [a,b]\subseteq[a_0,b_0]$ con $x^*\in[a,b]$ e $\left|g'(x)\right|<1$ in $[a,b]$.
 \end{itemize}
-Quindi se scelgo il più piccolo ottengo un intervallo in cui valgono le ipotesi del lemma delle contrazioni 2 (Teorema 10).
+Quindi se scelgo il più piccolo tra questi due punti, ottengo un intervallo in cui valgono le ipotesi del lemma delle contrazioni 2 (Teorema 10).
+
+\begin{theo}{Convergenza locale per radici multiple}{}
+    Se abbiamo $f\in\mathcal{C}^n\left([a,b]\right)\ x^*\in]a,b[$ radice di ordine $n>1$, allora $\exists\ \delta>0$ tale che:
+    \begin{itemize}
+        \item Il metodo di Newton è ben definito in $[x^*-\delta,x^*+\delta]$
+        \item $\forall x^*\in[x^*-\delta,x^*+\delta]\quad x^k\to x^*$
+        \item \large$\underset{k\to+\infty}{\lim}\frac{\left|e_{k+1}\right|}{\left|e_k\right|}=\frac{n-1}{n}$\normalsize
+    \end{itemize}
+\end{theo}
 \end{document}
